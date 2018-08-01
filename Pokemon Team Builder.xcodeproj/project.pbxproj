@@ -152,8 +152,8 @@
 				9FF5F2C02102593C00933483 /* AppDelegate.swift */,
 				9FF5F2F821025A4900933483 /* ViewController.swift */,
 				9FF5F2C42102594200933483 /* Assets.xcassets */,
-				9FF5F30821025B0400933483 /* Main.storyboard */,
 				9FF707B8210F81E1008C2C58 /* icons */,
+				9FF5F30821025B0400933483 /* Main.storyboard */,
 				9FF5F2C92102594200933483 /* Info.plist */,
 				9FF5F2CA2102594200933483 /* Pokemon_Team_Builder.entitlements */,
 			);
