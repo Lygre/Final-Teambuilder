@@ -1839,22 +1839,41 @@ struct Dex {
 	
 }
 
-struct Pokemon {
-	var num = Int()
-	var species = String()
-	var types = [String]()
-	var baseStats = [String: Int]()
-	var abilities = [String]()
+class Pokemon : NSObject {
+	@objc dynamic var num: Int
+	@objc dynamic var species: String
+	@objc dynamic var types: [String]
+	@objc dynamic var baseStats: [String: Int]
+	@objc dynamic var abilities: [String]
 	
-	var level = Int()
-	var nature = String()
-	var ability = String()
-	var iVs = [String: Int]()
-	var eVs = [String: Int]()
-	var actualStats = [String: Int]()
-	var moves = [Move]()
-	var item = Item()
+	@objc dynamic var level: Int
+	@objc dynamic var nature: String
+	@objc dynamic var ability: String
+	@objc dynamic var iVs: [String: Int]
+	@objc dynamic var eVs: [String: Int]
+	@objc dynamic var actualStats: [String: Int]
+	var moves: [Move]
+	var item: Item
 	
+	//override init
+	override init() {
+		num = 0
+		species = "Missingno"
+		types = ["Bird", "Flying"]
+		baseStats = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
+		abilities = ["None"]
+		
+		level = 100
+		nature = "Mild"
+		ability = "Undefined"
+		iVs = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
+		eVs = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
+		actualStats = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
+		moves = [Move]()
+		item = Item()
+		
+		super.init()
+	}
 	// initialization from createDex
 	init(num: Int, species: String, types: [String], baseStats: [String: Int], abilities: [String]) {
 		self.num = num
@@ -1872,6 +1891,8 @@ struct Pokemon {
 		self.actualStats = baseStats
 		self.moves = [Move]()
 		self.item = Item()
+		
+		super.init()
 	}
 	// initialization from ?? creating a specific mon for team << ex.
 	init(species: String, level: Int, nature: String, ability: String, iVs: [String: Int], eVs: [String: Int], moves: [Move], item: Item) {
@@ -1890,6 +1911,8 @@ struct Pokemon {
 		self.actualStats = baseStats
 		self.moves = moves
 		self.item = item
+		
+		super.init()
 	}
 	
 	// Methods for Pokemon

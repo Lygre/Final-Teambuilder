@@ -704,7 +704,11 @@
         <!--Team View Controller-->
         <scene sceneID="UNX-MU-Xyb">
             <objects>
-                <arrayController id="jhH-mS-kkV"/>
+                <arrayController objectClassName="Pokemon_Team_Builder.Pokemon" preservesSelection="NO" id="jhH-mS-kkV">
+                    <connections>
+                        <binding destination="fWV-ZE-09i" name="contentArray" keyPath="self.team" id="wHE-O3-g3t"/>
+                    </connections>
+                </arrayController>
                 <customObject id="m8X-ta-M5n" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController id="fWV-ZE-09i" customClass="TeamViewController" customModule="Pokemon_Team_Builder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="xAw-XS-5TC">
@@ -773,7 +777,7 @@
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
                                                                     <connections>
-                                                                        <binding destination="sg2-uB-4Xa" name="value" keyPath="objectValue.species" id="FiT-Cn-U9s"/>
+                                                                        <binding destination="sg2-uB-4Xa" name="value" keyPath="objectValue.species" id="Pac-fq-Aqc"/>
                                                                     </connections>
                                                                 </textField>
                                                             </subviews>
@@ -791,6 +795,7 @@
                                             </tableColumns>
                                             <connections>
                                                 <binding destination="jhH-mS-kkV" name="content" keyPath="arrangedObjects" id="gsB-bi-PlI"/>
+                                                <binding destination="jhH-mS-kkV" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="gsB-bi-PlI" id="sqH-Sd-8A0"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -828,6 +833,132 @@
                                                     </textFieldCell>
                                                     <connections>
                                                         <binding destination="jhH-mS-kkV" name="value" keyPath="selection.species" id="rR6-EC-aKn"/>
+                                                    </connections>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oet-uu-X33">
+                                                    <rect key="frame" x="240" y="214" width="22" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="HP" id="Prg-i1-Xbl">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qTj-Rc-zqF">
+                                                    <rect key="frame" x="240" y="194" width="29" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="ATK" id="eMB-fk-tXW">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KDu-c7-osz">
+                                                    <rect key="frame" x="240" y="155" width="29" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="SPA" id="g7k-aZ-EX6">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A2f-O2-JRR">
+                                                    <rect key="frame" x="240" y="174" width="29" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="DEF" id="aeC-NE-zup">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jne-5t-Fhd">
+                                                    <rect key="frame" x="240" y="116" width="29" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="SPE" id="fQU-bo-n3H">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X5p-ud-ltg">
+                                                    <rect key="frame" x="240" y="135" width="30" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="SPD" id="DoT-EL-cx3">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gwE-qW-RnJ">
+                                                    <rect key="frame" x="285" y="214" width="55" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base HP" id="d5T-vY-SC0">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.hp" id="EhI-EL-zL2"/>
+                                                    </connections>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ccf-Qh-wHG">
+                                                    <rect key="frame" x="285" y="194" width="62" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base ATK" id="RB2-8t-mfK">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.atk" id="xy1-Qf-8O6"/>
+                                                    </connections>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q9H-uP-0eH">
+                                                    <rect key="frame" x="285" y="135" width="63" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base SPD" id="MBW-ua-K5m">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spd" id="2v5-tR-3bw"/>
+                                                    </connections>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tjt-Uh-XS8">
+                                                    <rect key="frame" x="285" y="155" width="62" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base SPA" id="dnK-fA-vh4">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spa" id="MXL-ov-D92"/>
+                                                    </connections>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ykh-kL-PWj">
+                                                    <rect key="frame" x="285" y="174" width="62" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base DEF" id="hT4-t7-SNv">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.def" id="gEN-Zy-pkQ"/>
+                                                    </connections>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eLW-tl-hcE">
+                                                    <rect key="frame" x="285" y="116" width="62" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base SPE" id="mgt-sc-Gnh">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <connections>
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spe" id="zub-Rt-RgJ"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>

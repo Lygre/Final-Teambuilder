@@ -8,12 +8,12 @@
 
 import Cocoa
 
-class Team {
-	static var members = [Pokemon]()
-	static var teamWeaknesses = determineTeamWeaknesses()
-	static var teamCoverage = determineTeamCoverage()
+struct Team {
+	var members = [Pokemon]()
+	var teamWeaknesses = [String: Int]()
+	var teamCoverage = [String: [String: Bool]]()
 	// [Type: [Coverage: Bool, STAB: Bool]]
-	static var additionalAttributes = determineAttributes()
+	var additionalAttributes = [String: Bool]()
 	// stealthRocks, spikes, toxicSpikes, auroraVeil, lightScreen, reflect, statusMoves: thunderWave, willoWisp, slp status, toxic| defog, rapidSpin, regeneratorPivot, zMoveUser, mega
 	
 //	init() {
@@ -21,7 +21,7 @@ class Team {
 //	}
 	// Moving on to Team methods
 	// Method for calculating team weaknesses
-	static func determineTeamWeaknesses() -> [String: Int] {
+	func determineTeamWeaknesses() -> [String: Int] {
 		var teamWeaknessDict = [String: Int]()
 		
 		for mon in members {
@@ -45,7 +45,7 @@ class Team {
 	}
 	
 	// Method for calculating team type coverage
-	static func determineTeamCoverage() -> [String: [String: Bool]] {
+	func determineTeamCoverage() -> [String: [String: Bool]] {
 		var coverageDict = [String: [String: Bool]]()
 		for type in Dex.typeList {
 			coverageDict[type] = ["Coverage": false, "STAB": false]
@@ -76,7 +76,7 @@ class Team {
 	}
 	
 	// Method for assessing additionalAttributes that team members allow us to meet
-	static func determineAttributes() -> [String: Bool] {
+	func determineAttributes() -> [String: Bool] {
 		var attrDict: [String: Bool] = [
 			"stealthrock": false,
 			"stickyweb": false,
@@ -104,4 +104,7 @@ class Team {
 		return attrDict
 	}
 	
+	mutating func addMember(_ pokemon: Pokemon) {
+		members.append(pokemon)
+	}
 }

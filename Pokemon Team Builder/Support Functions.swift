@@ -89,6 +89,22 @@ func makeDexToUseableMons(_ pokedex: [Pokemon]) -> [String: Pokemon] {
 	}
 	return aliasedDex
 }
+
+func dexNumToIcon(_ mon: Pokemon) -> String {
+	let dexNum = String(mon.num)
+	var iconNum: String?
+	
+	if mon.num < 100 {
+		iconNum = "0" + dexNum
+	} else {
+		iconNum = dexNum
+	}
+	
+	return iconNum!
+}
+
+
+
 //class Result: NSObject {
 //	var num: Int? = 0
 //	var species: String? = ""
