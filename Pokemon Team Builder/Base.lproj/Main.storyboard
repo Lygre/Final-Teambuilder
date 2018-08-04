@@ -704,9 +704,14 @@
         <!--Team View Controller-->
         <scene sceneID="UNX-MU-Xyb">
             <objects>
-                <arrayController objectClassName="Pokemon_Team_Builder.Pokemon" preservesSelection="NO" id="jhH-mS-kkV">
+                <arrayController objectClassName="Pokemon_Team_Builder.Pokemon" preservesSelection="NO" selectsInsertedObjects="NO" avoidsEmptySelection="NO" clearsFilterPredicateOnInsertion="NO" id="jhH-mS-kkV">
                     <connections>
-                        <binding destination="fWV-ZE-09i" name="contentArray" keyPath="self.team" id="wHE-O3-g3t"/>
+                        <binding destination="fWV-ZE-09i" name="contentArray" keyPath="self.team" id="Kyn-NW-7cx">
+                            <dictionary key="options">
+                                <bool key="NSDeletesObjectsOnRemove" value="YES"/>
+                                <bool key="NSHandlesContentAsCompoundValue" value="YES"/>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </arrayController>
                 <customObject id="m8X-ta-M5n" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -980,9 +985,13 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.hp" id="gn2-4H-W4b">
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.hp" id="ItT-gs-5d7">
                                                             <dictionary key="options">
-                                                                <bool key="NSConditionallySetsEditable" value="YES"/>
+                                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
+                                                                <string key="NSMultipleValuesPlaceholder">No Mult</string>
+                                                                <string key="NSNoSelectionPlaceholder">No Sele</string>
+                                                                <string key="NSNotApplicablePlaceholder">NA</string>
+                                                                <string key="NSNullPlaceholder">Null</string>
                                                             </dictionary>
                                                         </binding>
                                                     </connections>
@@ -996,10 +1005,12 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.atk" id="Y0q-Fr-5gK">
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.atk" id="wnW-Vo-GdF">
                                                             <dictionary key="options">
-                                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                                                <bool key="NSValidatesImmediately" value="YES"/>
+                                                                <string key="NSMultipleValuesPlaceholder">No Mult</string>
+                                                                <string key="NSNoSelectionPlaceholder">No Sele</string>
+                                                                <string key="NSNotApplicablePlaceholder">NA</string>
+                                                                <string key="NSNullPlaceholder">Null</string>
                                                             </dictionary>
                                                         </binding>
                                                     </connections>
@@ -1013,10 +1024,12 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.def" id="G5L-FD-uga">
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.def" id="ocS-BW-kbG">
                                                             <dictionary key="options">
-                                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                                                <bool key="NSValidatesImmediately" value="YES"/>
+                                                                <string key="NSMultipleValuesPlaceholder">No Mult</string>
+                                                                <string key="NSNoSelectionPlaceholder">No Sele</string>
+                                                                <string key="NSNotApplicablePlaceholder">NA</string>
+                                                                <string key="NSNullPlaceholder">Null</string>
                                                             </dictionary>
                                                         </binding>
                                                     </connections>
@@ -1030,10 +1043,12 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spa" id="tYs-la-KVv">
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spa" id="Pw6-Sa-mKg">
                                                             <dictionary key="options">
-                                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                                                <bool key="NSValidatesImmediately" value="YES"/>
+                                                                <string key="NSMultipleValuesPlaceholder">No Mult</string>
+                                                                <string key="NSNoSelectionPlaceholder">No Sele</string>
+                                                                <string key="NSNotApplicablePlaceholder">NA</string>
+                                                                <string key="NSNullPlaceholder">Null</string>
                                                             </dictionary>
                                                         </binding>
                                                     </connections>
@@ -1047,10 +1062,12 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spe" id="IiC-LD-LFz">
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spe" id="NJt-ea-6tY">
                                                             <dictionary key="options">
-                                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                                                <bool key="NSValidatesImmediately" value="YES"/>
+                                                                <string key="NSMultipleValuesPlaceholder">No Mult</string>
+                                                                <string key="NSNoSelectionPlaceholder">No Sele</string>
+                                                                <string key="NSNotApplicablePlaceholder">NA</string>
+                                                                <string key="NSNullPlaceholder">Null</string>
                                                             </dictionary>
                                                         </binding>
                                                     </connections>
@@ -1064,10 +1081,12 @@
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spd" id="NjN-ub-637">
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spd" id="Ec3-ch-GCo">
                                                             <dictionary key="options">
-                                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                                                <bool key="NSValidatesImmediately" value="YES"/>
+                                                                <string key="NSMultipleValuesPlaceholder">No Mult</string>
+                                                                <string key="NSNoSelectionPlaceholder">No Sele</string>
+                                                                <string key="NSNotApplicablePlaceholder">NA</string>
+                                                                <string key="NSNullPlaceholder">Null</string>
                                                             </dictionary>
                                                         </binding>
                                                     </connections>
