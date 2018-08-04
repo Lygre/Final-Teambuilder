@@ -706,8 +706,9 @@
             <objects>
                 <arrayController objectClassName="Pokemon_Team_Builder.Pokemon" preservesSelection="NO" selectsInsertedObjects="NO" avoidsEmptySelection="NO" clearsFilterPredicateOnInsertion="NO" id="jhH-mS-kkV">
                     <connections>
-                        <binding destination="fWV-ZE-09i" name="contentArray" keyPath="self.team" id="Kyn-NW-7cx">
+                        <binding destination="fWV-ZE-09i" name="contentArray" keyPath="self.team" id="P2u-6P-lwW">
                             <dictionary key="options">
+                                <bool key="NSConditionallySetsEditable" value="NO"/>
                                 <bool key="NSDeletesObjectsOnRemove" value="YES"/>
                                 <bool key="NSHandlesContentAsCompoundValue" value="YES"/>
                             </dictionary>
