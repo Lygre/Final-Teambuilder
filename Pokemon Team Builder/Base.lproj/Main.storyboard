@@ -1115,32 +1115,32 @@
                                                 <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8U7-aT-vwc">
                                                     <rect key="frame" x="403" y="141" width="96" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="2" maxValue="4" warningValue="2" criticalValue="2" id="P1k-d0-bjv"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="5" warningValue="3" criticalValue="2" levelIndicatorStyle="continuousCapacity" id="P1k-d0-bjv"/>
                                                 </levelIndicator>
-                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3tq-AZ-Q7R">
-                                                    <rect key="frame" x="403" y="41" width="96" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="2" maxValue="2" warningValue="2" criticalValue="2" id="PRM-8E-vrf"/>
-                                                </levelIndicator>
-                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BGx-O6-m2T">
-                                                    <rect key="frame" x="403" y="16" width="96" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="2" maxValue="2" warningValue="2" criticalValue="2" id="mG0-Dt-87e"/>
-                                                </levelIndicator>
-                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdf-IU-C3p">
-                                                    <rect key="frame" x="403" y="89" width="96" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="2" maxValue="2" warningValue="2" criticalValue="2" id="ETN-Ie-NsR"/>
-                                                </levelIndicator>
-                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qdU-ky-gqA">
+                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2z0-18-mzR">
                                                     <rect key="frame" x="403" y="115" width="96" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="2" maxValue="2" warningValue="2" criticalValue="2" id="dea-ED-NiR"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="5" warningValue="3" criticalValue="2" levelIndicatorStyle="continuousCapacity" id="ira-j2-kZv"/>
                                                 </levelIndicator>
-                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mJG-Fs-IfE">
+                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yjc-nJ-VD3">
+                                                    <rect key="frame" x="403" y="90" width="96" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="5" warningValue="3" criticalValue="2" levelIndicatorStyle="continuousCapacity" id="GTZ-Vm-7Xe"/>
+                                                </levelIndicator>
+                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MLv-GW-Kfz">
+                                                    <rect key="frame" x="403" y="41" width="96" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="5" warningValue="3" criticalValue="2" levelIndicatorStyle="continuousCapacity" id="5WW-2G-ejR"/>
+                                                </levelIndicator>
+                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MoQ-ay-x15">
+                                                    <rect key="frame" x="403" y="16" width="96" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="5" warningValue="3" criticalValue="2" levelIndicatorStyle="continuousCapacity" id="Ewa-03-j7d"/>
+                                                </levelIndicator>
+                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lgG-66-8Vg">
                                                     <rect key="frame" x="403" y="66" width="96" height="18"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="2" maxValue="2" warningValue="2" criticalValue="2" id="ZbT-L6-AWm"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="5" warningValue="3" criticalValue="2" levelIndicatorStyle="continuousCapacity" id="1HU-PP-18d"/>
                                                 </levelIndicator>
                                             </subviews>
                                             <constraints>
