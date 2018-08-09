@@ -1067,8 +1067,116 @@
                                                         </binding>
                                                     </connections>
                                                 </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2Zy-z1-EEo">
-                                                    <rect key="frame" x="197" y="42" width="60" height="17"/>
+                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pXr-bC-xnt">
+                                                    <rect key="frame" x="303" y="141" width="96" height="19"/>
+                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="NgK-4h-LOE"/>
+                                                </slider>
+                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jhr-KC-C7R">
+                                                    <rect key="frame" x="303" y="90" width="96" height="19"/>
+                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="Nx7-GC-TsJ"/>
+                                                </slider>
+                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mk4-vR-sPF">
+                                                    <rect key="frame" x="303" y="66" width="96" height="19"/>
+                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="Q4L-Kx-av2"/>
+                                                </slider>
+                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qqq-XE-9SB">
+                                                    <rect key="frame" x="303" y="41" width="96" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="92" id="kau-cm-h2P"/>
+                                                    </constraints>
+                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="y98-uu-YHY"/>
+                                                </slider>
+                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9bc-Tg-k8I">
+                                                    <rect key="frame" x="303" y="16" width="96" height="19"/>
+                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="9MD-pq-kZS"/>
+                                                </slider>
+                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Q6g-bn-BaN">
+                                                    <rect key="frame" x="303" y="115" width="96" height="19"/>
+                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="JlS-c2-Yp2"/>
+                                                </slider>
+                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8U7-aT-vwc">
+                                                    <rect key="frame" x="403" y="141" width="96" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="255" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="P1k-d0-bjv"/>
+                                                    <connections>
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.hp" id="Sgg-Bh-JkG">
+                                                            <dictionary key="options">
+                                                                <integer key="NSNoSelectionPlaceholder" value="1"/>
+                                                                <integer key="NSNullPlaceholder" value="128"/>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </levelIndicator>
+                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2z0-18-mzR">
+                                                    <rect key="frame" x="403" y="115" width="96" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="190" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="ira-j2-kZv"/>
+                                                    <connections>
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.atk" id="ip0-9o-8zW">
+                                                            <dictionary key="options">
+                                                                <integer key="NSNoSelectionPlaceholder" value="1"/>
+                                                                <integer key="NSNullPlaceholder" value="128"/>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </levelIndicator>
+                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yjc-nJ-VD3">
+                                                    <rect key="frame" x="403" y="90" width="96" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="230" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="GTZ-Vm-7Xe"/>
+                                                    <connections>
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.def" id="w7V-g4-V22">
+                                                            <dictionary key="options">
+                                                                <integer key="NSNoSelectionPlaceholder" value="1"/>
+                                                                <integer key="NSNullPlaceholder" value="128"/>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </levelIndicator>
+                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MLv-GW-Kfz">
+                                                    <rect key="frame" x="403" y="41" width="96" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="230" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="5WW-2G-ejR"/>
+                                                    <connections>
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spd" id="kbd-fi-Rfx">
+                                                            <dictionary key="options">
+                                                                <integer key="NSNoSelectionPlaceholder" value="1"/>
+                                                                <integer key="NSNullPlaceholder" value="128"/>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </levelIndicator>
+                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MoQ-ay-x15">
+                                                    <rect key="frame" x="403" y="16" width="96" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="255" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="Ewa-03-j7d"/>
+                                                    <connections>
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spe" id="4g3-zI-erK">
+                                                            <dictionary key="options">
+                                                                <integer key="NSNoSelectionPlaceholder" value="1"/>
+                                                                <integer key="NSNullPlaceholder" value="128"/>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </levelIndicator>
+                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lgG-66-8Vg">
+                                                    <rect key="frame" x="403" y="66" width="96" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="194" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="1HU-PP-18d"/>
+                                                    <connections>
+                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spa" id="seU-mL-RAU">
+                                                            <dictionary key="options">
+                                                                <integer key="NSNoSelectionPlaceholder" value="1"/>
+                                                                <integer key="NSNullPlaceholder" value="128"/>
+                                                            </dictionary>
+                                                        </binding>
+                                                    </connections>
+                                                </levelIndicator>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Zy-z1-EEo">
+                                                    <rect key="frame" x="198" y="42" width="60" height="17"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="56" id="eAl-Ss-bcy"/>
+                                                    </constraints>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base SPD" id="oht-Og-xJn">
                                                         <font key="font" metaFont="cellTitle"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1085,73 +1193,14 @@
                                                         </binding>
                                                     </connections>
                                                 </textField>
-                                                <slider verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pXr-bC-xnt">
-                                                    <rect key="frame" x="272" y="141" width="96" height="19"/>
-                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="NgK-4h-LOE"/>
-                                                </slider>
-                                                <slider verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jhr-KC-C7R">
-                                                    <rect key="frame" x="272" y="90" width="96" height="19"/>
-                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Nx7-GC-TsJ"/>
-                                                </slider>
-                                                <slider verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mk4-vR-sPF">
-                                                    <rect key="frame" x="272" y="66" width="96" height="19"/>
-                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Q4L-Kx-av2"/>
-                                                </slider>
-                                                <slider verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qqq-XE-9SB">
-                                                    <rect key="frame" x="272" y="41" width="96" height="19"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="92" id="kau-cm-h2P"/>
-                                                    </constraints>
-                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="y98-uu-YHY"/>
-                                                </slider>
-                                                <slider verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9bc-Tg-k8I">
-                                                    <rect key="frame" x="272" y="16" width="96" height="19"/>
-                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="9MD-pq-kZS"/>
-                                                </slider>
-                                                <slider verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q6g-bn-BaN">
-                                                    <rect key="frame" x="272" y="115" width="96" height="19"/>
-                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="JlS-c2-Yp2"/>
-                                                </slider>
-                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8U7-aT-vwc">
-                                                    <rect key="frame" x="403" y="141" width="96" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="5" warningValue="3" criticalValue="2" levelIndicatorStyle="continuousCapacity" id="P1k-d0-bjv"/>
-                                                </levelIndicator>
-                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2z0-18-mzR">
-                                                    <rect key="frame" x="403" y="115" width="96" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="5" warningValue="3" criticalValue="2" levelIndicatorStyle="continuousCapacity" id="ira-j2-kZv"/>
-                                                </levelIndicator>
-                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Yjc-nJ-VD3">
-                                                    <rect key="frame" x="403" y="90" width="96" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="5" warningValue="3" criticalValue="2" levelIndicatorStyle="continuousCapacity" id="GTZ-Vm-7Xe"/>
-                                                </levelIndicator>
-                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MLv-GW-Kfz">
-                                                    <rect key="frame" x="403" y="41" width="96" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="5" warningValue="3" criticalValue="2" levelIndicatorStyle="continuousCapacity" id="5WW-2G-ejR"/>
-                                                </levelIndicator>
-                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MoQ-ay-x15">
-                                                    <rect key="frame" x="403" y="16" width="96" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="5" warningValue="3" criticalValue="2" levelIndicatorStyle="continuousCapacity" id="Ewa-03-j7d"/>
-                                                </levelIndicator>
-                                                <levelIndicator verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lgG-66-8Vg">
-                                                    <rect key="frame" x="403" y="66" width="96" height="18"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="5" warningValue="3" criticalValue="2" levelIndicatorStyle="continuousCapacity" id="1HU-PP-18d"/>
-                                                </levelIndicator>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Q6g-bn-BaN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Kvm-0Q-h9k" secondAttribute="trailing" constant="8" symbolic="YES" id="0Ea-h7-FZx"/>
+                                                <constraint firstItem="Q6g-bn-BaN" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Kvm-0Q-h9k" secondAttribute="trailing" constant="8" symbolic="YES" id="0Ea-h7-FZx"/>
                                                 <constraint firstItem="Qqq-XE-9SB" firstAttribute="leading" secondItem="Q6g-bn-BaN" secondAttribute="leading" id="0yf-FA-QXq"/>
                                                 <constraint firstItem="rtd-I8-wJh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="j5i-72-YEt" secondAttribute="leading" id="2Eo-bb-fQ2"/>
                                                 <constraint firstItem="Qqq-XE-9SB" firstAttribute="leading" secondItem="9bc-Tg-k8I" secondAttribute="leading" id="431-C0-lC8"/>
                                                 <constraint firstItem="j5i-72-YEt" firstAttribute="baseline" secondItem="Q6g-bn-BaN" secondAttribute="baseline" id="4kq-aF-pD5"/>
-                                                <constraint firstItem="2Zy-z1-EEo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rtd-I8-wJh" secondAttribute="trailing" id="5L0-Lg-kHh"/>
                                                 <constraint firstItem="8iO-o9-QUa" firstAttribute="top" secondItem="rtd-I8-wJh" secondAttribute="bottom" constant="8" symbolic="YES" id="8Yd-eX-ZHC"/>
-                                                <constraint firstItem="mk4-vR-sPF" firstAttribute="leading" secondItem="27y-ag-E0Q" secondAttribute="trailing" constant="20" id="9oA-N4-oqD"/>
                                                 <constraint firstItem="Qqq-XE-9SB" firstAttribute="trailing" secondItem="mk4-vR-sPF" secondAttribute="trailing" id="9oD-6K-BKv"/>
                                                 <constraint firstItem="rtd-I8-wJh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tHh-cV-M39" secondAttribute="trailing" id="AdI-OJ-Sgw"/>
                                                 <constraint firstItem="DXf-lP-R6u" firstAttribute="leading" secondItem="Kvm-0Q-h9k" secondAttribute="leading" id="BXa-pj-Dse"/>
@@ -1159,7 +1208,6 @@
                                                 <constraint firstItem="pXr-bC-xnt" firstAttribute="top" secondItem="Vqf-S0-JZ9" secondAttribute="top" id="ERg-Ch-Tpz"/>
                                                 <constraint firstItem="tHh-cV-M39" firstAttribute="centerY" secondItem="DXf-lP-R6u" secondAttribute="centerY" id="HVL-Ob-8Z3"/>
                                                 <constraint firstItem="rtd-I8-wJh" firstAttribute="centerX" secondItem="g8I-Ei-rS2" secondAttribute="centerX" id="Ino-p4-IXx"/>
-                                                <constraint firstItem="Qqq-XE-9SB" firstAttribute="leading" secondItem="2Zy-z1-EEo" secondAttribute="trailing" constant="19" id="Jlh-mh-rfq"/>
                                                 <constraint firstItem="YMf-87-JhF" firstAttribute="top" secondItem="j5i-72-YEt" secondAttribute="bottom" constant="8" symbolic="YES" id="KcI-Mc-i5N"/>
                                                 <constraint firstItem="fL1-xT-e6O" firstAttribute="top" secondItem="BeQ-lc-z8M" secondAttribute="top" constant="3" id="LVd-OP-7m5"/>
                                                 <constraint firstAttribute="bottom" secondItem="tHh-cV-M39" secondAttribute="bottom" constant="48" id="Ma0-TE-m6T"/>
@@ -1175,6 +1223,7 @@
                                                 <constraint firstItem="tHh-cV-M39" firstAttribute="leading" secondItem="fL1-xT-e6O" secondAttribute="leading" id="Qkh-wi-QXN"/>
                                                 <constraint firstItem="rtd-I8-wJh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="YMf-87-JhF" secondAttribute="leading" id="SBI-Bs-4Ad"/>
                                                 <constraint firstItem="j5i-72-YEt" firstAttribute="baseline" secondItem="Kvm-0Q-h9k" secondAttribute="baseline" id="Vex-kL-slz"/>
+                                                <constraint firstItem="Qqq-XE-9SB" firstAttribute="leading" secondItem="2Zy-z1-EEo" secondAttribute="trailing" constant="49" id="Wth-hl-Isc"/>
                                                 <constraint firstItem="Qqq-XE-9SB" firstAttribute="trailing" secondItem="Q6g-bn-BaN" secondAttribute="trailing" id="XFW-93-35h"/>
                                                 <constraint firstItem="DXf-lP-R6u" firstAttribute="leading" secondItem="27y-ag-E0Q" secondAttribute="leading" id="cf3-Gl-Frd"/>
                                                 <constraint firstItem="Qqq-XE-9SB" firstAttribute="leading" secondItem="jhr-KC-C7R" secondAttribute="leading" id="eCW-fU-PGg"/>
@@ -1188,7 +1237,7 @@
                                                 <constraint firstItem="9bc-Tg-k8I" firstAttribute="top" secondItem="Qqq-XE-9SB" secondAttribute="bottom" constant="10" id="mY1-LM-z1x"/>
                                                 <constraint firstItem="tHh-cV-M39" firstAttribute="leading" secondItem="BeQ-lc-z8M" secondAttribute="leading" constant="17" id="nUB-Am-rcD"/>
                                                 <constraint firstItem="tHh-cV-M39" firstAttribute="centerY" secondItem="YMf-87-JhF" secondAttribute="centerY" id="o3I-P7-Sxn"/>
-                                                <constraint firstItem="rtd-I8-wJh" firstAttribute="baseline" secondItem="2Zy-z1-EEo" secondAttribute="baseline" id="oDm-Da-9Nt"/>
+                                                <constraint firstItem="rtd-I8-wJh" firstAttribute="baseline" secondItem="2Zy-z1-EEo" secondAttribute="firstBaseline" id="oDm-Da-9Nt"/>
                                                 <constraint firstItem="Qqq-XE-9SB" firstAttribute="leading" secondItem="pXr-bC-xnt" secondAttribute="leading" id="oOg-Hc-zBq"/>
                                                 <constraint firstItem="tHh-cV-M39" firstAttribute="leading" secondItem="lKI-Zs-oUA" secondAttribute="leading" id="oSE-eX-djt"/>
                                                 <constraint firstItem="rtd-I8-wJh" firstAttribute="centerX" secondItem="8iO-o9-QUa" secondAttribute="centerX" id="ofM-YR-tju"/>
@@ -1204,7 +1253,6 @@
                                                 <constraint firstItem="Vqf-S0-JZ9" firstAttribute="leading" secondItem="BeQ-lc-z8M" secondAttribute="leading" constant="194" id="uto-L9-UKK"/>
                                                 <constraint firstItem="Kvm-0Q-h9k" firstAttribute="leading" secondItem="j5i-72-YEt" secondAttribute="trailing" constant="25" id="v3Y-ep-9ah"/>
                                                 <constraint firstItem="rtd-I8-wJh" firstAttribute="centerX" secondItem="YMf-87-JhF" secondAttribute="centerX" id="wbD-qd-gzi"/>
-                                                <constraint firstItem="jhr-KC-C7R" firstAttribute="leading" secondItem="DXf-lP-R6u" secondAttribute="trailing" constant="20" id="wzU-V2-EA1"/>
                                                 <constraint firstItem="rtd-I8-wJh" firstAttribute="centerX" secondItem="j5i-72-YEt" secondAttribute="centerX" id="xao-Ec-z8S"/>
                                                 <constraint firstItem="tHh-cV-M39" firstAttribute="top" secondItem="lKI-Zs-oUA" secondAttribute="bottom" constant="3" id="xgd-4h-lF5"/>
                                                 <constraint firstItem="rtd-I8-wJh" firstAttribute="top" secondItem="g8I-Ei-rS2" secondAttribute="bottom" constant="8" symbolic="YES" id="xl2-rL-5Mk"/>
