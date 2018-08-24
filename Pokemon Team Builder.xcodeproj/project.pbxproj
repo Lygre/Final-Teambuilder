@@ -1082,6 +1082,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9F83ED3821304CDB0074BA35 /* PokemonTeamBuilder.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = PokemonTeamBuilder.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9FCE1380210CE2AB0064F76C /* TB CLT */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "TB CLT"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9FCE1382210CE2AB0064F76C /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		9FCFC92021140DF400CD2447 /* 348.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 348.png; sourceTree = "<group>"; };
@@ -3230,6 +3231,7 @@
 				9FB1257921140AE300A234C8 /* Resources */,
 				9FF5F2EC210259D300933483 /* Pokedex.swift */,
 				9FF5F2ED210259D400933483 /* Support Functions.swift */,
+				9F83ED3821304CDB0074BA35 /* PokemonTeamBuilder.playground */,
 				9FF5F2EE210259D400933483 /* Team.swift */,
 				9FF5F2C02102593C00933483 /* AppDelegate.swift */,
 				9FF5F2F821025A4900933483 /* ViewController.swift */,

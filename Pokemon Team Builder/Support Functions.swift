@@ -90,17 +90,28 @@ func makeDexToUseableMons(_ pokedex: [Pokemon]) -> [String: Pokemon] {
 	return aliasedDex
 }
 
-func dexNumToIcon(_ mon: Pokemon) -> String {
-	let dexNum = String(mon.num)
-	var iconNum: String?
+func dexNumToIcon(_ mon: Pokemon) -> String? {
+	let dexNum: Int? = mon.num
+	var iconName: String?
 	
-	if mon.num < 100 {
-		iconNum = "0" + dexNum
+	if dexNum! < 10 {
+		iconName = "00" + "\(dexNum ?? 0)"
+	} else if dexNum! < 100 {
+		iconName = "0" + "\(dexNum ?? 10)"
 	} else {
-		iconNum = dexNum
+		iconName = "\(dexNum ?? 100)"
 	}
 	
-	return iconNum!
+	if mon.species.contains("-Alola") {
+		iconName = iconName! + "-alola"
+	}
+	if mon.species.contains("-Mega") {
+		iconName = iconName! + "-mega"
+	}
+	
+	iconName = iconName! + ".png"
+	
+	return iconName!
 }
 
 

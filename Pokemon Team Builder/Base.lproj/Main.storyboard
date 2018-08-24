@@ -803,7 +803,7 @@
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dgk-PK-M9p">
                                 <rect key="frame" x="15" y="37" width="146" height="120"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="JRc-Wb-rpT"/>
+                                <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" id="JRc-Wb-rpT"/>
                             </imageView>
                         </subviews>
                     </view>
@@ -827,7 +827,7 @@
             <objects>
                 <arrayController objectClassName="Pokemon_Team_Builder.Pokemon" preservesSelection="NO" selectsInsertedObjects="NO" avoidsEmptySelection="NO" clearsFilterPredicateOnInsertion="NO" id="jhH-mS-kkV">
                     <connections>
-                        <binding destination="fWV-ZE-09i" name="contentArray" keyPath="team" id="bIi-sg-8yN">
+                        <binding destination="fWV-ZE-09i" name="contentArray" keyPath="team" id="zPf-Bn-yX9">
                             <dictionary key="options">
                                 <bool key="NSConditionallySetsEditable" value="NO"/>
                                 <bool key="NSDeletesObjectsOnRemove" value="YES"/>
@@ -863,20 +863,20 @@
                                     <action selector="addToTeam:" target="fWV-ZE-09i" id="PdM-pT-tHA"/>
                                 </connections>
                             </button>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ud8-IP-uQQ">
-                                <rect key="frame" x="20" y="362" width="522" height="135"/>
+                            <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ud8-IP-uQQ">
+                                <rect key="frame" x="20" y="362" width="140" height="135"/>
                                 <clipView key="contentView" id="qSW-Ru-5Xc">
-                                    <rect key="frame" x="1" y="0.0" width="520" height="134"/>
+                                    <rect key="frame" x="1" y="0.0" width="138" height="134"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="gjM-V6-vCh" viewBased="YES" id="2TU-zY-DPj">
-                                            <rect key="frame" x="0.0" y="0.0" width="520" height="109"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="138" height="109"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="118" minWidth="40" maxWidth="1000" id="yRA-vI-37r">
+                                                <tableColumn width="132" minWidth="40" maxWidth="1000" id="yRA-vI-37r">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Species">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -890,11 +890,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="sg2-uB-4Xa">
-                                                            <rect key="frame" x="1" y="1" width="118" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="132" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="nhU-PW-J94">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="118" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="132" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="Fe3-bM-9ms"/>
                                                                     </constraints>
@@ -921,14 +921,15 @@
                                                 </tableColumn>
                                             </tableColumns>
                                             <connections>
+                                                <action selector="tableViewAction:" target="fWV-ZE-09i" id="cyP-0S-KkT"/>
                                                 <binding destination="jhH-mS-kkV" name="content" keyPath="arrangedObjects" id="gsB-bi-PlI"/>
                                                 <binding destination="jhH-mS-kkV" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="gsB-bi-PlI" id="sqH-Sd-8A0"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="5wR-Ih-wb3">
-                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="5wR-Ih-wb3">
+                                    <rect key="frame" x="1" y="119" width="138" height="15"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Yek-86-5Y3">
@@ -936,7 +937,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="gjM-V6-vCh">
-                                    <rect key="frame" x="0.0" y="0.0" width="520" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="138" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -974,8 +975,163 @@
                                                     <rect key="frame" x="17" y="155" width="0.0" height="49"/>
                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Vvr-Ae-rRg"/>
                                                 </imageView>
-                                                <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHh-cV-M39">
-                                                    <rect key="frame" x="17" y="48" width="93" height="104"/>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vqf-S0-JZ9">
+                                                    <rect key="frame" x="149" y="142" width="21" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="HP" id="8yj-ck-XTG">
+                                                        <font key="font" metaFont="cellTitle"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j5i-72-YEt">
+                                                    <rect key="frame" x="149" y="116" width="28" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="23" id="C9k-K3-5ZX"/>
+                                                    </constraints>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="ATK" id="8e6-Jb-lBd">
+                                                        <font key="font" metaFont="cellTitle"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YMf-87-JhF">
+                                                    <rect key="frame" x="149" y="92" width="28" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="DEF" id="hht-XY-5BA">
+                                                        <font key="font" metaFont="cellTitle"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g8I-Ei-rS2">
+                                                    <rect key="frame" x="149" y="66" width="28" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="SPA" id="UsI-1h-42G">
+                                                        <font key="font" metaFont="cellTitle"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rtd-I8-wJh">
+                                                    <rect key="frame" x="149" y="42" width="28" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="SPD" id="T3l-Tw-QHd">
+                                                        <font key="font" metaFont="cellTitle"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8iO-o9-QUa">
+                                                    <rect key="frame" x="149" y="18" width="28" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="SPE" id="8Jy-oh-zIu">
+                                                        <font key="font" metaFont="cellTitle"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tcr-ok-OfS">
+                                                    <rect key="frame" x="198" y="142" width="67" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base HP" id="h8j-Iw-1ei">
+                                                        <font key="font" metaFont="cellTitle"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kvm-0Q-h9k">
+                                                    <rect key="frame" x="198" y="116" width="58" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base ATK" id="l0z-kn-Sly">
+                                                        <font key="font" metaFont="cellTitle"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DXf-lP-R6u">
+                                                    <rect key="frame" x="198" y="93" width="58" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base DEF" id="QnT-gz-L10">
+                                                        <font key="font" metaFont="cellTitle"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="27y-ag-E0Q">
+                                                    <rect key="frame" x="198" y="66" width="58" height="18"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base SPA" id="SKL-bx-eZo">
+                                                        <font key="font" metaFont="cellTitle"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a65-mg-NHY">
+                                                    <rect key="frame" x="198" y="17" width="58" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base SPE" id="5CO-f9-cPs">
+                                                        <font key="font" metaFont="cellTitle"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pXr-bC-xnt">
+                                                    <rect key="frame" x="269" y="141" width="96" height="19"/>
+                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="NgK-4h-LOE"/>
+                                                </slider>
+                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jhr-KC-C7R">
+                                                    <rect key="frame" x="269" y="90" width="96" height="20"/>
+                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="Nx7-GC-TsJ"/>
+                                                </slider>
+                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mk4-vR-sPF">
+                                                    <rect key="frame" x="269" y="66" width="96" height="19"/>
+                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="Q4L-Kx-av2"/>
+                                                </slider>
+                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qqq-XE-9SB">
+                                                    <rect key="frame" x="269" y="41" width="96" height="19"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="92" id="kau-cm-h2P"/>
+                                                    </constraints>
+                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="y98-uu-YHY"/>
+                                                </slider>
+                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Q6g-bn-BaN">
+                                                    <rect key="frame" x="269" y="115" width="96" height="19"/>
+                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="JlS-c2-Yp2"/>
+                                                </slider>
+                                                <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8U7-aT-vwc">
+                                                    <rect key="frame" x="423" y="141" width="76" height="18"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="255" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="P1k-d0-bjv"/>
+                                                </levelIndicator>
+                                                <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2z0-18-mzR">
+                                                    <rect key="frame" x="423" y="115" width="76" height="18"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="190" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="ira-j2-kZv"/>
+                                                </levelIndicator>
+                                                <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yjc-nJ-VD3">
+                                                    <rect key="frame" x="423" y="90" width="76" height="18"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="230" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="GTZ-Vm-7Xe"/>
+                                                </levelIndicator>
+                                                <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MLv-GW-Kfz">
+                                                    <rect key="frame" x="423" y="42" width="76" height="18"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="230" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="5WW-2G-ejR"/>
+                                                </levelIndicator>
+                                                <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MoQ-ay-x15">
+                                                    <rect key="frame" x="423" y="17" width="76" height="18"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="255" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="Ewa-03-j7d"/>
+                                                </levelIndicator>
+                                                <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lgG-66-8Vg">
+                                                    <rect key="frame" x="423" y="66" width="76" height="18"/>
+                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="194" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="1HU-PP-18d"/>
+                                                </levelIndicator>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Zy-z1-EEo">
+                                                    <rect key="frame" x="198" y="42" width="60" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base SPD" id="oht-Og-xJn">
+                                                        <font key="font" metaFont="cellTitle"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9bc-Tg-k8I">
+                                                    <rect key="frame" x="269" y="17" width="96" height="19"/>
+                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="9MD-pq-kZS"/>
+                                                </slider>
+                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IZb-H7-tcJ">
+                                                    <rect key="frame" x="40" y="155" width="48" height="48"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" id="kZe-Z2-Vd6"/>
+                                                </imageView>
+                                                <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHh-cV-M39">
+                                                    <rect key="frame" x="17" y="28" width="93" height="104"/>
                                                     <clipView key="contentView" id="9uZ-PS-jpU">
                                                         <rect key="frame" x="1" y="1" width="91" height="102"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1046,265 +1202,6 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                 </scrollView>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vqf-S0-JZ9">
-                                                    <rect key="frame" x="149" y="142" width="21" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="HP" id="8yj-ck-XTG">
-                                                        <font key="font" metaFont="cellTitle"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j5i-72-YEt">
-                                                    <rect key="frame" x="149" y="116" width="28" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="23" id="C9k-K3-5ZX"/>
-                                                    </constraints>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="ATK" id="8e6-Jb-lBd">
-                                                        <font key="font" metaFont="cellTitle"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YMf-87-JhF">
-                                                    <rect key="frame" x="149" y="92" width="28" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="DEF" id="hht-XY-5BA">
-                                                        <font key="font" metaFont="cellTitle"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="g8I-Ei-rS2">
-                                                    <rect key="frame" x="149" y="66" width="28" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="SPA" id="UsI-1h-42G">
-                                                        <font key="font" metaFont="cellTitle"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rtd-I8-wJh">
-                                                    <rect key="frame" x="149" y="42" width="28" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="SPD" id="T3l-Tw-QHd">
-                                                        <font key="font" metaFont="cellTitle"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8iO-o9-QUa">
-                                                    <rect key="frame" x="149" y="18" width="28" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="SPE" id="8Jy-oh-zIu">
-                                                        <font key="font" metaFont="cellTitle"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tcr-ok-OfS">
-                                                    <rect key="frame" x="198" y="142" width="67" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base HP" id="h8j-Iw-1ei">
-                                                        <font key="font" metaFont="cellTitle"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.hp" id="FuN-RN-bTX">
-                                                            <dictionary key="options">
-                                                                <bool key="NSContinuouslyUpdatesValue" value="YES"/>
-                                                                <string key="NSMultipleValuesPlaceholder">No Mult</string>
-                                                                <string key="NSNoSelectionPlaceholder">No Sele</string>
-                                                                <string key="NSNotApplicablePlaceholder">NA</string>
-                                                                <string key="NSNullPlaceholder">Null</string>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Kvm-0Q-h9k">
-                                                    <rect key="frame" x="198" y="116" width="58" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base ATK" id="l0z-kn-Sly">
-                                                        <font key="font" metaFont="cellTitle"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.atk" id="VVW-sZ-ago">
-                                                            <dictionary key="options">
-                                                                <string key="NSMultipleValuesPlaceholder">No Mult</string>
-                                                                <string key="NSNoSelectionPlaceholder">No Sele</string>
-                                                                <string key="NSNotApplicablePlaceholder">NA</string>
-                                                                <string key="NSNullPlaceholder">Null</string>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DXf-lP-R6u">
-                                                    <rect key="frame" x="198" y="92" width="58" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base DEF" id="QnT-gz-L10">
-                                                        <font key="font" metaFont="cellTitle"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.def" id="ocS-BW-kbG">
-                                                            <dictionary key="options">
-                                                                <string key="NSMultipleValuesPlaceholder">No Mult</string>
-                                                                <string key="NSNoSelectionPlaceholder">No Sele</string>
-                                                                <string key="NSNotApplicablePlaceholder">NA</string>
-                                                                <string key="NSNullPlaceholder">Null</string>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="27y-ag-E0Q">
-                                                    <rect key="frame" x="198" y="66" width="58" height="18"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base SPA" id="SKL-bx-eZo">
-                                                        <font key="font" metaFont="cellTitle"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spa" id="Pw6-Sa-mKg">
-                                                            <dictionary key="options">
-                                                                <string key="NSMultipleValuesPlaceholder">No Mult</string>
-                                                                <string key="NSNoSelectionPlaceholder">No Sele</string>
-                                                                <string key="NSNotApplicablePlaceholder">NA</string>
-                                                                <string key="NSNullPlaceholder">Null</string>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </textField>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a65-mg-NHY">
-                                                    <rect key="frame" x="198" y="17" width="58" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base SPE" id="5CO-f9-cPs">
-                                                        <font key="font" metaFont="cellTitle"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spe" id="NJt-ea-6tY">
-                                                            <dictionary key="options">
-                                                                <string key="NSMultipleValuesPlaceholder">No Mult</string>
-                                                                <string key="NSNoSelectionPlaceholder">No Sele</string>
-                                                                <string key="NSNotApplicablePlaceholder">NA</string>
-                                                                <string key="NSNullPlaceholder">Null</string>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </textField>
-                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pXr-bC-xnt">
-                                                    <rect key="frame" x="269" y="141" width="96" height="19"/>
-                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="NgK-4h-LOE"/>
-                                                </slider>
-                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jhr-KC-C7R">
-                                                    <rect key="frame" x="269" y="90" width="96" height="20"/>
-                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="Nx7-GC-TsJ"/>
-                                                </slider>
-                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mk4-vR-sPF">
-                                                    <rect key="frame" x="269" y="66" width="96" height="19"/>
-                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="Q4L-Kx-av2"/>
-                                                </slider>
-                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Qqq-XE-9SB">
-                                                    <rect key="frame" x="269" y="41" width="96" height="19"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="92" id="kau-cm-h2P"/>
-                                                    </constraints>
-                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="y98-uu-YHY"/>
-                                                </slider>
-                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Q6g-bn-BaN">
-                                                    <rect key="frame" x="269" y="115" width="96" height="19"/>
-                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="JlS-c2-Yp2"/>
-                                                </slider>
-                                                <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8U7-aT-vwc">
-                                                    <rect key="frame" x="423" y="141" width="76" height="18"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="255" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="P1k-d0-bjv"/>
-                                                    <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.hp" id="Sgg-Bh-JkG">
-                                                            <dictionary key="options">
-                                                                <integer key="NSNoSelectionPlaceholder" value="1"/>
-                                                                <integer key="NSNullPlaceholder" value="128"/>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </levelIndicator>
-                                                <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2z0-18-mzR">
-                                                    <rect key="frame" x="423" y="115" width="76" height="18"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="190" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="ira-j2-kZv"/>
-                                                    <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.atk" id="ip0-9o-8zW">
-                                                            <dictionary key="options">
-                                                                <integer key="NSNoSelectionPlaceholder" value="1"/>
-                                                                <integer key="NSNullPlaceholder" value="128"/>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </levelIndicator>
-                                                <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Yjc-nJ-VD3">
-                                                    <rect key="frame" x="423" y="90" width="76" height="18"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="230" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="GTZ-Vm-7Xe"/>
-                                                    <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.def" id="w7V-g4-V22">
-                                                            <dictionary key="options">
-                                                                <integer key="NSNoSelectionPlaceholder" value="1"/>
-                                                                <integer key="NSNullPlaceholder" value="128"/>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </levelIndicator>
-                                                <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MLv-GW-Kfz">
-                                                    <rect key="frame" x="423" y="42" width="76" height="18"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="230" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="5WW-2G-ejR"/>
-                                                    <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spd" id="kbd-fi-Rfx">
-                                                            <dictionary key="options">
-                                                                <integer key="NSNoSelectionPlaceholder" value="1"/>
-                                                                <integer key="NSNullPlaceholder" value="128"/>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </levelIndicator>
-                                                <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MoQ-ay-x15">
-                                                    <rect key="frame" x="423" y="17" width="76" height="18"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="255" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="Ewa-03-j7d"/>
-                                                    <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spe" id="4g3-zI-erK">
-                                                            <dictionary key="options">
-                                                                <integer key="NSNoSelectionPlaceholder" value="1"/>
-                                                                <integer key="NSNullPlaceholder" value="128"/>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </levelIndicator>
-                                                <levelIndicator verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lgG-66-8Vg">
-                                                    <rect key="frame" x="423" y="66" width="76" height="18"/>
-                                                    <levelIndicatorCell key="cell" alignment="left" doubleValue="3" minValue="1" maxValue="194" warningValue="85" criticalValue="50" levelIndicatorStyle="continuousCapacity" id="1HU-PP-18d"/>
-                                                    <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spa" id="seU-mL-RAU">
-                                                            <dictionary key="options">
-                                                                <integer key="NSNoSelectionPlaceholder" value="1"/>
-                                                                <integer key="NSNullPlaceholder" value="128"/>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </levelIndicator>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2Zy-z1-EEo">
-                                                    <rect key="frame" x="198" y="42" width="60" height="16"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Base SPD" id="oht-Og-xJn">
-                                                        <font key="font" metaFont="cellTitle"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                    <connections>
-                                                        <binding destination="jhH-mS-kkV" name="value" keyPath="selection.baseStats.spd" id="Ec3-ch-GCo">
-                                                            <dictionary key="options">
-                                                                <string key="NSMultipleValuesPlaceholder">No Mult</string>
-                                                                <string key="NSNoSelectionPlaceholder">No Sele</string>
-                                                                <string key="NSNotApplicablePlaceholder">NA</string>
-                                                                <string key="NSNullPlaceholder">Null</string>
-                                                            </dictionary>
-                                                        </binding>
-                                                    </connections>
-                                                </textField>
-                                                <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9bc-Tg-k8I">
-                                                    <rect key="frame" x="269" y="17" width="96" height="19"/>
-                                                    <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="9MD-pq-kZS"/>
-                                                </slider>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="Q6g-bn-BaN" firstAttribute="leading" secondItem="Kvm-0Q-h9k" secondAttribute="leading" constant="71" id="0Ea-h7-FZx"/>
@@ -1408,7 +1305,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <clipView key="contentView" ambiguous="YES" id="q2P-9u-rVO">
                                                         <rect key="frame" x="1" y="0.0" width="282" height="177"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="KyA-9o-0BY" viewBased="YES" id="C2x-qD-l9E">
                                                                 <rect key="frame" x="0.0" y="0.0" width="282" height="152"/>
@@ -1514,7 +1411,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                     <clipView key="contentView" ambiguous="YES" id="exi-VO-GKD">
                                                         <rect key="frame" x="1" y="0.0" width="155" height="139"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="v1W-zM-Iw3" viewBased="YES" id="ExI-F5-oCR">
                                                                 <rect key="frame" x="0.0" y="0.0" width="155" height="114"/>
@@ -1578,6 +1475,15 @@
                                     </tabViewItem>
                                 </tabViewItems>
                             </tabView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nx0-6p-7IW">
+                                <rect key="frame" x="263" y="380" width="229" height="117"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" editable="YES" title="Label" id="leY-x5-tWT">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="TfI-u4-ZWX" firstAttribute="centerY" secondItem="gB5-Vs-l3C" secondAttribute="centerY" id="8F7-hT-OAA"/>
@@ -1602,9 +1508,23 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="arrayImage" destination="IZb-H7-tcJ" id="7KZ-Ir-SbC"/>
+                        <outlet property="atkLevel" destination="2z0-18-mzR" id="0s7-Wf-ZPj"/>
+                        <outlet property="baseATK" destination="Kvm-0Q-h9k" id="9pO-m7-xGM"/>
+                        <outlet property="baseDEF" destination="DXf-lP-R6u" id="DON-GY-kO9"/>
+                        <outlet property="baseHP" destination="tcr-ok-OfS" id="y7P-Ie-AN0"/>
+                        <outlet property="baseSPA" destination="27y-ag-E0Q" id="tlS-Nk-OT5"/>
+                        <outlet property="baseSPD" destination="2Zy-z1-EEo" id="6Vk-r1-CVx"/>
+                        <outlet property="baseSPE" destination="a65-mg-NHY" id="yS5-fj-y9h"/>
+                        <outlet property="defLevel" destination="Yjc-nJ-VD3" id="ksO-yF-Kgo"/>
+                        <outlet property="hpLevel" destination="8U7-aT-vwc" id="uzi-bl-Ncf"/>
                         <outlet property="learnsetMoves" destination="C2x-qD-l9E" id="Sgd-Wn-amJ"/>
                         <outlet property="searchForTeam" destination="gB5-Vs-l3C" id="5ZN-h5-d0Y"/>
-                        <outlet property="teamMembersController" destination="jhH-mS-kkV" id="nJp-H9-HKI"/>
+                        <outlet property="spaLevel" destination="lgG-66-8Vg" id="vcG-u9-jmx"/>
+                        <outlet property="spdLevel" destination="MLv-GW-Kfz" id="tiG-KV-Hp9"/>
+                        <outlet property="speLevel" destination="MoQ-ay-x15" id="t3b-vb-UDa"/>
+                        <outlet property="tableView" destination="2TU-zY-DPj" id="yei-Q0-fL0"/>
+                        <outlet property="teamInfo" destination="Nx0-6p-7IW" id="foz-4v-5Sk"/>
                     </connections>
                 </viewController>
             </objects>

@@ -8,17 +8,31 @@
 
 import Cocoa
 
-struct Team {
-	var members = [Pokemon]()
-	var teamWeaknesses = [String: Int]()
-	var teamCoverage = [String: [String: Bool]]()
+class Team: NSObject {
+	@objc dynamic var members: [Pokemon]
+	@objc dynamic var teamWeaknesses: [String: Int]
+	@objc dynamic var teamCoverage: [String: [String: Bool]]
 	// [Type: [Coverage: Bool, STAB: Bool]]
-	var additionalAttributes = [String: Bool]()
+	@objc dynamic var additionalAttributes: [String: Bool]
 	// stealthRocks, spikes, toxicSpikes, auroraVeil, lightScreen, reflect, statusMoves: thunderWave, willoWisp, slp status, toxic| defog, rapidSpin, regeneratorPivot, zMoveUser, mega
-	
-//	init() {
-//		self.members = [Pokemon]()
-//	}
+
+	override init() {
+		members = [Pokemon()]
+		teamWeaknesses = ["": 0]
+		teamCoverage = ["": ["": false]]
+		additionalAttributes = ["": false]
+		
+		super.init()
+	}
+	init(members: [Pokemon]?) {
+		self.members = members ?? [Pokemon()]
+		
+		self.teamWeaknesses = ["": 0]
+		self.teamCoverage = ["": ["": false]]
+		self.additionalAttributes = ["": false]
+		
+		super.init()
+	}
 	// Moving on to Team methods
 	// Method for calculating team weaknesses
 	func determineTeamWeaknesses() -> [String: Int] {
@@ -104,7 +118,7 @@ struct Team {
 		return attrDict
 	}
 	
-	mutating func addMember(_ pokemon: Pokemon) {
+	func addMember(_ pokemon: Pokemon) {
 		members.append(pokemon)
 	}
 }
