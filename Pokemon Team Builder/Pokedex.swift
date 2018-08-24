@@ -5,7 +5,7 @@
 //  Created by Hugh Broome on 7/4/18.
 //  Copyright © 2018 Hugh Broome. All rights reserved.
 //
-
+import Foundation
 import Cocoa
 
 struct Dex {
@@ -1839,7 +1839,7 @@ struct Dex {
 	
 }
 
-class Pokemon : NSObject {
+class Pokemon: NSObject {
 	@objc dynamic var num: Int
 	@objc dynamic var species: String
 	@objc dynamic var types: [String]
@@ -1852,8 +1852,8 @@ class Pokemon : NSObject {
 	@objc dynamic var iVs: [String: Int]
 	@objc dynamic var eVs: [String: Int]
 	@objc dynamic var actualStats: [String: Int]
-	var moves: [Move]
-	var item: Item
+	@objc dynamic var moves: [Move]
+	@objc dynamic var item: Item
 	
 	//override init
 	override init() {
@@ -2772,20 +2772,35 @@ struct MoveDex {
 	}
 }
 
-struct Move {
-	var accuracy = Int()
-	var basePower = Int()
-	var category = String()
-	var desc: String?
-	var shortDesc: String?
+class Move: NSObject  {
+	@objc dynamic var accuracy: Int
+	@objc dynamic var basePower: Int
+	@objc dynamic var category: String
+	@objc dynamic var desc: String?
+	@objc dynamic var shortDesc: String?
 	// concatenated string form of move name = id
-	var id = String()
-	var name = String()
-	var priority = Int()
-	var forceSwitch = Bool()
-	var target = String()
-	var type = String()
+	@objc dynamic var id: String
+	@objc dynamic var name: String
+	@objc dynamic var priority: Int
+	@objc dynamic var forceSwitch: Bool
+	@objc dynamic var target: String
+	@objc dynamic var type: String
 	
+	override init() {
+		accuracy = 0
+		basePower = 0
+		category = "Physical"
+		desc = "Default placeholder value for description of move."
+		shortDesc = "Short description placeholder."
+		id = "struggle"
+		name = "Struggle"
+		priority = 0
+		forceSwitch = false
+		target = "normal"
+		type = "Typeless"
+		
+		super.init()
+	}
 	init(accuracy: Int, basePower: Int, category: String, desc: String, shortDesc: String, id: String, name: String, priority: Int, forceSwitch: Bool, target: String, type: String) {
 		self.accuracy = accuracy
 		self.basePower = basePower
@@ -2798,6 +2813,8 @@ struct Move {
 		self.forceSwitch = forceSwitch
 		self.target = target
 		self.type = type
+		
+		super.init()
 	}
 	init(id: String) {
 		let move = MoveDex.searchMovedex(searchParam: id)
@@ -2813,6 +2830,8 @@ struct Move {
 		self.forceSwitch = move.forceSwitch
 		self.target = move.target
 		self.type = move.type
+		
+		super.init()
 	}
 	
 }
@@ -3672,16 +3691,24 @@ struct Learnsets {
 
 }
 
-struct Item {
-	var id = String() //concatenated string form of item name
-	var name = String()
-	var statMods: [String: Double]?
+class Item: NSObject {
+	@objc dynamic var id: String //concatenated string form of item name
+	@objc dynamic var name: String
+	@objc dynamic var statMods: [String: Double]?
 	
-	
-	init() {
-		self.id = ""
-		self.name = ""
-		self.statMods = ["": 0.0]
+	override init() {
+		id = "imagiberry"
+		name = "Imagi Berry"
+		statMods = ["": 1.0]
+		
+		super.init()
+	}
+	init(id: String, name: String, statMods: [String: Double]?) {
+		self.id = id
+		self.name = name
+		self.statMods = statMods
+		
+		super.init()
 	}
 }
 

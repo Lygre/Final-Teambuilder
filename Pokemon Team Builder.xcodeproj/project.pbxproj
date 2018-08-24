@@ -3348,13 +3348,16 @@
 					};
 					9FF5F2BC2102593B00933483 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 					};
 					9FF5F2CE2102594300933483 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 						TestTargetID = 9FF5F2BC2102593B00933483;
 					};
 					9FF5F2D92102594300933483 = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1000;
 						TestTargetID = 9FF5F2BC2102593B00933483;
 					};
 				};
@@ -4642,6 +4645,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Pokemon Team Builder/Pokemon_Team_Builder.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -4653,6 +4657,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Lygre.Pokemon-Team-Builder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -4661,6 +4668,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "Pokemon Team Builder/Pokemon_Team_Builder.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -4672,6 +4680,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Lygre.Pokemon-Team-Builder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
@@ -4681,6 +4691,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = F54NBB76Q7;
@@ -4692,6 +4703,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Lygre.Pokemon-Team-BuilderTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pokemon Team Builder/Pokemon Team BuilderTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokemon Team Builder.app/Contents/MacOS/Pokemon Team Builder";
 			};
@@ -4702,6 +4715,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = F54NBB76Q7;
@@ -4713,6 +4727,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Lygre.Pokemon-Team-BuilderTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pokemon Team Builder/Pokemon Team BuilderTests-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Pokemon Team Builder.app/Contents/MacOS/Pokemon Team Builder";
 			};
@@ -4722,6 +4737,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = F54NBB76Q7;
@@ -4733,6 +4749,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Lygre.Pokemon-Team-BuilderUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pokemon Team Builder/Pokemon Team BuilderUITests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = "Pokemon Team Builder";
 			};
@@ -4742,6 +4760,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = F54NBB76Q7;
@@ -4753,6 +4772,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Lygre.Pokemon-Team-BuilderUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Pokemon Team Builder/Pokemon Team BuilderUITests-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TEST_TARGET_NAME = "Pokemon Team Builder";
 			};
