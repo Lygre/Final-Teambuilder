@@ -17,15 +17,15 @@ class Team: NSObject {
 	// stealthRocks, spikes, toxicSpikes, auroraVeil, lightScreen, reflect, statusMoves: thunderWave, willoWisp, slp status, toxic| defog, rapidSpin, regeneratorPivot, zMoveUser, mega
 
 	override init() {
-		members = [Pokemon()]
+		members = [Pokemon]()
 		teamWeaknesses = ["": 0]
 		teamCoverage = ["": ["": false]]
 		additionalAttributes = ["": false]
 		
 		super.init()
 	}
-	init(members: [Pokemon]?) {
-		self.members = members ?? [Pokemon()]
+	init(members: [Pokemon]) {
+		self.members = members
 		
 		self.teamWeaknesses = ["": 0]
 		self.teamCoverage = ["": ["": false]]
@@ -39,12 +39,12 @@ class Team: NSObject {
 		var teamWeaknessDict = [String: Int]()
 		
 		for mon in members {
-			let monWeaknessDict = Pokemon.getPokemonWeaknesses(pokemonName: mon)
+			let monWeaknessDict = mon.getPokemonWeaknesses(pokemonName: mon)
 			for (type, scalar) in monWeaknessDict {
 				if scalar == 0 {
 					teamWeaknessDict[type] = 0
 				} else {
-					teamWeaknessDict[type]! += scalar
+					teamWeaknessDict[type] = teamWeaknessDict[type]! + scalar
 				}
 			}
 		}
@@ -52,7 +52,7 @@ class Team: NSObject {
 			if scalar < 0 {
 				teamWeaknessDict[type] = (1 / scalar * -1)
 			} else {
-				teamWeaknessDict[type] = scalar / members.count
+				teamWeaknessDict[type] = scalar / self.members.count
 			}
 		}
 		return teamWeaknessDict

@@ -779,7 +779,7 @@ struct Dex {
 		var candidateList = [String]()
 		// For each mon in pokedex, iterate through and check effectiveness of each listed type to check if it resists
 		for mon in Dex.dexArray {
-			var monWeaknessArray = Pokemon.getPokemonWeaknesses(pokemonName: mon)
+			var monWeaknessArray = mon.getPokemonWeaknesses(pokemonName: mon)
 			var candidate = true
 			// Each mon is a candidate by default
 			// If a mon is neutral or weak to a listed type, then it is marked as not being a candidate
@@ -1859,7 +1859,7 @@ class Pokemon: NSObject {
 	override init() {
 		num = 0
 		species = "Missingno"
-		types = ["Bird", "Flying"]
+		types = ["Normal", "Flying"]
 		baseStats = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
 		abilities = ["None"]
 		
@@ -1916,7 +1916,7 @@ class Pokemon: NSObject {
 	}
 	
 	// Methods for Pokemon
-	static func getPokemonWeaknesses(pokemonName: Pokemon) -> [String: Int] {
+	func getPokemonWeaknesses(pokemonName: Pokemon) -> [String: Int] {
 		
 		var pokemonWeakness = ["Bug": 0,
 							   "Dark": 0,
@@ -1942,8 +1942,8 @@ class Pokemon: NSObject {
 		let resist = 2
 		let immune = 3
 
-		let type1Chart = Dex.typeMatchups[pokemonName.types[0]]
-		for (type, effectiv) in type1Chart! {
+		let type1Chart: [String: Int] = Dex.typeMatchups[pokemonName.types[0]]!
+		for (type, effectiv) in type1Chart {
 			if effectiv == weak {
 				pokemonWeakness[type] = 2
 			} else if effectiv == resist {
@@ -1955,8 +1955,8 @@ class Pokemon: NSObject {
 			}
 		}
 		if pokemonName.types.count > 1 {
-			let type2Chart = Dex.typeMatchups[pokemonName.types[1]]
-			for (type, effectiv) in type2Chart! {
+			let type2Chart: [String: Int] = Dex.typeMatchups[pokemonName.types[1]]!
+			for (type, effectiv) in type2Chart {
 				if effectiv == weak {
 					if pokemonWeakness[type]! != 0 {
 						if pokemonWeakness[type]! + 2 == 0 {
