@@ -36,23 +36,50 @@ class Team: NSObject {
 	// Moving on to Team methods
 	// Method for calculating team weaknesses
 	func determineTeamWeaknesses() -> [String: Int] {
-		var teamWeaknessDict = [String: Int]()
+		var teamWeaknessDict: [String: Int] = ["Bug": 0,
+											   "Dark": 0,
+											   "Dragon": 0,
+											   "Electric": 0,
+											   "Fairy": 0,
+											   "Fighting": 0,
+											   "Fire": 0,
+											   "Flying": 0,
+											   "Ghost": 0,
+											   "Grass": 0,
+											   "Ground": 0,
+											   "Ice": 0,
+											   "Normal": 0,
+											   "Poison": 0,
+											   "Psychic": 0,
+											   "Rock": 0,
+											   "Steel": 0,
+											   "Water": 0]
+		var immunities = [String]()
 		
 		for mon in members {
 			let monWeaknessDict = mon.getPokemonWeaknesses(pokemonName: mon)
 			for (type, scalar) in monWeaknessDict {
 				if scalar == 0 {
-					teamWeaknessDict[type] = 0
+					immunities.append(type)
+//					teamWeaknessDict[type] = 1
+				} else if scalar == 1 {
+					//do nothing
 				} else {
 					teamWeaknessDict[type] = teamWeaknessDict[type]! + scalar
 				}
 			}
 		}
 		for (type, scalar) in teamWeaknessDict {
-			if scalar < 0 {
-				teamWeaknessDict[type] = (1 / scalar * -1)
+			if immunities.contains(type) {
+				teamWeaknessDict[type] = 0
+			} else if scalar == 0 {
+				teamWeaknessDict[type] = 1
 			} else {
-				teamWeaknessDict[type] = scalar / self.members.count
+				if self.members.count > 1 {
+					teamWeaknessDict[type] = scalar / (self.members.count - 1)
+				} else {
+					teamWeaknessDict[type] = scalar / (self.members.count)
+				}
 			}
 		}
 		return teamWeaknessDict

@@ -2023,8 +2023,18 @@ class Pokemon: NSObject {
 		return bst
 	}
 	// method to pull mon learnset array
-	static func getPokemonLearnset(pokemon: Pokemon) -> [String] {
-		let learnset = Learnsets.learnsets[pokemon.species]
+	func getPokemonLearnset(pokemon: Pokemon) -> [String] {
+		var learnsetSearchName: String = pokemon.species.lowercased()
+		if learnsetSearchName.contains("-mega") {
+			let suffIndex = learnsetSearchName.firstIndex(of: "-")
+			let learnsetName = learnsetSearchName.prefix(upTo: suffIndex!)
+			learnsetSearchName = String(learnsetName)
+		} else if learnsetSearchName.contains("-alola") {
+			let suffIndex = learnsetSearchName.firstIndex(of: "-")
+			let learnsetName = learnsetSearchName.prefix(upTo: suffIndex!)
+			learnsetSearchName = String(learnsetName)
+		}
+		let learnset = Learnsets.learnsets[learnsetSearchName]
 		return learnset!
 	}
 }
@@ -2766,6 +2776,8 @@ struct MoveDex {
 		for move in moveDexArray {
 			if searchStringLower == move.id {
 				moveMatch = move
+			} else if move.name == searchParam {
+				moveMatch = move
 			}
 		}
 		return moveMatch!
@@ -2792,7 +2804,7 @@ class Move: NSObject  {
 		category = "Physical"
 		desc = "Default placeholder value for description of move."
 		shortDesc = "Short description placeholder."
-		id = "struggle"
+		id = "toxic"
 		name = "Struggle"
 		priority = 0
 		forceSwitch = false
@@ -3695,20 +3707,391 @@ class Item: NSObject {
 	@objc dynamic var id: String //concatenated string form of item name
 	@objc dynamic var name: String
 	@objc dynamic var statMods: [String: Double]?
+	@objc dynamic var desc: String
 	
 	override init() {
-		id = "imagiberry"
+		id = "imagi-berry"
 		name = "Imagi Berry"
 		statMods = ["": 1.0]
+		desc = "An imaginary berry"
 		
 		super.init()
 	}
-	init(id: String, name: String, statMods: [String: Double]?) {
+	init(id: String, name: String, statMods: [String: Double]?, desc: String) {
 		self.id = id
 		self.name = name
 		self.statMods = statMods
+		self.desc = desc
 		
 		super.init()
 	}
 }
 
+struct ItemDex {
+	static var itemDexArray = [Item]()
+	
+	static func initializeItemDex() {
+		itemDexArray = [
+			Item(id: "abomasite", name: "Abomasite", statMods: ["": 1.0], desc: "If holder is an Abomasnow, this item allows it to Mega Evolve in battle."),
+			Item(id: "absolite", name: "Absolite", statMods: ["": 1.0], desc: "If holder is an Absol, this item allows it to Mega Evolve in battle."),
+			Item(id: "absorbbulb", name: "Absorb Bulb", statMods: ["": 1.0], desc: "Raises holder's Sp. Atk by 1 stage if hit by a Water-type attack. Single use."),
+			Item(id: "adamantorb", name: "Adamant Orb", statMods: ["": 1.0], desc: "If holder is a Dialga, its Steel- and Dragon-type attacks have 1.2x power."),
+			Item(id: "adrenalineorb", name: "Adrenaline Orb", statMods: ["": 1.0], desc: "Raises holder's Speed by 1 stage if it gets affected by Intimidate. Single use."),
+			Item(id: "aerodactylite", name: "Aerodactylite", statMods: ["": 1.0], desc: "If holder is an Aerodactyl, this item allows it to Mega Evolve in battle."),
+			Item(id: "aggronite", name: "Aggronite", statMods: ["": 1.0], desc: "If holder is an Aggron, this item allows it to Mega Evolve in battle."),
+			Item(id: "aguavberry", name: "Aguav Berry", statMods: ["": 1.0], desc: "Restores 1/2 max HP at 1/4 max HP or less; confuses if -SpD Nature. Single use."),
+			Item(id: "airballoon", name: "Air Balloon", statMods: ["": 1.0], desc: "Holder is immune to Ground-type attacks. Pops when holder is hit."),
+			Item(id: "alakazite", name: "Alakazite", statMods: ["": 1.0], desc: "If holder is an Alakazam, this item allows it to Mega Evolve in battle."),
+			Item(id: "aloraichiumz", name: "Aloraichium Z", statMods: ["": 1.0], desc: "If holder is an Alolan Raichu with Thunderbolt, it can use Stoked Sparksurfer."),
+			Item(id: "altarianite", name: "Altarianite", statMods: ["": 1.0], desc: "If holder is an Altaria, this item allows it to Mega Evolve in battle."),
+			Item(id: "ampharosite", name: "Ampharosite", statMods: ["": 1.0], desc: "If holder is an Ampharos, this item allows it to Mega Evolve in battle."),
+			Item(id: "apicotberry", name: "Apicot Berry", statMods: ["": 1.0], desc: "Raises holder's Sp. Def by 1 stage when at 1/4 max HP or less. Single use."),
+			Item(id: "armorfossil", name: "Armor Fossil", statMods: ["": 1.0], desc: "Can be revived into Shieldon."),
+			Item(id: "aspearberry", name: "Aspear Berry", statMods: ["": 1.0], desc: "Holder is cured if it is frozen. Single use."),
+			Item(id: "assaultvest", name: "Assault Vest", statMods: ["": 1.0], desc: "Holder's Sp. Def is 1.5x, but it can only select damaging moves."),
+			Item(id: "audinite", name: "Audinite", statMods: ["": 1.0], desc: "If holder is an Audino, this item allows it to Mega Evolve in battle."),
+			Item(id: "babiriberry", name: "Babiri Berry", statMods: ["": 1.0], desc: "A babiri berry"),
+			Item(id: "banettite", name: "Banettite", statMods: ["": 1.0], desc: "If holder is a Banette, this item allows it to Mega Evolve in battle."),
+			Item(id: "beastball", name: "Beast Ball", statMods: ["": 1.0], desc: "A special Poke Ball designed to catch Ultra Beasts."),
+			Item(id: "beedrillite", name: "Beedrillite", statMods: ["": 1.0], desc: "If holder is a Beedrill, this item allows it to Mega Evolve in battle."),
+			Item(id: "belueberry", name: "Belue Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "berryjuice", name: "Berry Juice", statMods: ["": 1.0], desc: "Restores 20 HP when at 1/2 max HP or less. Single use."),
+			Item(id: "bigroot", name: "Big Root", statMods: ["": 1.0], desc: "Holder gains 1.3x HP from draining/Aqua Ring/Ingrain/Leech Seed/Strength Sap."),
+			Item(id: "bindingband", name: "Binding Band", statMods: ["": 1.0], desc: "Holder's partial-trapping moves deal 1/6 max HP per turn instead of 1/8."),
+			Item(id: "blackbelt", name: "Black Belt", statMods: ["": 1.0], desc: "Holder's Fighting-type attacks have 1.2x power."),
+			Item(id: "blacksludge", name: "Black Sludge", statMods: ["": 1.0], desc: "Each turn, if holder is a Poison type, restores 1/16 max HP; loses 1/8 if not."),
+			Item(id: "blackglasses", name: "Black Glasses", statMods: ["": 1.0], desc: "Holder's Dark-type attacks have 1.2x power."),
+			Item(id: "blastoisinite", name: "Blastoisinite", statMods: ["": 1.0], desc: "If holder is a Blastoise, this item allows it to Mega Evolve in battle."),
+			Item(id: "blazikenite", name: "Blazikenite", statMods: ["": 1.0], desc: "If holder is a Blaziken, this item allows it to Mega Evolve in battle."),
+			Item(id: "blueorb", name: "Blue Orb", statMods: ["": 1.0], desc: "If holder is a Kyogre, this item triggers its Primal Reversion in battle."),
+			Item(id: "blukberry", name: "Bluk Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "brightpowder", name: "BrightPowder", statMods: ["": 1.0], desc: "The accuracy of attacks against the holder is 0.9x."),
+			Item(id: "buggem", name: "Bug Gem", statMods: ["": 1.0], desc: "Holder's first successful Bug-type attack will have 1.3x power. Single use."),
+			Item(id: "bugmemory", name: "Bug Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Bug type."),
+			Item(id: "buginiumz", name: "Buginium Z", statMods: ["": 1.0], desc: "If holder has a Bug move, this item allows it to use a Bug Z-Move."),
+			Item(id: "burndrive", name: "Burn Drive", statMods: ["": 1.0], desc: "Holder's Techno Blast is Fire type."),
+			Item(id: "cameruptite", name: "Cameruptite", statMods: ["": 1.0], desc: "If holder is a Camerupt, this item allows it to Mega Evolve in battle."),
+			Item(id: "cellbattery", name: "Cell Battery", statMods: ["": 1.0], desc: "Raises holder's Attack by 1 if hit by an Electric-type attack. Single use."),
+			Item(id: "charcoal", name: "Charcoal", statMods: ["": 1.0], desc: "Holder's Fire-type attacks have 1.2x power."),
+			Item(id: "charizarditex", name: "Charizardite X", statMods: ["": 1.0], desc: "If holder is a Charizard, this item allows it to Mega Evolve in battle."),
+			Item(id: "charizarditey", name: "Charizardite Y", statMods: ["": 1.0], desc: "If holder is a Charizard, this item allows it to Mega Evolve in battle."),
+			Item(id: "chartiberry", name: "Charti Berry", statMods: ["": 1.0], desc: "A Charti Berry"),
+			Item(id: "cheriberry", name: "Cheri Berry", statMods: ["": 1.0], desc: "Holder cures itself if it is paralyzed. Single use."),
+			Item(id: "cherishball", name: "Cherish Ball", statMods: ["": 1.0], desc: "A rare Poke Ball that has been crafted to commemorate an occasion."),
+			Item(id: "chestoberry", name: "Chesto Berry", statMods: ["": 1.0], desc: "Holder wakes up if it is asleep. Single use."),
+			Item(id: "chilanberry", name: "Chilan Berry", statMods: ["": 1.0], desc: "A Chilan Berry"),
+			Item(id: "chilldrive", name: "Chill Drive", statMods: ["": 1.0], desc: "Holder's Techno Blast is Ice type."),
+			Item(id: "choiceband", name: "Choice Band", statMods: ["atk": 1.5], desc: "Holder's Attack is 1.5x, but it can only select the first move it executes."),
+			Item(id: "choicescarf", name: "Choice Scarf", statMods: ["spe": 1.5], desc: "Holder's Speed is 1.5x, but it can only select the first move it executes."),
+			Item(id: "choicespecs", name: "Choice Specs", statMods: ["spa": 1.5], desc: "Holder's Sp. Atk is 1.5x, but it can only select the first move it executes."),
+			Item(id: "chopleberry", name: "Chople Berry", statMods: ["": 1.0], desc: "A Chople Berry. Reduces Fighting attack"),
+			Item(id: "clawfossil", name: "Claw Fossil", statMods: ["": 1.0], desc: "Can be revived into Anorith."),
+			Item(id: "cobaberry", name: "Coba Berry", statMods: ["": 1.0], desc: "A berry"),
+			Item(id: "colburberry", name: "Colbur Berry", statMods: ["": 1.0], desc: "Reduces Dark damage"),
+			Item(id: "cornnberry", name: "Cornn Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "coverfossil", name: "Cover Fossil", statMods: ["": 1.0], desc: "Can be revived into Tirtouga."),
+			Item(id: "custapberry", name: "Custap Berry", statMods: ["": 1.0], desc: "Moves first in a pinch"),
+			Item(id: "damprock", name: "Damp Rock", statMods: ["": 1.0], desc: "Holder's use of Rain Dance lasts 8 turns instead of 5."),
+			Item(id: "darkgem", name: "Dark Gem", statMods: ["": 1.0], desc: "Holder's first successful Dark-type attack will have 1.3x power. Single use."),
+			Item(id: "darkmemory", name: "Dark Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Dark type."),
+			Item(id: "darkiniumz", name: "Darkinium Z", statMods: ["": 1.0], desc: "If holder has a Dark move, this item allows it to use a Dark Z-Move."),
+			Item(id: "decidiumz", name: "Decidium Z", statMods: ["": 1.0], desc: "If holder is a Decidueye with Spirit Shackle, it can use Sinister Arrow Raid."),
+			Item(id: "deepseascale", name: "Deep Sea Scale", statMods: ["": 1.0], desc: "If holder is a Clamperl, its Sp. Def is doubled."),
+			Item(id: "deepseatooth", name: "Deep Sea Tooth", statMods: ["": 1.0], desc: "If holder is a Clamperl, its Sp. Atk is doubled."),
+			Item(id: "destinyknot", name: "Destiny Knot", statMods: ["": 1.0], desc: "If holder becomes infatuated, the other Pokemon also becomes infatuated."),
+			Item(id: "diancite", name: "Diancite", statMods: ["": 1.0], desc: "If holder is a Diancie, this item allows it to Mega Evolve in battle."),
+			Item(id: "diveball", name: "Dive Ball", statMods: ["": 1.0], desc: "A Poke Ball that works especially well on Pokemon that live underwater."),
+			Item(id: "domefossil", name: "Dome Fossil", statMods: ["": 1.0], desc: "Can be revived into Kabuto."),
+			Item(id: "dousedrive", name: "Douse Drive", statMods: ["": 1.0], desc: "Holder's Techno Blast is Water type."),
+			Item(id: "dracoplate", name: "Draco Plate", statMods: ["": 1.0], desc: "Holder's Dragon-type attacks have 1.2x power. Judgment is Dragon type."),
+			Item(id: "dragonfang", name: "Dragon Fang", statMods: ["": 1.0], desc: "Holder's Dragon-type attacks have 1.2x power."),
+			Item(id: "dragongem", name: "Dragon Gem", statMods: ["": 1.0], desc: "Holder's first successful Dragon-type attack will have 1.3x power. Single use."),
+			Item(id: "dragonmemory", name: "Dragon Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Dragon type."),
+			Item(id: "dragoniumz", name: "Dragonium Z", statMods: ["": 1.0], desc: "If holder has a Dragon move, this item allows it to use a Dragon Z-Move."),
+			Item(id: "dreadplate", name: "Dread Plate", statMods: ["": 1.0], desc: "Holder's Dark-type attacks have 1.2x power. Judgment is Dark type."),
+			Item(id: "dreamball", name: "Dream Ball", statMods: ["": 1.0], desc: "A special Poke Ball that appears out of nowhere in a bag at the Entree Forest."),
+			Item(id: "durinberry", name: "Durin Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "duskball", name: "Dusk Ball", statMods: ["": 1.0], desc: "A Poke Ball that makes it easier to catch wild Pokemon at night or in caves."),
+			Item(id: "earthplate", name: "Earth Plate", statMods: ["": 1.0], desc: "Holder's Ground-type attacks have 1.2x power. Judgment is Ground type."),
+			Item(id: "eeviumz", name: "Eevium Z", statMods: ["": 1.0], desc: "If holder is an Eevee with Last Resort, it can use Extreme Evoboost."),
+			Item(id: "ejectbutton", name: "Eject Button", statMods: ["": 1.0], desc: "If holder survives a hit, it immediately switches out to a chosen ally. Single use."),
+			Item(id: "electirizer", name: "Electirizer", statMods: ["": 1.0], desc: "Evolves Electabuzz into Electivire when traded."),
+			Item(id: "electricgem", name: "Electric Gem", statMods: ["": 1.0], desc: "Holder's first successful Electric-type attack will have 1.3x power. Single use."),
+			Item(id: "electricmemory", name: "Electric Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Electric type."),
+			Item(id: "electricseed", name: "Electric Seed", statMods: ["": 1.0], desc: "If the terrain is Electric Terrain, raises holder's Defense by 1 stage. Single use."),
+			Item(id: "electriumz", name: "Electrium Z", statMods: ["": 1.0], desc: "If holder has an Electric move, this item allows it to use an Electric Z-Move."),
+			Item(id: "energypowder", name: "Energy Powder", statMods: ["": 1.0], desc: "Restores 50 HP to one Pokemon but lowers Happiness."),
+			Item(id: "enigmaberry", name: "Enigma Berry", statMods: ["": 1.0], desc: "Restores 1/4 max HP after holder is hit by a supereffective move. Single use."),
+			Item(id: "eviolite", name: "Eviolite", statMods: ["": 1.0], desc: "If holder's species can evolve, its Defense and Sp. Def are 1.5x."),
+			Item(id: "expertbelt", name: "Expert Belt", statMods: ["": 1.0], desc: "Holder's attacks that are super effective against the target do 1.2x damage."),
+			Item(id: "fairiumz", name: "Fairium Z", statMods: ["": 1.0], desc: "If holder has a Fairy move, this item allows it to use a Fairy Z-Move."),
+			Item(id: "fairygem", name: "Fairy Gem", statMods: ["": 1.0], desc: "Holder's first successful Fairy-type attack will have 1.3x power. Single use."),
+			Item(id: "fairymemory", name: "Fairy Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Fairy type."),
+			Item(id: "fastball", name: "Fast Ball", statMods: ["": 1.0], desc: "A Poke Ball that makes it easier to catch Pokemon which are quick to run away."),
+			Item(id: "fightinggem", name: "Fighting Gem", statMods: ["": 1.0], desc: "Holder's first successful Fighting-type attack will have 1.3x power. Single use."),
+			Item(id: "fightingmemory", name: "Fighting Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Fighting type."),
+			Item(id: "fightiniumz", name: "Fightinium Z", statMods: ["": 1.0], desc: "If holder has a Fighting move, this item allows it to use a Fighting Z-Move."),
+			Item(id: "figyberry", name: "Figy Berry", statMods: ["": 1.0], desc: "Restores 1/2 max HP at 1/4 max HP or less; confuses if -Atk Nature. Single use."),
+			Item(id: "firegem", name: "Fire Gem", statMods: ["": 1.0], desc: "Holder's first successful Fire-type attack will have 1.3x power. Single use."),
+			Item(id: "firememory", name: "Fire Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Fire type."),
+			Item(id: "firiumz", name: "Firium Z", statMods: ["": 1.0], desc: "If holder has a Fire move, this item allows it to use a Fire Z-Move."),
+			Item(id: "fistplate", name: "Fist Plate", statMods: ["": 1.0], desc: "Holder's Fighting-type attacks have 1.2x power. Judgment is Fighting type."),
+			Item(id: "flameorb", name: "Flame Orb", statMods: ["": 1.0], desc: "At the end of every turn, this item attempts to burn the holder."),
+			Item(id: "flameplate", name: "Flame Plate", statMods: ["": 1.0], desc: "Holder's Fire-type attacks have 1.2x power. Judgment is Fire type."),
+			Item(id: "floatstone", name: "Float Stone", statMods: ["": 1.0], desc: "Holder's weight is halved."),
+			Item(id: "flyinggem", name: "Flying Gem", statMods: ["": 1.0], desc: "Holder's first successful Flying-type attack will have 1.3x power. Single use."),
+			Item(id: "flyingmemory", name: "Flying Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Flying type."),
+			Item(id: "flyiniumz", name: "Flyinium Z", statMods: ["": 1.0], desc: "If holder has a Flying move, this item allows it to use a Flying Z-Move."),
+			Item(id: "focusband", name: "Focus Band", statMods: ["": 1.0], desc: "Holder has a 10% chance to survive an attack that would KO it with 1 HP."),
+			Item(id: "focussash", name: "Focus Sash", statMods: ["": 1.0], desc: "If holder's HP is full, will survive an attack that would KO it with 1 HP. Single use."),
+			Item(id: "friendball", name: "Friend Ball", statMods: ["": 1.0], desc: "A Poke Ball that makes caught Pokemon more friendly."),
+			Item(id: "fullincense", name: "Full Incense", statMods: ["": 1.0], desc: "Holder moves last in its priority bracket."),
+			Item(id: "galladite", name: "Galladite", statMods: ["": 1.0], desc: "If holder is a Gallade, this item allows it to Mega Evolve in battle."),
+			Item(id: "ganlonberry", name: "Ganlon Berry", statMods: ["": 1.0], desc: "Raises holder's Defense by 1 stage when at 1/4 max HP or less. Single use."),
+			Item(id: "garchompite", name: "Garchompite", statMods: ["": 1.0], desc: "If holder is a Garchomp, this item allows it to Mega Evolve in battle."),
+			Item(id: "gardevoirite", name: "Gardevoirite", statMods: ["": 1.0], desc: "If holder is a Gardevoir, this item allows it to Mega Evolve in battle."),
+			Item(id: "gengarite", name: "Gengarite", statMods: ["": 1.0], desc: "If holder is a Gengar, this item allows it to Mega Evolve in battle."),
+			Item(id: "ghostgem", name: "Ghost Gem", statMods: ["": 1.0], desc: "Holder's first successful Ghost-type attack will have 1.3x power. Single use."),
+			Item(id: "ghostmemory", name: "Ghost Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Ghost type."),
+			Item(id: "ghostiumz", name: "Ghostium Z", statMods: ["": 1.0], desc: "If holder has a Ghost move, this item allows it to use a Ghost Z-Move."),
+			Item(id: "glalitite", name: "Glalitite", statMods: ["": 1.0], desc: "If holder is a Glalie, this item allows it to Mega Evolve in battle."),
+			Item(id: "grassgem", name: "Grass Gem", statMods: ["": 1.0], desc: "Holder's first successful Grass-type attack will have 1.3x power. Single use."),
+			Item(id: "grassmemory", name: "Grass Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Grass type."),
+			Item(id: "grassiumz", name: "Grassium Z", statMods: ["": 1.0], desc: "If holder has a Grass move, this item allows it to use a Grass Z-Move."),
+			Item(id: "grassyseed", name: "Grassy Seed", statMods: ["": 1.0], desc: "If the terrain is Grassy Terrain, raises holder's Defense by 1 stage. Single use."),
+			Item(id: "greatball", name: "Great Ball", statMods: ["": 1.0], desc: "A high-performance Ball that provides a higher catch rate than a Poke Ball."),
+			Item(id: "grepaberry", name: "Grepa Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "gripclaw", name: "Grip Claw", statMods: ["": 1.0], desc: "Holder's partial-trapping moves always last 7 turns."),
+			Item(id: "griseousorb", name: "Griseous Orb", statMods: ["": 1.0], desc: "If holder is a Giratina, its Ghost- and Dragon-type attacks have 1.2x power."),
+			Item(id: "groundgem", name: "Ground Gem", statMods: ["": 1.0], desc: "Holder's first successful Ground-type attack will have 1.3x power. Single use."),
+			Item(id: "groundmemory", name: "Ground Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Ground type."),
+			Item(id: "groundiumz", name: "Groundium Z", statMods: ["": 1.0], desc: "If holder has a Ground move, this item allows it to use a Ground Z-Move."),
+			Item(id: "gyaradosite", name: "Gyaradosite", statMods: ["": 1.0], desc: "If holder is a Gyarados, this item allows it to Mega Evolve in battle."),
+			Item(id: "habanberry", name: "Haban Berry", statMods: ["": 1.0], desc: "Reduces some type"),
+			Item(id: "hardstone", name: "Hard Stone", statMods: ["": 1.0], desc: "Holder's Rock-type attacks have 1.2x power."),
+			Item(id: "healball", name: "Heal Ball", statMods: ["": 1.0], desc: "A remedial Poke Ball that restores the caught Pokemon's HP and status problem."),
+			Item(id: "heatrock", name: "Heat Rock", statMods: ["": 1.0], desc: "Holder's use of Sunny Day lasts 8 turns instead of 5."),
+			Item(id: "heavyball", name: "Heavy Ball", statMods: ["": 1.0], desc: "A Poke Ball for catching very heavy Pokemon."),
+			Item(id: "helixfossil", name: "Helix Fossil", statMods: ["": 1.0], desc: "Can be revived into Omanyte."),
+			Item(id: "heracronite", name: "Heracronite", statMods: ["": 1.0], desc: "If holder is a Heracross, this item allows it to Mega Evolve in battle."),
+			Item(id: "hondewberry", name: "Hondew Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "houndoominite", name: "Houndoominite", statMods: ["": 1.0], desc: "If holder is a Houndoom, this item allows it to Mega Evolve in battle."),
+			Item(id: "iapapaberry", name: "Iapapa Berry", statMods: ["": 1.0], desc: "Restores 1/2 max HP at 1/4 max HP or less; confuses if -Def Nature. Single use."),
+			Item(id: "icegem", name: "Ice Gem", statMods: ["": 1.0], desc: "Holder's first successful Ice-type attack will have 1.3x power. Single use."),
+			Item(id: "icememory", name: "Ice Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Ice type."),
+			Item(id: "icicleplate", name: "Icicle Plate", statMods: ["": 1.0], desc: "Holder's Ice-type attacks have 1.2x power. Judgment is Ice type."),
+			Item(id: "iciumz", name: "Icium Z", statMods: ["": 1.0], desc: "If holder has an Ice move, this item allows it to use an Ice Z-Move."),
+			Item(id: "icyrock", name: "Icy Rock", statMods: ["": 1.0], desc: "Holder's use of Hail lasts 8 turns instead of 5."),
+			Item(id: "inciniumz", name: "Incinium Z", statMods: ["": 1.0], desc: "If holder is an Incineroar with Darkest Lariat, it can use Malicious Moonsault."),
+			Item(id: "insectplate", name: "Insect Plate", statMods: ["": 1.0], desc: "Holder's Bug-type attacks have 1.2x power. Judgment is Bug type."),
+			Item(id: "ironball", name: "Iron Ball", statMods: ["": 1.0], desc: "Holder is grounded, Speed halved. If Flying type, takes neutral Ground damage."),
+			Item(id: "ironplate", name: "Iron Plate", statMods: ["": 1.0], desc: "Holder's Steel-type attacks have 1.2x power. Judgment is Steel type."),
+			Item(id: "jabocaberry", name: "Jaboca Berry", statMods: ["": 1.0], desc: "Reduces some atk"),
+			Item(id: "kasibberry", name: "Kasib Berry", statMods: ["": 1.0], desc: "Reduces some atk"),
+			Item(id: "kebiaberry", name: "Kebia Berry", statMods: ["": 1.0], desc: "Does something"),
+			Item(id: "keeberry", name: "Kee Berry", statMods: ["": 1.0], desc: "Raises holder's Defense by 1 stage after it is hit by a physical attack. Single use."),
+			Item(id: "kelpsyberry", name: "Kelpsy Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "kangaskhanite", name: "Kangaskhanite", statMods: ["": 1.0], desc: "If holder is a Kangaskhan, this item allows it to Mega Evolve in battle."),
+			Item(id: "kingsrock", name: "King's Rock", statMods: ["": 1.0], desc: "Holder's attacks without a chance to flinch gain a 10% chance to flinch."),
+			Item(id: "laggingtail", name: "Lagging Tail", statMods: ["": 1.0], desc: "Holder moves last in its priority bracket."),
+			Item(id: "lansatberry", name: "Lansat Berry", statMods: ["": 1.0], desc: "Holder gains the Focus Energy effect when at 1/4 max HP or less. Single use."),
+			Item(id: "latiasite", name: "Latiasite", statMods: ["": 1.0], desc: "If holder is a Latias, this item allows it to Mega Evolve in battle."),
+			Item(id: "latiosite", name: "Latiosite", statMods: ["": 1.0], desc: "If holder is a Latios, this item allows it to Mega Evolve in battle."),
+			Item(id: "laxincense", name: "Lax Incense", statMods: ["": 1.0], desc: "The accuracy of attacks against the holder is 0.9x."),
+			Item(id: "leftovers", name: "Leftovers", statMods: ["": 1.0], desc: "At the end of every turn, holder restores 1/16 of its max HP."),
+			Item(id: "leppaberry", name: "Leppa Berry", statMods: ["": 1.0], desc: "Restores 10 PP to the first of the holder's moves to reach 0 PP. Single use."),
+			Item(id: "levelball", name: "Level Ball", statMods: ["": 1.0], desc: "A Poke Ball for catching Pokemon that are a lower level than your own."),
+			Item(id: "liechiberry", name: "Liechi Berry", statMods: ["": 1.0], desc: "Raises holder's Attack by 1 stage when at 1/4 max HP or less. Single use."),
+			Item(id: "lifeorb", name: "Life Orb", statMods: ["": 1.0], desc: "Holder's attacks do 1.3x damage, and it loses 1/10 its max HP after the attack."),
+			Item(id: "lightball", name: "Light Ball", statMods: ["": 1.0], desc: "If holder is a Pikachu, its Attack and Sp. Atk are doubled."),
+			Item(id: "lightclay", name: "Light Clay", statMods: ["": 1.0], desc: "Holder's use of Aurora Veil, Light Screen, or Reflect lasts 8 turns instead of 5."),
+			Item(id: "lopunnite", name: "Lopunnite", statMods: ["": 1.0], desc: "If holder is a Lopunny, this item allows it to Mega Evolve in battle."),
+			Item(id: "loveball", name: "Love Ball", statMods: ["": 1.0], desc: "Poke Ball for catching Pokemon that are the opposite gender of your Pokemon."),
+			Item(id: "lucarionite", name: "Lucarionite", statMods: ["": 1.0], desc: "If holder is a Lucario, this item allows it to Mega Evolve in battle."),
+			Item(id: "luckypunch", name: "Lucky Punch", statMods: ["": 1.0], desc: "If holder is a Chansey, its critical hit ratio is raised by 2 stages."),
+			Item(id: "lumberry", name: "Lum Berry", statMods: ["": 1.0], desc: "Holder cures itself if it is confused or has a major status condition. Single use."),
+			Item(id: "luminousmoss", name: "Luminous Moss", statMods: ["": 1.0], desc: "Raises holder's Sp. Def by 1 stage if hit by a Water-type attack. Single use."),
+			Item(id: "lureball", name: "Lure Ball", statMods: ["": 1.0], desc: "A Poke Ball for catching Pokemon hooked by a Rod when fishing."),
+			Item(id: "lustrousorb", name: "Lustrous Orb", statMods: ["": 1.0], desc: "If holder is a Palkia, its Water- and Dragon-type attacks have 1.2x power."),
+			Item(id: "luxuryball", name: "Luxury Ball", statMods: ["": 1.0], desc: "A comfortable Poke Ball that makes a caught wild Pokemon quickly grow friendly."),
+			Item(id: "machobrace", name: "Macho Brace", statMods: ["": 1.0], desc: "Holder's Speed is halved. The Ability Klutz does not ignore this effect."),
+			Item(id: "magnet", name: "Magnet", statMods: ["": 1.0], desc: "Holder's Electric-type attacks have 1.2x power."),
+			Item(id: "magoberry", name: "Mago Berry", statMods: ["": 1.0], desc: "Restores 1/2 max HP at 1/4 max HP or less; confuses if -Spe Nature. Single use."),
+			Item(id: "magostberry", name: "Magost Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "mail", name: "Mail", statMods: ["": 1.0], desc: "Cannot be given to or taken from a Pokemon, except by Covet/Knock Off/Thief."),
+			Item(id: "manectite", name: "Manectite", statMods: ["": 1.0], desc: "If holder is a Manectric, this item allows it to Mega Evolve in battle."),
+			Item(id: "marangaberry", name: "Maranga Berry", statMods: ["": 1.0], desc: "Raises holder's Sp. Def by 1 stage after it is hit by a special attack. Single use."),
+			Item(id: "marshadiumz", name: "Marshadium Z", statMods: ["": 1.0], desc: "If holder is Marshadow with Spectral Thief, it can use Soul-Stealing 7-Star Strike."),
+			Item(id: "masterball", name: "Master Ball", statMods: ["": 1.0], desc: "The best Ball with the ultimate performance. It will catch any wild Pokemon."),
+			Item(id: "mawilite", name: "Mawilite", statMods: ["": 1.0], desc: "If holder is a Mawile, this item allows it to Mega Evolve in battle."),
+			Item(id: "meadowplate", name: "Meadow Plate", statMods: ["": 1.0], desc: "Holder's Grass-type attacks have 1.2x power. Judgment is Grass type."),
+			Item(id: "medichamite", name: "Medichamite", statMods: ["": 1.0], desc: "If holder is a Medicham, this item allows it to Mega Evolve in battle."),
+			Item(id: "mentalherb", name: "Mental Herb", statMods: ["": 1.0], desc: "Cures holder of Attract, Disable, Encore, Heal Block, Taunt, Torment. Single use."),
+			Item(id: "metagrossite", name: "Metagrossite", statMods: ["": 1.0], desc: "If holder is a Metagross, this item allows it to Mega Evolve in battle."),
+			Item(id: "metalcoat", name: "Metal Coat", statMods: ["": 1.0], desc: "Holder's Steel-type attacks have 1.2x power."),
+			Item(id: "metalpowder", name: "Metal Powder", statMods: ["": 1.0], desc: "If holder is a Ditto that hasn't Transformed, its Defense is doubled."),
+			Item(id: "metronome", name: "Metronome", statMods: ["": 1.0], desc: "Damage of moves used on consecutive turns is increased. Max 2x after 5 turns."),
+			Item(id: "mewniumz", name: "Mewnium Z", statMods: ["": 1.0], desc: "If holder is a Mew with Psychic, it can use Genesis Supernova."),
+			Item(id: "mewtwonitex", name: "Mewtwonite X", statMods: ["": 1.0], desc: "If holder is a Mewtwo, this item allows it to Mega Evolve in battle."),
+			Item(id: "mewtwonitey", name: "Mewtwonite Y", statMods: ["": 1.0], desc: "If holder is a Mewtwo, this item allows it to Mega Evolve in battle."),
+			Item(id: "micleberry", name: "Micle Berry", statMods: ["": 1.0], desc: "Holder's next move has 1.2x accuracy when at 1/4 max HP or less. Single use."),
+			Item(id: "mindplate", name: "Mind Plate", statMods: ["": 1.0], desc: "Holder's Psychic-type attacks have 1.2x power. Judgment is Psychic type."),
+			Item(id: "miracleseed", name: "Miracle Seed", statMods: ["": 1.0], desc: "Holder's Grass-type attacks have 1.2x power."),
+			Item(id: "mistyseed", name: "Misty Seed", statMods: ["": 1.0], desc: "If the terrain is Misty Terrain, raises holder's Sp. Def by 1 stage. Single use."),
+			Item(id: "moonball", name: "Moon Ball", statMods: ["": 1.0], desc: "A Poke Ball for catching Pokemon that evolve using the Moon Stone."),
+			Item(id: "muscleband", name: "Muscle Band", statMods: ["": 1.0], desc: "Holder's physical attacks have 1.1x power."),
+			Item(id: "mysticwater", name: "Mystic Water", statMods: ["": 1.0], desc: "Holder's Water-type attacks have 1.2x power."),
+			Item(id: "nanabberry", name: "Nanab Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "nestball", name: "Nest Ball", statMods: ["": 1.0], desc: "A Poke Ball that works especially well on weaker Pokemon in the wild."),
+			Item(id: "netball", name: "Net Ball", statMods: ["": 1.0], desc: "A Poke Ball that works especially well on Water- and Bug-type Pokemon."),
+			Item(id: "nevermeltice", name: "Never-Melt Ice", statMods: ["": 1.0], desc: "Holder's Ice-type attacks have 1.2x power."),
+			Item(id: "nomelberry", name: "Nomel Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "normalgem", name: "Normal Gem", statMods: ["": 1.0], desc: "Holder's first successful Normal-type attack will have 1.3x power. Single use."),
+			Item(id: "normaliumz", name: "Normalium Z", statMods: ["": 1.0], desc: "If holder has a Normal move, this item allows it to use a Normal Z-Move."),
+			Item(id: "occaberry", name: "Occa Berry", statMods: ["": 1.0], desc: "Does something"),
+			Item(id: "oddincense", name: "Odd Incense", statMods: ["": 1.0], desc: "Holder's Psychic-type attacks have 1.2x power."),
+			Item(id: "oldamber", name: "Old Amber", statMods: ["": 1.0], desc: "Can be revived into Aerodactyl."),
+			Item(id: "oranberry", name: "Oran Berry", statMods: ["": 1.0], desc: "Restores 10 HP when at 1/2 max HP or less. Single use."),
+			Item(id: "pamtreberry", name: "Pamtre Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "parkball", name: "Park Ball", statMods: ["": 1.0], desc: "A special Poke Ball for the Pal Park."),
+			Item(id: "passhoberry", name: "Passho Berry", statMods: ["": 1.0], desc: "Does something"),
+			Item(id: "payapaberry", name: "Payapa Berry", statMods: ["": 1.0], desc: "Does something"),
+			Item(id: "pechaberry", name: "Pecha Berry", statMods: ["": 1.0], desc: "Holder is cured if it is poisoned. Single use."),
+			Item(id: "persimberry", name: "Persim Berry", statMods: ["": 1.0], desc: "Holder is cured if it is confused. Single use."),
+			Item(id: "petayaberry", name: "Petaya Berry", statMods: ["": 1.0], desc: "Raises holder's Sp. Atk by 1 stage when at 1/4 max HP or less. Single use."),
+			Item(id: "pidgeotite", name: "Pidgeotite", statMods: ["": 1.0], desc: "If holder is a Pidgeot, this item allows it to Mega Evolve in battle."),
+			Item(id: "pikaniumz", name: "Pikanium Z", statMods: ["": 1.0], desc: "If holder is a Pikachu with Volt Tackle, it can use Catastropika."),
+			Item(id: "pikashuniumz", name: "Pikashunium Z", statMods: ["": 1.0], desc: "If holder is cap Pikachu with Thunderbolt, it can use 10,000,000 Volt Thunderbolt."),
+			Item(id: "pinapberry", name: "Pinap Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "pinsirite", name: "Pinsirite", statMods: ["": 1.0], desc: "If holder is a Pinsir, this item allows it to Mega Evolve in battle."),
+			Item(id: "pixieplate", name: "Pixie Plate", statMods: ["": 1.0], desc: "Holder's Fairy-type attacks have 1.2x power. Judgment is Fairy type."),
+			Item(id: "plumefossil", name: "Plume Fossil", statMods: ["": 1.0], desc: "Can be revived into Archen."),
+			Item(id: "poisonbarb", name: "Poison Barb", statMods: ["": 1.0], desc: "Holder's Poison-type attacks have 1.2x power."),
+			Item(id: "poisongem", name: "Poison Gem", statMods: ["": 1.0], desc: "Holder's first successful Poison-type attack will have 1.3x power. Single use."),
+			Item(id: "poisonmemory", name: "Poison Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Poison type."),
+			Item(id: "poisoniumz", name: "Poisonium Z", statMods: ["": 1.0], desc: "If holder has a Poison move, this item allows it to use a Poison Z-Move."),
+			Item(id: "pokeball", name: "Poke Ball", statMods: ["": 1.0], desc: "A device for catching wild Pokemon. It is designed as a capsule system."),
+			Item(id: "pomegberry", name: "Pomeg Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "poweranklet", name: "Power Anklet", statMods: ["": 1.0], desc: "Holder's Speed is halved. The Ability Klutz does not ignore this effect."),
+			Item(id: "powerband", name: "Power Band", statMods: ["": 1.0], desc: "Holder's Speed is halved. The Ability Klutz does not ignore this effect."),
+			Item(id: "powerbelt", name: "Power Belt", statMods: ["": 1.0], desc: "Holder's Speed is halved. The Ability Klutz does not ignore this effect."),
+			Item(id: "powerbracer", name: "Power Bracer", statMods: ["": 1.0], desc: "Holder's Speed is halved. The Ability Klutz does not ignore this effect."),
+			Item(id: "powerherb", name: "Power Herb", statMods: ["": 1.0], desc: "Holder's two-turn moves complete in one turn (except Sky Drop). Single use."),
+			Item(id: "powerlens", name: "Power Lens", statMods: ["": 1.0], desc: "Holder's Speed is halved. The Ability Klutz does not ignore this effect."),
+			Item(id: "powerweight", name: "Power Weight", statMods: ["": 1.0], desc: "Holder's Speed is halved. The Ability Klutz does not ignore this effect."),
+			Item(id: "premierball", name: "Premier Ball", statMods: ["": 1.0], desc: "A rare Poke Ball that has been crafted to commemorate an event."),
+			Item(id: "primariumz", name: "Primarium Z", statMods: ["": 1.0], desc: "If holder is a Primarina with Sparkling Aria, it can use Oceanic Operetta."),
+			Item(id: "protectivepads", name: "Protective Pads", statMods: ["": 1.0], desc: "Holder's attacks do not make contact with the target."),
+			Item(id: "psychicgem", name: "Psychic Gem", statMods: ["": 1.0], desc: "Holder's first successful Psychic-type attack will have 1.3x power. Single use."),
+			Item(id: "psychicmemory", name: "Psychic Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Psychic type."),
+			Item(id: "psychicseed", name: "Psychic Seed", statMods: ["": 1.0], desc: "If the terrain is Psychic Terrain, raises holder's Sp. Def by 1 stage. Single use."),
+			Item(id: "psychiumz", name: "Psychium Z", statMods: ["": 1.0], desc: "If holder has a Psychic move, this item allows it to use a Psychic Z-Move."),
+			Item(id: "qualotberry", name: "Qualot Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "quickball", name: "Quick Ball", statMods: ["": 1.0], desc: "A Poke Ball that provides a better catch rate at the start of a wild encounter."),
+			Item(id: "quickclaw", name: "Quick Claw", statMods: ["": 1.0], desc: "Each turn, holder has a 20% chance to move first in its priority bracket."),
+			Item(id: "quickpowder", name: "Quick Powder", statMods: ["": 1.0], desc: "If holder is a Ditto that hasn't Transformed, its Speed is doubled."),
+			Item(id: "rabutaberry", name: "Rabuta Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "rarebone", name: "Rare Bone", statMods: ["": 1.0], desc: "No competitive use other than when used with Fling."),
+			Item(id: "rawstberry", name: "Rawst Berry", statMods: ["": 1.0], desc: "Holder is cured if it is burned. Single use."),
+			Item(id: "razorclaw", name: "Razor Claw", statMods: ["": 1.0], desc: "Holder's critical hit ratio is raised by 1 stage."),
+			Item(id: "razorfang", name: "Razor Fang", statMods: ["": 1.0], desc: "Holder's attacks without a chance to flinch gain a 10% chance to flinch."),
+			Item(id: "razzberry", name: "Razz Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "redcard", name: "Red Card", statMods: ["": 1.0], desc: "If holder survives a hit, attacker is forced to switch to a random ally. Single use."),
+			Item(id: "redorb", name: "Red Orb", statMods: ["": 1.0], desc: "If holder is a Groudon, this item triggers its Primal Reversion in battle."),
+			Item(id: "repeatball", name: "Repeat Ball", statMods: ["": 1.0], desc: "A Poke Ball that works well on Pokemon species that were previously caught."),
+			Item(id: "rindoberry", name: "Rindo Berry", statMods: ["": 1.0], desc: "Does something"),
+			Item(id: "ringtarget", name: "Ring Target", statMods: ["": 1.0], desc: "The holder's type immunities granted solely by its typing are negated."),
+			Item(id: "rockgem", name: "Rock Gem", statMods: ["": 1.0], desc: "Holder's first successful Rock-type attack will have 1.3x power. Single use."),
+			Item(id: "rockincense", name: "Rock Incense", statMods: ["": 1.0], desc: "Holder's Rock-type attacks have 1.2x power."),
+			Item(id: "rockmemory", name: "Rock Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Rock type."),
+			Item(id: "rockiumz", name: "Rockium Z", statMods: ["": 1.0], desc: "If holder has a Rock move, this item allows it to use a Rock Z-Move."),
+			Item(id: "rockyhelmet", name: "Rocky Helmet", statMods: ["": 1.0], desc: "If holder is hit by a contact move, the attacker loses 1/6 of its max HP."),
+			Item(id: "rootfossil", name: "Root Fossil", statMods: ["": 1.0], desc: "Can be revived into Lileep."),
+			Item(id: "roseincense", name: "Rose Incense", statMods: ["": 1.0], desc: "Holder's Grass-type attacks have 1.2x power."),
+			Item(id: "roseliberry", name: "Roseli Berry", statMods: ["": 1.0], desc: "Does something"),
+			Item(id: "rowapberry", name: "Rowap Berry", statMods: ["": 1.0], desc: "Does something"),
+			Item(id: "sablenite", name: "Sablenite", statMods: ["": 1.0], desc: "If holder is a Sableye, this item allows it to Mega Evolve in battle."),
+			Item(id: "safariball", name: "Safari Ball", statMods: ["": 1.0], desc: "A special Poke Ball that is used only in the Safari Zone and Great Marsh."),
+			Item(id: "safetygoggles", name: "Safety Goggles", statMods: ["": 1.0], desc: "Holder is immune to powder moves and damage from Sandstorm or Hail."),
+			Item(id: "salacberry", name: "Salac Berry", statMods: ["": 1.0], desc: "Raises holder's Speed by 1 stage when at 1/4 max HP or less. Single use."),
+			Item(id: "salamencite", name: "Salamencite", statMods: ["": 1.0], desc: "If holder is a Salamence, this item allows it to Mega Evolve in battle."),
+			Item(id: "sceptilite", name: "Sceptilite", statMods: ["": 1.0], desc: "If holder is a Sceptile, this item allows it to Mega Evolve in battle."),
+			Item(id: "scizorite", name: "Scizorite", statMods: ["": 1.0], desc: "If holder is a Scizor, this item allows it to Mega Evolve in battle."),
+			Item(id: "scopelens", name: "Scope Lens", statMods: ["": 1.0], desc: "Holder's critical hit ratio is raised by 1 stage."),
+			Item(id: "seaincense", name: "Sea Incense", statMods: ["": 1.0], desc: "Holder's Water-type attacks have 1.2x power."),
+			Item(id: "sharpbeak", name: "Sharp Beak", statMods: ["": 1.0], desc: "Holder's Flying-type attacks have 1.2x power."),
+			Item(id: "sharpedonite", name: "Sharpedonite", statMods: ["": 1.0], desc: "If holder is a Sharpedo, this item allows it to Mega Evolve in battle."),
+			Item(id: "shedshell", name: "Shed Shell", statMods: ["": 1.0], desc: "Holder may switch out even when trapped by another Pokemon, or by Ingrain."),
+			Item(id: "shellbell", name: "Shell Bell", statMods: ["": 1.0], desc: "After an attack, holder gains 1/8 of the damage in HP dealt to other Pokemon."),
+			Item(id: "shockdrive", name: "Shock Drive", statMods: ["": 1.0], desc: "Holder's Techno Blast is Electric type."),
+			Item(id: "shucaberry", name: "Shuca Berry", statMods: ["": 1.0], desc: "Does something. Reduces ground damage"),
+			Item(id: "silkscarf", name: "Silk Scarf", statMods: ["": 1.0], desc: "Holder's Normal-type attacks have 1.2x power."),
+			Item(id: "silverpowder", name: "SilverPowder", statMods: ["": 1.0], desc: "Holder's Bug-type attacks have 1.2x power."),
+			Item(id: "sitrusberry", name: "Sitrus Berry", statMods: ["": 1.0], desc: "Restores 1/4 max HP when at 1/2 max HP or less. Single use."),
+			Item(id: "skullfossil", name: "Skull Fossil", statMods: ["": 1.0], desc: "Can be revived into Cranidos."),
+			Item(id: "skyplate", name: "Sky Plate", statMods: ["": 1.0], desc: "Holder's Flying-type attacks have 1.2x power. Judgment is Flying type."),
+			Item(id: "slowbronite", name: "Slowbronite", statMods: ["": 1.0], desc: "If holder is a Slowbro, this item allows it to Mega Evolve in battle."),
+			Item(id: "smoothrock", name: "Smooth Rock", statMods: ["": 1.0], desc: "Holder's use of Sandstorm lasts 8 turns instead of 5."),
+			Item(id: "snorliumz", name: "Snorlium Z", statMods: ["": 1.0], desc: "If holder is a Snorlax with Giga Impact, it can use Pulverizing Pancake."),
+			Item(id: "snowball", name: "Snowball", statMods: ["": 1.0], desc: "Raises holder's Attack by 1 if hit by an Ice-type attack. Single use."),
+			Item(id: "softsand", name: "Soft Sand", statMods: ["": 1.0], desc: "Holder's Ground-type attacks have 1.2x power."),
+			Item(id: "souldew", name: "Soul Dew", statMods: ["": 1.0], desc: "If holder's a Latias/Latios, its Dragon- and Psychic-type moves have 1.2x power."),
+			Item(id: "spelltag", name: "Spell Tag", statMods: ["": 1.0], desc: "Holder's Ghost-type attacks have 1.2x power."),
+			Item(id: "spelonberry", name: "Spelon Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "splashplate", name: "Splash Plate", statMods: ["": 1.0], desc: "Holder's Water-type attacks have 1.2x power. Judgment is Water type."),
+			Item(id: "spookyplate", name: "Spooky Plate", statMods: ["": 1.0], desc: "Holder's Ghost-type attacks have 1.2x power. Judgment is Ghost type."),
+			Item(id: "sportball", name: "Sport Ball", statMods: ["": 1.0], desc: "A special Poke Ball for the Bug-Catching Contest."),
+			Item(id: "starfberry", name: "Starf Berry", statMods: ["": 1.0], desc: "Raises a random stat by 2 when at 1/4 max HP or less (not acc/eva). Single use."),
+			Item(id: "steelixite", name: "Steelixite", statMods: ["": 1.0], desc: "If holder is a Steelix, this item allows it to Mega Evolve in battle."),
+			Item(id: "steelgem", name: "Steel Gem", statMods: ["": 1.0], desc: "Holder's first successful Steel-type attack will have 1.3x power. Single use."),
+			Item(id: "steelmemory", name: "Steel Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Steel type."),
+			Item(id: "steeliumz", name: "Steelium Z", statMods: ["": 1.0], desc: "If holder has a Steel move, this item allows it to use a Steel Z-Move."),
+			Item(id: "stick", name: "Stick", statMods: ["": 1.0], desc: "If holder is a Farfetch'd, its critical hit ratio is raised by 2 stages."),
+			Item(id: "stickybarb", name: "Sticky Barb", statMods: ["": 1.0], desc: "Each turn, holder loses 1/8 max HP. An attacker making contact can receive it."),
+			Item(id: "stoneplate", name: "Stone Plate", statMods: ["": 1.0], desc: "Holder's Rock-type attacks have 1.2x power. Judgment is Rock type."),
+			Item(id: "swampertite", name: "Swampertite", statMods: ["": 1.0], desc: "If holder is a Swampert, this item allows it to Mega Evolve in battle."),
+			Item(id: "tamatoberry", name: "Tamato Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "tangaberry", name: "Tanga Berry", statMods: ["": 1.0], desc: "Does something"),
+			Item(id: "tapuniumz", name: "Tapunium Z", statMods: ["": 1.0], desc: "If holder is a Tapu with Nature's Madness, it can use Guardian of Alola."),
+			Item(id: "terrainextender", name: "Terrain Extender", statMods: ["": 1.0], desc: "Holder's use of Electric/Grassy/Misty/Psychic Terrain lasts 8 turns instead of 5."),
+			Item(id: "thickclub", name: "Thick Club", statMods: ["": 1.0], desc: "If holder is a Cubone or a Marowak, its Attack is doubled."),
+			Item(id: "timerball", name: "Timer Ball", statMods: ["": 1.0], desc: "A Poke Ball that becomes better the more turns there are in a battle."),
+			Item(id: "toxicorb", name: "Toxic Orb", statMods: ["": 1.0], desc: "At the end of every turn, this item attempts to badly poison the holder."),
+			Item(id: "toxicplate", name: "Toxic Plate", statMods: ["": 1.0], desc: "Holder's Poison-type attacks have 1.2x power. Judgment is Poison type."),
+			Item(id: "twistedspoon", name: "Twisted Spoon", statMods: ["": 1.0], desc: "Holder's Psychic-type attacks have 1.2x power."),
+			Item(id: "tyranitarite", name: "Tyranitarite", statMods: ["": 1.0], desc: "If holder is a Tyranitar, this item allows it to Mega Evolve in battle."),
+			Item(id: "ultraball", name: "Ultra Ball", statMods: ["": 1.0], desc: "An ultra-performance Ball that provides a higher catch rate than a Great Ball."),
+			Item(id: "venusaurite", name: "Venusaurite", statMods: ["": 1.0], desc: "If holder is a Venusaur, this item allows it to Mega Evolve in battle."),
+			Item(id: "wacanberry", name: "Wacan Berry", statMods: ["": 1.0], desc: "Holder's first successful Water-type attack will have 1.3x power. Single use."),
+			Item(id: "watermemory", name: "Water Memory", statMods: ["": 1.0], desc: "Holder's Multi-Attack is Water type."),
+			Item(id: "wateriumz", name: "Waterium Z", statMods: ["": 1.0], desc: "If holder has a Water move, this item allows it to use a Water Z-Move."),
+			Item(id: "watmelberry", name: "Watmel Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "waveincense", name: "Wave Incense", statMods: ["": 1.0], desc: "Holder's Water-type attacks have 1.2x power."),
+			Item(id: "weaknesspolicy", name: "Weakness Policy", statMods: ["": 1.0], desc: "If holder is hit super effectively, raises Attack, Sp. Atk by 2 stages. Single use."),
+			Item(id: "wepearberry", name: "Wepear Berry", statMods: ["": 1.0], desc: "Cannot be eaten by the holder. No effect when eaten with Bug Bite or Pluck."),
+			Item(id: "whiteherb", name: "White Herb", statMods: ["": 1.0], desc: "Restores all lowered stat stages to 0 when one is less than 0. Single use."),
+			Item(id: "widelens", name: "Wide Lens", statMods: ["": 1.0], desc: "The accuracy of attacks by the holder is 1.1x."),
+			Item(id: "wikiberry", name: "Wiki Berry", statMods: ["": 1.0], desc: "Restores 1/2 max HP at 1/4 max HP or less; confuses if -SpA Nature. Single use."),
+			Item(id: "wiseglasses", name: "Wise Glasses", statMods: ["": 1.0], desc: "Holder's special attacks have 1.1x power."),
+			Item(id: "yacheberry", name: "Yache Berry", statMods: ["": 1.0], desc: "Does something. Reduces ice damage."),
+			Item(id: "zapplate", name: "Zap Plate", statMods: ["": 1.0], desc: "Holder's Electric-type attacks have 1.2x power. Judgment is Electric type."),
+			Item(id: "zoomlens", name: "Zoom Lens", statMods: ["": 1.0], desc: "The accuracy of attacks by the holder is 1.2x if it moves after its target.")
+		]
+	}
+	
+	static func searchItemDex(searchParam: String) -> Item {
+		let searchString = searchParam.lowercased()
+		var itemMatch: Item?
+		
+		for item in itemDexArray {
+			if item.name.contains(searchString) {
+				itemMatch = item
+			}
+			if item.id.contains(searchString) {
+				itemMatch = item
+			}
+		}
+		
+		return itemMatch!
+	}
+}

@@ -114,6 +114,23 @@ func dexNumToIcon(_ mon: Pokemon) -> String? {
 	return iconName!
 }
 
+func dexNumToSprite(_ mon: Pokemon) -> String? {
+	let dexNum: Int? = mon.num
+	var spriteName: String?
+	
+	spriteName = "\(dexNum ?? 0)"
+	
+	if mon.species.contains("-Alola") {
+		spriteName = spriteName! + "-alola"
+	}
+	if mon.species.contains("-Mega") {
+		spriteName = spriteName! + "-mega"
+	}
+	
+	spriteName = spriteName! + ".png"
+	
+	return spriteName!
+}
 
 
 //class Result: NSObject {
