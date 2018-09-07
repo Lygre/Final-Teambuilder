@@ -92,21 +92,73 @@ class Team: NSObject {
 			coverageDict[type] = ["Coverage": false, "STAB": false]
 		}
 		for mon in members {
-			for move in mon.moves {
-				if move.category != "Status" {
-					for type in mon.types {
-						if move.type == type {
-							// create translation for coverage/stab determination
-							for (type, bool) in Dex.typeEffectiveness[move.type]! {
-								if bool == true {
-									coverageDict[type] = ["Coverage": true, "STAB": true]
-								}
+			if mon.move1.category != "Status" {
+				for type in mon.types {
+					if mon.move1.type == type {
+						// create translation for coverage/stab determination
+						for (type, bool) in Dex.typeEffectiveness[mon.move1.type]! {
+							if bool == true {
+								coverageDict[type] = ["Coverage": true, "STAB": true]
 							}
-						} else {
-							for (type, bool) in Dex.typeEffectiveness[move.type]! {
-								if bool == true {
-									coverageDict[type]!["Coverage"] = true
-								}
+						}
+					} else {
+						for (type, bool) in Dex.typeEffectiveness[mon.move1.type]! {
+							if bool == true {
+								coverageDict[type]!["Coverage"] = true
+							}
+						}
+					}
+				}
+			}
+			if mon.move2.category != "Status" {
+				for type in mon.types {
+					if mon.move2.type == type {
+						// create translation for coverage/stab determination
+						for (type, bool) in Dex.typeEffectiveness[mon.move2.type]! {
+							if bool == true {
+								coverageDict[type] = ["Coverage": true, "STAB": true]
+							}
+						}
+					} else {
+						for (type, bool) in Dex.typeEffectiveness[mon.move2.type]! {
+							if bool == true {
+								coverageDict[type]!["Coverage"] = true
+							}
+						}
+					}
+				}
+			}
+			if mon.move3.category != "Status" {
+				for type in mon.types {
+					if mon.move3.type == type {
+						// create translation for coverage/stab determination
+						for (type, bool) in Dex.typeEffectiveness[mon.move3.type]! {
+							if bool == true {
+								coverageDict[type] = ["Coverage": true, "STAB": true]
+							}
+						}
+					} else {
+						for (type, bool) in Dex.typeEffectiveness[mon.move3.type]! {
+							if bool == true {
+								coverageDict[type]!["Coverage"] = true
+							}
+						}
+					}
+				}
+			}
+			if mon.move4.category != "Status" {
+				for type in mon.types {
+					if mon.move4.type == type {
+						// create translation for coverage/stab determination
+						for (type, bool) in Dex.typeEffectiveness[mon.move4.type]! {
+							if bool == true {
+								coverageDict[type] = ["Coverage": true, "STAB": true]
+							}
+						}
+					} else {
+						for (type, bool) in Dex.typeEffectiveness[mon.move4.type]! {
+							if bool == true {
+								coverageDict[type]!["Coverage"] = true
 							}
 						}
 					}
@@ -135,11 +187,11 @@ class Team: NSObject {
 		let attrLabelArray = ["stealthrock", "stickyweb", "spikes", "lightscreen", "reflect", "auroraveil", "defog", "rapidspin", "taunt"]
 		
 		for mon in members {
-			for move in mon.moves {
-				if attrLabelArray.contains(move.id) {
-					attrDict[move.id] = true
-				}
-			}
+//			for move in mon.moves {
+//				if attrLabelArray.contains(move.id) {
+//					attrDict[move.id] = true
+//				}
+//			}
 		}
 		
 		return attrDict

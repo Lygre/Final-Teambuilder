@@ -7,24 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9F034D47213C53800023FE70 /* poison.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D35213C53720023FE70 /* poison.png */; };
-		9F034D48213C53800023FE70 /* rock.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D36213C53730023FE70 /* rock.png */; };
-		9F034D49213C53800023FE70 /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D37213C53740023FE70 /* grass.png */; };
-		9F034D4A213C53800023FE70 /* dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D38213C53740023FE70 /* dragon.png */; };
-		9F034D4B213C53800023FE70 /* ice.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D39213C53750023FE70 /* ice.png */; };
-		9F034D4C213C53800023FE70 /* fairy.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D3A213C53760023FE70 /* fairy.png */; };
-		9F034D4D213C53800023FE70 /* fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D3B213C53770023FE70 /* fire.png */; };
-		9F034D4E213C53800023FE70 /* ghost.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D3C213C53780023FE70 /* ghost.png */; };
-		9F034D4F213C53800023FE70 /* bug.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D3D213C53790023FE70 /* bug.png */; };
-		9F034D50213C53800023FE70 /* flying.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D3E213C53790023FE70 /* flying.png */; };
-		9F034D51213C53800023FE70 /* steel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D3F213C537A0023FE70 /* steel.png */; };
-		9F034D52213C53800023FE70 /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D40213C537B0023FE70 /* water.png */; };
-		9F034D53213C53800023FE70 /* fighting.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D41213C537C0023FE70 /* fighting.png */; };
-		9F034D54213C53800023FE70 /* normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D42213C537D0023FE70 /* normal.png */; };
-		9F034D55213C53800023FE70 /* psychic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D43213C537E0023FE70 /* psychic.png */; };
-		9F034D56213C53800023FE70 /* ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D44213C537F0023FE70 /* ground.png */; };
-		9F034D57213C53800023FE70 /* dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D45213C537F0023FE70 /* dark.png */; };
-		9F034D58213C53800023FE70 /* electric.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D46213C53800023FE70 /* electric.png */; };
+		9F034D47213C53800023FE70 /* Poison.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D35213C53720023FE70 /* Poison.png */; };
+		9F034D48213C53800023FE70 /* Rock.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D36213C53730023FE70 /* Rock.png */; };
+		9F034D49213C53800023FE70 /* Grass.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D37213C53740023FE70 /* Grass.png */; };
+		9F034D4A213C53800023FE70 /* Dragon.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D38213C53740023FE70 /* Dragon.png */; };
+		9F034D4B213C53800023FE70 /* Ice.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D39213C53750023FE70 /* Ice.png */; };
+		9F034D4C213C53800023FE70 /* Fairy.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D3A213C53760023FE70 /* Fairy.png */; };
+		9F034D4D213C53800023FE70 /* Fire.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D3B213C53770023FE70 /* Fire.png */; };
+		9F034D4E213C53800023FE70 /* Ghost.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D3C213C53780023FE70 /* Ghost.png */; };
+		9F034D4F213C53800023FE70 /* Bug.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D3D213C53790023FE70 /* Bug.png */; };
+		9F034D50213C53800023FE70 /* Flying.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D3E213C53790023FE70 /* Flying.png */; };
+		9F034D51213C53800023FE70 /* Steel.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D3F213C537A0023FE70 /* Steel.png */; };
+		9F034D53213C53800023FE70 /* Fighting.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D41213C537C0023FE70 /* Fighting.png */; };
+		9F034D54213C53800023FE70 /* Normal.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D42213C537D0023FE70 /* Normal.png */; };
+		9F034D55213C53800023FE70 /* Psychic.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D43213C537E0023FE70 /* Psychic.png */; };
+		9F034D56213C53800023FE70 /* Ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D44213C537F0023FE70 /* Ground.png */; };
+		9F034D57213C53800023FE70 /* Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D45213C537F0023FE70 /* Dark.png */; };
+		9F034D58213C53800023FE70 /* Electric.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D46213C53800023FE70 /* Electric.png */; };
+		9F318CCA2142ED4C00419677 /* Water.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F318CC92142ED4B00419677 /* Water.png */; };
 		9FA56A3E2140334600C81E53 /* x-sp-atk-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA562912140300A00C81E53 /* x-sp-atk-6.png */; };
 		9FA56A3F2140334600C81E53 /* roto-exp-points.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA562922140300B00C81E53 /* roto-exp-points.png */; };
 		9FA56A402140334600C81E53 /* data-card-19.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA562932140300B00C81E53 /* data-card-19.png */; };
@@ -2075,24 +2075,24 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9F034D35213C53720023FE70 /* poison.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poison.png; sourceTree = "<group>"; };
-		9F034D36213C53730023FE70 /* rock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rock.png; sourceTree = "<group>"; };
-		9F034D37213C53740023FE70 /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
-		9F034D38213C53740023FE70 /* dragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dragon.png; sourceTree = "<group>"; };
-		9F034D39213C53750023FE70 /* ice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ice.png; sourceTree = "<group>"; };
-		9F034D3A213C53760023FE70 /* fairy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fairy.png; sourceTree = "<group>"; };
-		9F034D3B213C53770023FE70 /* fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fire.png; sourceTree = "<group>"; };
-		9F034D3C213C53780023FE70 /* ghost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ghost.png; sourceTree = "<group>"; };
-		9F034D3D213C53790023FE70 /* bug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bug.png; sourceTree = "<group>"; };
-		9F034D3E213C53790023FE70 /* flying.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = flying.png; sourceTree = "<group>"; };
-		9F034D3F213C537A0023FE70 /* steel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = steel.png; sourceTree = "<group>"; };
-		9F034D40213C537B0023FE70 /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water.png; sourceTree = "<group>"; };
-		9F034D41213C537C0023FE70 /* fighting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fighting.png; sourceTree = "<group>"; };
-		9F034D42213C537D0023FE70 /* normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = normal.png; sourceTree = "<group>"; };
-		9F034D43213C537E0023FE70 /* psychic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = psychic.png; sourceTree = "<group>"; };
-		9F034D44213C537F0023FE70 /* ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ground.png; sourceTree = "<group>"; };
-		9F034D45213C537F0023FE70 /* dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dark.png; sourceTree = "<group>"; };
-		9F034D46213C53800023FE70 /* electric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = electric.png; sourceTree = "<group>"; };
+		9F034D35213C53720023FE70 /* Poison.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Poison.png; sourceTree = "<group>"; };
+		9F034D36213C53730023FE70 /* Rock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rock.png; sourceTree = "<group>"; };
+		9F034D37213C53740023FE70 /* Grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Grass.png; sourceTree = "<group>"; };
+		9F034D38213C53740023FE70 /* Dragon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dragon.png; sourceTree = "<group>"; };
+		9F034D39213C53750023FE70 /* Ice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ice.png; sourceTree = "<group>"; };
+		9F034D3A213C53760023FE70 /* Fairy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fairy.png; sourceTree = "<group>"; };
+		9F034D3B213C53770023FE70 /* Fire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fire.png; sourceTree = "<group>"; };
+		9F034D3C213C53780023FE70 /* Ghost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ghost.png; sourceTree = "<group>"; };
+		9F034D3D213C53790023FE70 /* Bug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bug.png; sourceTree = "<group>"; };
+		9F034D3E213C53790023FE70 /* Flying.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Flying.png; sourceTree = "<group>"; };
+		9F034D3F213C537A0023FE70 /* Steel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Steel.png; sourceTree = "<group>"; };
+		9F034D41213C537C0023FE70 /* Fighting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fighting.png; sourceTree = "<group>"; };
+		9F034D42213C537D0023FE70 /* Normal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Normal.png; sourceTree = "<group>"; };
+		9F034D43213C537E0023FE70 /* Psychic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Psychic.png; sourceTree = "<group>"; };
+		9F034D44213C537F0023FE70 /* Ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ground.png; sourceTree = "<group>"; };
+		9F034D45213C537F0023FE70 /* Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dark.png; sourceTree = "<group>"; };
+		9F034D46213C53800023FE70 /* Electric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Electric.png; sourceTree = "<group>"; };
+		9F318CC92142ED4B00419677 /* Water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Water.png; sourceTree = "<group>"; };
 		9F83ED3821304CDB0074BA35 /* PokemonTeamBuilder.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = PokemonTeamBuilder.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9FA562912140300A00C81E53 /* x-sp-atk-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-sp-atk-6.png"; sourceTree = "<group>"; };
 		9FA562922140300B00C81E53 /* roto-exp-points.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roto-exp-points.png"; sourceTree = "<group>"; };
@@ -5041,25 +5041,25 @@
 		9FB1257921140AE300A234C8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9F318CC92142ED4B00419677 /* Water.png */,
 				9FA5629021402FD500C81E53 /* Items */,
-				9F034D3D213C53790023FE70 /* bug.png */,
-				9F034D45213C537F0023FE70 /* dark.png */,
-				9F034D38213C53740023FE70 /* dragon.png */,
-				9F034D46213C53800023FE70 /* electric.png */,
-				9F034D3A213C53760023FE70 /* fairy.png */,
-				9F034D41213C537C0023FE70 /* fighting.png */,
-				9F034D3B213C53770023FE70 /* fire.png */,
-				9F034D3E213C53790023FE70 /* flying.png */,
-				9F034D3C213C53780023FE70 /* ghost.png */,
-				9F034D37213C53740023FE70 /* grass.png */,
-				9F034D44213C537F0023FE70 /* ground.png */,
-				9F034D39213C53750023FE70 /* ice.png */,
-				9F034D42213C537D0023FE70 /* normal.png */,
-				9F034D35213C53720023FE70 /* poison.png */,
-				9F034D43213C537E0023FE70 /* psychic.png */,
-				9F034D36213C53730023FE70 /* rock.png */,
-				9F034D3F213C537A0023FE70 /* steel.png */,
-				9F034D40213C537B0023FE70 /* water.png */,
+				9F034D3D213C53790023FE70 /* Bug.png */,
+				9F034D45213C537F0023FE70 /* Dark.png */,
+				9F034D38213C53740023FE70 /* Dragon.png */,
+				9F034D46213C53800023FE70 /* Electric.png */,
+				9F034D3A213C53760023FE70 /* Fairy.png */,
+				9F034D41213C537C0023FE70 /* Fighting.png */,
+				9F034D3B213C53770023FE70 /* Fire.png */,
+				9F034D3E213C53790023FE70 /* Flying.png */,
+				9F034D3C213C53780023FE70 /* Ghost.png */,
+				9F034D37213C53740023FE70 /* Grass.png */,
+				9F034D44213C537F0023FE70 /* Ground.png */,
+				9F034D39213C53750023FE70 /* Ice.png */,
+				9F034D42213C537D0023FE70 /* Normal.png */,
+				9F034D35213C53720023FE70 /* Poison.png */,
+				9F034D43213C537E0023FE70 /* Psychic.png */,
+				9F034D36213C53730023FE70 /* Rock.png */,
+				9F034D3F213C537A0023FE70 /* Steel.png */,
 				9FC364B821384426003442E1 /* sprites */,
 			);
 			path = Resources;
@@ -6470,7 +6470,7 @@
 				9FC36D4521384977003442E1 /* 578.png in Resources */,
 				9FC36B9021384977003442E1 /* 50-alola.png in Resources */,
 				9FA56DDE2140334700C81E53 /* dragon-gem.png in Resources */,
-				9F034D54213C53800023FE70 /* normal.png in Resources */,
+				9F034D54213C53800023FE70 /* Normal.png in Resources */,
 				9FA56DD22140334700C81E53 /* everstone.png in Resources */,
 				9FA56E4C2140334700C81E53 /* orange-mail.png in Resources */,
 				9FC36BB721384977003442E1 /* 185.png in Resources */,
@@ -6618,7 +6618,7 @@
 				9FC369D021384976003442E1 /* 794.png in Resources */,
 				9FC3691D21384976003442E1 /* 585-spring.png in Resources */,
 				9FC36B7221384977003442E1 /* 147.png in Resources */,
-				9F034D57213C53800023FE70 /* dark.png in Resources */,
+				9F034D57213C53800023FE70 /* Dark.png in Resources */,
 				9FC3699421384976003442E1 /* 201-i.png in Resources */,
 				9FC36C4C21384977003442E1 /* 775-form-1.png in Resources */,
 				9FC36A9A21384976003442E1 /* 437.png in Resources */,
@@ -6660,7 +6660,7 @@
 				9FA56EAB2140334700C81E53 /* lucky-egg.png in Resources */,
 				9FC3693D21384976003442E1 /* 774-indigo-meteor.png in Resources */,
 				9FC36BD821384977003442E1 /* 494.png in Resources */,
-				9F034D4D213C53800023FE70 /* fire.png in Resources */,
+				9F034D4D213C53800023FE70 /* Fire.png in Resources */,
 				9FC36B7321384977003442E1 /* 383.png in Resources */,
 				9FC369E921384976003442E1 /* 670-yellow.png in Resources */,
 				9FC369C921384976003442E1 /* 229.png in Resources */,
@@ -6879,7 +6879,7 @@
 				9FA56CD62140334700C81E53 /* bug-memory.png in Resources */,
 				9FA570F62140334700C81E53 /* sprayduck.png in Resources */,
 				9FC3694B21384976003442E1 /* 44.png in Resources */,
-				9F034D48213C53800023FE70 /* rock.png in Resources */,
+				9F034D48213C53800023FE70 /* Rock.png in Resources */,
 				9FA56DD82140334700C81E53 /* soothe-bell.png in Resources */,
 				9FA56A752140334600C81E53 /* cameruptite.png in Resources */,
 				9FA571762140334700C81E53 /* common-stone.png in Resources */,
@@ -7045,7 +7045,7 @@
 				9FC36B0A21384976003442E1 /* 666-garden.png in Resources */,
 				9FA56F852140334700C81E53 /* prism-scale.png in Resources */,
 				9FC36AB821384976003442E1 /* 774-green.png in Resources */,
-				9F034D53213C53800023FE70 /* fighting.png in Resources */,
+				9F034D53213C53800023FE70 /* Fighting.png in Resources */,
 				9FC36C5621384977003442E1 /* 317.png in Resources */,
 				9FA56E5B2140334700C81E53 /* ice-memory.png in Resources */,
 				9FA56F742140334700C81E53 /* x-defense.png in Resources */,
@@ -7061,12 +7061,12 @@
 				9FC36B5821384976003442E1 /* 52-alola.png in Resources */,
 				9FA56EE72140334700C81E53 /* key-to-room-2.png in Resources */,
 				9FC36B8A21384977003442E1 /* 373-mega.png in Resources */,
-				9F034D56213C53800023FE70 /* ground.png in Resources */,
+				9F034D56213C53800023FE70 /* Ground.png in Resources */,
 				9FA56EEF2140334700C81E53 /* cell-battery.png in Resources */,
 				9FC36BE521384977003442E1 /* 182.png in Resources */,
 				9FC3692B21384976003442E1 /* 295.png in Resources */,
 				9FC36AD621384976003442E1 /* 746.png in Resources */,
-				9F034D55213C53800023FE70 /* psychic.png in Resources */,
+				9F034D55213C53800023FE70 /* Psychic.png in Resources */,
 				9FC36BCD21384977003442E1 /* 52.png in Resources */,
 				9FC36C5421384977003442E1 /* 66.png in Resources */,
 				9FA56D422140334700C81E53 /* bike-voucher.png in Resources */,
@@ -7158,7 +7158,6 @@
 				9FA571392140334700C81E53 /* card-key.png in Resources */,
 				9FC36A5921384976003442E1 /* 666-sun.png in Resources */,
 				9FA56E332140334700C81E53 /* red-apricorn.png in Resources */,
-				9F034D52213C53800023FE70 /* water.png in Resources */,
 				9FC36B2321384976003442E1 /* 36.png in Resources */,
 				9FC36B2521384976003442E1 /* 249.png in Resources */,
 				9FA56D782140334700C81E53 /* zoom-lens.png in Resources */,
@@ -7174,7 +7173,7 @@
 				9FC36B9B21384977003442E1 /* 789.png in Resources */,
 				9FA56ECD2140334700C81E53 /* bead-mail.png in Resources */,
 				9FC36B4321384976003442E1 /* 689.png in Resources */,
-				9F034D49213C53800023FE70 /* grass.png in Resources */,
+				9F034D49213C53800023FE70 /* Grass.png in Resources */,
 				9FA56D0E2140334700C81E53 /* meteorite-shard.png in Resources */,
 				9FA56D682140334700C81E53 /* magma-emblem.png in Resources */,
 				9FC36B6221384977003442E1 /* 214-mega.png in Resources */,
@@ -7235,7 +7234,7 @@
 				9FA56E562140334700C81E53 /* x-attack-6.png in Resources */,
 				9FC3695021384976003442E1 /* 800-ultra.png in Resources */,
 				9FC36B1621384976003442E1 /* 527.png in Resources */,
-				9F034D4B213C53800023FE70 /* ice.png in Resources */,
+				9F034D4B213C53800023FE70 /* Ice.png in Resources */,
 				9FA571402140334700C81E53 /* power-belt.png in Resources */,
 				9FA5717A2140334700C81E53 /* incinium-z--bag.png in Resources */,
 				9FC36A5021384976003442E1 /* 286.png in Resources */,
@@ -7493,6 +7492,7 @@
 				9FA56F802140334700C81E53 /* kommonium-z--held.png in Resources */,
 				9FC36BC021384977003442E1 /* 315.png in Resources */,
 				9FA56F782140334700C81E53 /* shalour-sable.png in Resources */,
+				9F318CCA2142ED4C00419677 /* Water.png in Resources */,
 				9FA56E2B2140334700C81E53 /* poke-ball.png in Resources */,
 				9FA56D402140334700C81E53 /* stable-mulch.png in Resources */,
 				9FC369CB21384976003442E1 /* 622.png in Resources */,
@@ -7527,7 +7527,7 @@
 				9FC36D2021384977003442E1 /* 377.png in Resources */,
 				9FC36A0F21384976003442E1 /* 145.png in Resources */,
 				9FA56F122140334700C81E53 /* data-card-16.png in Resources */,
-				9F034D4C213C53800023FE70 /* fairy.png in Resources */,
+				9F034D4C213C53800023FE70 /* Fairy.png in Resources */,
 				9FC36ADC21384976003442E1 /* 753.png in Resources */,
 				9FC36CC821384977003442E1 /* 285.png in Resources */,
 				9FA56CE12140334700C81E53 /* firium-z--held.png in Resources */,
@@ -7649,16 +7649,16 @@
 				9FA570FA2140334700C81E53 /* fire-memory.png in Resources */,
 				9FC36B5F21384977003442E1 /* 653.png in Resources */,
 				9FC36B6121384977003442E1 /* 773-psychic.png in Resources */,
-				9F034D4A213C53800023FE70 /* dragon.png in Resources */,
+				9F034D4A213C53800023FE70 /* Dragon.png in Resources */,
 				9FC36A3721384976003442E1 /* 541.png in Resources */,
 				9FA56E532140334700C81E53 /* max-revive.png in Resources */,
 				9FC36CCB21384977003442E1 /* 413.png in Resources */,
 				9FC36CF421384977003442E1 /* 710-small.png in Resources */,
 				9FA56E382140334700C81E53 /* water-gem.png in Resources */,
-				9F034D50213C53800023FE70 /* flying.png in Resources */,
+				9F034D50213C53800023FE70 /* Flying.png in Resources */,
 				9FA571452140334700C81E53 /* inquiry-mail.png in Resources */,
 				9FA571482140334700C81E53 /* luminous-moss.png in Resources */,
-				9F034D58213C53800023FE70 /* electric.png in Resources */,
+				9F034D58213C53800023FE70 /* Electric.png in Resources */,
 				9FC369FA21384976003442E1 /* 694.png in Resources */,
 				9FC36A8A21384976003442E1 /* 574.png in Resources */,
 				9FC36CDD21384977003442E1 /* 390.png in Resources */,
@@ -7748,7 +7748,7 @@
 				9FC369D521384976003442E1 /* 430.png in Resources */,
 				9FC36C1F21384977003442E1 /* 204.png in Resources */,
 				9FA570F42140334700C81E53 /* choice-specs.png in Resources */,
-				9F034D51213C53800023FE70 /* steel.png in Resources */,
+				9F034D51213C53800023FE70 /* Steel.png in Resources */,
 				9FA56D5A2140334700C81E53 /* lucky-punch.png in Resources */,
 				9FC36A5C21384976003442E1 /* 416.png in Resources */,
 				9FC36A9721384976003442E1 /* 348.png in Resources */,
@@ -8021,7 +8021,7 @@
 				9FA56F112140334700C81E53 /* energy-root.png in Resources */,
 				9FA56E092140334700C81E53 /* key-to-room-4.png in Resources */,
 				9FC36C9621384977003442E1 /* 88-alola.png in Resources */,
-				9F034D4F213C53800023FE70 /* bug.png in Resources */,
+				9F034D4F213C53800023FE70 /* Bug.png in Resources */,
 				9FA56DA32140334700C81E53 /* grepa-berry.png in Resources */,
 				9FA571792140334700C81E53 /* x-sp-def-2.png in Resources */,
 				9FA56D7A2140334700C81E53 /* smooth-rock.png in Resources */,
@@ -8065,7 +8065,7 @@
 				9FC36D4921384977003442E1 /* 661.png in Resources */,
 				9FA570ED2140334700C81E53 /* moomoo-milk.png in Resources */,
 				9FA56A6B2140334600C81E53 /* gram-1.png in Resources */,
-				9F034D47213C53800023FE70 /* poison.png in Resources */,
+				9F034D47213C53800023FE70 /* Poison.png in Resources */,
 				9FA56CFE2140334700C81E53 /* pearl-string.png in Resources */,
 				9FA56DF62140334700C81E53 /* explorer-kit.png in Resources */,
 				9FA56D9C2140334700C81E53 /* wide-lens.png in Resources */,
@@ -8366,7 +8366,7 @@
 				9FC36A9C21384976003442E1 /* 168.png in Resources */,
 				9FC36AE321384976003442E1 /* 201-exclamation.png in Resources */,
 				9FC36D0B21384977003442E1 /* 493-dark.png in Resources */,
-				9F034D4E213C53800023FE70 /* ghost.png in Resources */,
+				9F034D4E213C53800023FE70 /* Ghost.png in Resources */,
 				9FA571AB2140334700C81E53 /* stardust.png in Resources */,
 				9FA56A5A2140334600C81E53 /* magma-stone.png in Resources */,
 				9FA56ECB2140334700C81E53 /* electric-gem.png in Resources */,

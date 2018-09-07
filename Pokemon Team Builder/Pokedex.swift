@@ -819,14 +819,13 @@ struct Dex {
 				if mon.species.lowercased().contains(searchStringLower) {
 					searchResults.append(mon)
 				}
-			//search by Learnable move
-				for move in mon.moves {
-					if move.id.contains(searchStringLower) {
-						searchResults.append(mon)
-					} else if move.name.lowercased().contains(searchStringLower) {
-						searchResults.append(mon)
-					}
-				}
+			//search by Learnable move --- THIS NEEDS FIXING
+//				let learnset = mon.getPokemonLearnset(pokemon: mon)
+//				for move in learnset {
+//					if move.contains(searchStringLower) {
+//						searchResults.append(mon)
+//					}
+//				}
 				//search by Ability
 				for ability in mon.abilities {
 					if ability.lowercased().contains(searchStringLower) {
@@ -1852,7 +1851,10 @@ class Pokemon: NSObject {
 	@objc dynamic var iVs: [String: Int]
 	@objc dynamic var eVs: [String: Int]
 	@objc dynamic var actualStats: [String: Int]
-	@objc dynamic var moves: [Move]
+	@objc dynamic var move1: Move
+	@objc dynamic var move2: Move
+	@objc dynamic var move3: Move
+	@objc dynamic var move4: Move
 	@objc dynamic var item: Item
 	
 	//override init
@@ -1869,7 +1871,10 @@ class Pokemon: NSObject {
 		iVs = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
 		eVs = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
 		actualStats = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
-		moves = [Move]()
+		move1 = Move()
+		move2 = Move()
+		move3 = Move()
+		move4 = Move()
 		item = Item()
 		
 		super.init()
@@ -1889,13 +1894,16 @@ class Pokemon: NSObject {
 		self.eVs = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
 		// change this to function calculating stats after creating method calcStats
 		self.actualStats = baseStats
-		self.moves = [Move]()
+		self.move1 = Move()
+		self.move2 = Move()
+		self.move3 = Move()
+		self.move4 = Move()
 		self.item = Item()
 		
 		super.init()
 	}
 	// initialization from ?? creating a specific mon for team << ex.
-	init(species: String, level: Int, nature: String, ability: String, iVs: [String: Int], eVs: [String: Int], moves: [Move], item: Item) {
+	init(species: String, level: Int, nature: String, ability: String, iVs: [String: Int], eVs: [String: Int], move1: Move, move2: Move, move3: Move, move4: Move, item: Item) {
 		self.num = Dex.searchDex(searchParam: species)[0].num
 		self.species = species
 		self.types = Dex.searchDex(searchParam: species)[0].types
@@ -1909,7 +1917,10 @@ class Pokemon: NSObject {
 		self.eVs = eVs
 		// change this to function calculating stats after creating method calcStats
 		self.actualStats = baseStats
-		self.moves = moves
+		self.move1 = move1
+		self.move2 = move2
+		self.move3 = move3
+		self.move4 = move4
 		self.item = item
 		
 		super.init()
@@ -2809,7 +2820,7 @@ class Move: NSObject  {
 		priority = 0
 		forceSwitch = false
 		target = "normal"
-		type = "Typeless"
+		type = "Normal"
 		
 		super.init()
 	}
