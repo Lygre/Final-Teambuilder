@@ -122,9 +122,12 @@ func dexNumToSprite(_ mon: Pokemon) -> String? {
 	
 	if mon.species.contains("-Alola") {
 		spriteName = spriteName! + "-alola"
-	}
-	if mon.species.contains("-Mega") {
+	} else if mon.species.contains("-Mega") {
 		spriteName = spriteName! + "-mega"
+	} else if mon.species.contains("-") {
+		let lowerSpecies = mon.species.lowercased()
+		let index = lowerSpecies.firstIndex(of: "-")
+		spriteName = spriteName! + lowerSpecies[index!...]
 	}
 	
 	spriteName = spriteName! + ".png"

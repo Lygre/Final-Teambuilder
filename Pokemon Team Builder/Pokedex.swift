@@ -2036,6 +2036,8 @@ class Pokemon: NSObject {
 	// method to pull mon learnset array
 	func getPokemonLearnset(pokemon: Pokemon) -> [String] {
 		var learnsetSearchName: String = pokemon.species.lowercased()
+		
+		
 		if learnsetSearchName.contains("-mega") {
 			let suffIndex = learnsetSearchName.firstIndex(of: "-")
 			let learnsetName = learnsetSearchName.prefix(upTo: suffIndex!)
@@ -2043,6 +2045,16 @@ class Pokemon: NSObject {
 		} else if learnsetSearchName.contains("-alola") {
 			let suffIndex = learnsetSearchName.firstIndex(of: "-")
 			let learnsetName = learnsetSearchName.prefix(upTo: suffIndex!)
+			learnsetSearchName = String(learnsetName)
+		} else if learnsetSearchName.contains("-therian") {
+				let suffIndex = learnsetSearchName.firstIndex(of: "-")
+				let learnsetName = learnsetSearchName.prefix(upTo: suffIndex!)
+				learnsetSearchName = String(learnsetName)
+		} else if learnsetSearchName.contains("-") {
+			let index = learnsetSearchName.firstIndex(of: "-")
+			let index2 = learnsetSearchName.index(after: index!)
+			let learnsetName = learnsetSearchName.prefix(upTo: index!) + learnsetSearchName[index2...]
+//			learnsetName.append(learnsetSearchName.suffix((index + String.Index(1)!))
 			learnsetSearchName = String(learnsetName)
 		}
 		let learnset = Learnsets.learnsets[learnsetSearchName]
