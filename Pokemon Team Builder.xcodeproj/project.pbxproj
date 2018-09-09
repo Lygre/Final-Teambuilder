@@ -4108,7 +4108,7 @@
 		9FF5F2EC210259D300933483 /* Pokedex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pokedex.swift; sourceTree = "<group>"; };
 		9FF5F2ED210259D400933483 /* Support Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Support Functions.swift"; sourceTree = "<group>"; };
 		9FF5F2EE210259D400933483 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
-		9FF5F2F821025A4900933483 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../Test4/Test4/ViewController.swift; sourceTree = "<group>"; };
+		9FF5F2F821025A4900933483 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = "/Users/Hughy/Developer/Pokemon-Team-Builder/Pokemon Team Builder/ViewController.swift"; sourceTree = "<absolute>"; };
 		9FF5F30721025B0400933483 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
