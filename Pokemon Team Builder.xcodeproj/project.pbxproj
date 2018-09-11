@@ -25,6 +25,7 @@
 		9F034D57213C53800023FE70 /* Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D45213C537F0023FE70 /* Dark.png */; };
 		9F034D58213C53800023FE70 /* Electric.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D46213C53800023FE70 /* Electric.png */; };
 		9F318CCA2142ED4C00419677 /* Water.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F318CC92142ED4B00419677 /* Water.png */; };
+		9F8EDD9121475DC000090249 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FF5F2C92102594200933483 /* Info.plist */; };
 		9FA56A3E2140334600C81E53 /* x-sp-atk-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA562912140300A00C81E53 /* x-sp-atk-6.png */; };
 		9FA56A3F2140334600C81E53 /* roto-exp-points.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA562922140300B00C81E53 /* roto-exp-points.png */; };
 		9FA56A402140334600C81E53 /* data-card-19.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA562932140300B00C81E53 /* data-card-19.png */; };
@@ -4108,7 +4109,7 @@
 		9FF5F2EC210259D300933483 /* Pokedex.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pokedex.swift; sourceTree = "<group>"; };
 		9FF5F2ED210259D400933483 /* Support Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Support Functions.swift"; sourceTree = "<group>"; };
 		9FF5F2EE210259D400933483 /* Team.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
-		9FF5F2F821025A4900933483 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ../../Test4/Test4/ViewController.swift; sourceTree = "<group>"; };
+		9FF5F2F821025A4900933483 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9FF5F30721025B0400933483 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -6667,6 +6668,7 @@
 				9FA56DF82140334700C81E53 /* galladite.png in Resources */,
 				9FA56E152140334700C81E53 /* sun-flute.png in Resources */,
 				9FC36B3A21384976003442E1 /* 537.png in Resources */,
+				9F8EDD9121475DC000090249 /* Info.plist in Resources */,
 				9FA56CCC2140334700C81E53 /* nanab-berry.png in Resources */,
 				9FC36BCA21384977003442E1 /* 666-high-plains.png in Resources */,
 				9FC36B2C21384976003442E1 /* 720.png in Resources */,
