@@ -156,6 +156,23 @@ class TeamViewController: NSViewController {
 	@IBOutlet weak var move3Select: NSPopUpButton!
 	@IBOutlet weak var move4Select: NSPopUpButton!
 	
+	@IBOutlet weak var actualHP: NSTextField!
+	@IBOutlet weak var actualATK: NSTextField!
+	@IBOutlet weak var actualDEF: NSTextField!
+	@IBOutlet weak var actualSPA: NSTextField!
+	@IBOutlet weak var actualSPD: NSTextField!
+	@IBOutlet weak var actualSPE: NSTextField!
+	
+	//virutal stat outlets
+	
+	
+	@IBOutlet weak var virtualHP: NSTextField!
+	@IBOutlet weak var virtualATK: NSTextField!
+	@IBOutlet weak var virtualDEF: NSTextField!
+	@IBOutlet weak var virtualSPA: NSTextField!
+	@IBOutlet weak var virtualSPD: NSTextField!
+	@IBOutlet weak var virtualSPE: NSTextField!
+	
 	
 	
 //	@objc dynamic var weaknessTable:
@@ -180,6 +197,8 @@ class TeamViewController: NSViewController {
 	
 	@objc dynamic var natureList = [String]()
 	
+	@objc dynamic var levelArray = [Int]()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -195,6 +214,9 @@ class TeamViewController: NSViewController {
 		for (nature, _) in Dex.natureList {
 			natureList.append(nature)
 		}
+		repeat {
+			levelArray.append(levelArray.count + 1)
+		} while levelArray.count < 100
 	}
 	
 	override var representedObject: Any? {
@@ -213,7 +235,16 @@ class TeamViewController: NSViewController {
 		}
 
 		let monToAdd = Dex.searchDex(searchParam: searchForTeam.stringValue)[0]
-
+		//set default level at 100
+		monToAdd.level = 100
+		//set default IVs all to 31
+		for (stat, _) in monToAdd.iVs {
+			monToAdd.iVs[stat] = 31
+		}
+		monToAdd.nature = "mild"
+		//calc actual stats
+		monToAdd.actualStats = Pokemon.calcStats(pokemon: monToAdd)
+		//add pokemon object to objc team variable (bound to array controller)
 		self.team.append(monToAdd)
 		if team2test.members.isEmpty {
 			team2test = Team(members: team)
@@ -252,13 +283,32 @@ class TeamViewController: NSViewController {
 			baseSPD.stringValue = "\(mon.baseStats["spd"] ?? 0)"
 			baseSPE.stringValue = "\(mon.baseStats["spe"] ?? 0)"
 			
+			//get actual stat values for selected mon
+			mon.actualStats = Pokemon.calcStats(pokemon: mon)
+			actualHP.stringValue = "\(mon.actualStats["hp"] ?? 0)"
+			actualATK.stringValue = "\(mon.actualStats["atk"] ?? 0)"
+			actualDEF.stringValue = "\(mon.actualStats["def"] ?? 0)"
+			actualSPA.stringValue = "\(mon.actualStats["spa"] ?? 0)"
+			actualSPD.stringValue = "\(mon.actualStats["spd"] ?? 0)"
+			actualSPE.stringValue = "\(mon.actualStats["spe"] ?? 0)"
+			
+			
+			// get virtual stat values for selected mon
+			mon.virtualStats = Pokemon.calcVirtualStats(pokemon: mon)
+			actualHP.stringValue = "\(mon.virtualStats["hp"] ?? 0)"
+			actualATK.stringValue = "\(mon.virtualStats["atk"] ?? 0)"
+			actualDEF.stringValue = "\(mon.virtualStats["def"] ?? 0)"
+			actualSPA.stringValue = "\(mon.virtualStats["spa"] ?? 0)"
+			actualSPD.stringValue = "\(mon.virtualStats["spd"] ?? 0)"
+			actualSPE.stringValue = "\(mon.virtualStats["spe"] ?? 0)"
+			
 			// create bar graph level bars for corresponding baseStats
-			hpLevel.integerValue = mon.baseStats["hp"]!
-			atkLevel.integerValue = mon.baseStats["atk"]!
-			defLevel.integerValue = mon.baseStats["def"]!
-			spaLevel.integerValue = mon.baseStats["spa"]!
-			spdLevel.integerValue = mon.baseStats["spd"]!
-			speLevel.integerValue = mon.baseStats["spe"]!
+			hpLevel.integerValue = mon.virtualStats["hp"]!
+			atkLevel.integerValue = mon.virtualStats["atk"]!
+			defLevel.integerValue = mon.virtualStats["def"]!
+			spaLevel.integerValue = mon.virtualStats["spa"]!
+			spdLevel.integerValue = mon.virtualStats["spd"]!
+			speLevel.integerValue = mon.virtualStats["spe"]!
 			
 			// populate mon type interaction table for selected mon
 			let monWeaknessesDict: [String: Int] = mon.getPokemonWeaknesses(pokemonName: mon)
@@ -283,7 +333,8 @@ class TeamViewController: NSViewController {
 				let moveToAdd = MoveDex.searchMovedex(searchParam: move)
 				learnsetMoves.append(moveToAdd)
 			}
-			
+			//add mon's current item to itemList
+			itemList.append(mon.item)
 		}
 	}
 	
@@ -401,7 +452,18 @@ class TeamViewController: NSViewController {
 	
 	
 	@IBAction func itemSelectAction(_ sender: Any) {
-//		itemSelectButton.selectedItem?.title
+		let index: Int = tableView.selectedRow
+		
+		if index > -1 {
+			let mon: Pokemon = team[index]
+			mon.virtualStats = Pokemon.calcVirtualStats(pokemon: mon)
+			actualHP.stringValue = "\(mon.virtualStats["hp"] ?? 0)"
+			actualATK.stringValue = "\(mon.virtualStats["atk"] ?? 0)"
+			actualDEF.stringValue = "\(mon.virtualStats["def"] ?? 0)"
+			actualSPA.stringValue = "\(mon.virtualStats["spa"] ?? 0)"
+			actualSPD.stringValue = "\(mon.virtualStats["spd"] ?? 0)"
+			actualSPE.stringValue = "\(mon.virtualStats["spe"] ?? 0)"
+		}
 	}
 	
 	@IBAction func move1Selected(_ sender: Any) {
@@ -457,14 +519,37 @@ class TeamViewController: NSViewController {
 		teamCoverageTableBind = team2test.determineTeamCoverage()
 	}
 	
+	// Nature select action
+	
+	@IBAction func natureSelected(_ sender: Any) {
+		let index = tableView.selectedRow
+		if index > -1 {
+			let mon = team[index]
+			mon.actualStats = Pokemon.calcStats(pokemon: mon)
+			actualHP.stringValue = "\(mon.actualStats["hp"] ?? 0)"
+			actualATK.stringValue = "\(mon.actualStats["atk"] ?? 0)"
+			actualDEF.stringValue = "\(mon.actualStats["def"] ?? 0)"
+			actualSPA.stringValue = "\(mon.actualStats["spa"] ?? 0)"
+			actualSPD.stringValue = "\(mon.actualStats["spd"] ?? 0)"
+			actualSPE.stringValue = "\(mon.actualStats["spe"] ?? 0)"
+		}
+	}
+	
 	
 	@IBAction func checkToConsole(_ sender: Any) {
 		//placeholder function to check whatever needed to console
 
-		print(team2test)
-		print(team[0].move1, team[0].move2, team[0].move3, team[0].move4)
+//		print(team2test)
+//		print(team[0].move1, team[0].move2, team[0].move3, team[0].move4)
+		let index = tableView.selectedRow
+		if index > -1 {
+			let mon = team[index]
+			var monRealStats = Pokemon.calcStats(pokemon: mon)
+			for (stat, value) in monRealStats {
+				print(stat, value)
+			}
+		}
 
-		
 	}
 	
 }

@@ -24,6 +24,7 @@
 		9F034D56213C53800023FE70 /* Ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D44213C537F0023FE70 /* Ground.png */; };
 		9F034D57213C53800023FE70 /* Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D45213C537F0023FE70 /* Dark.png */; };
 		9F034D58213C53800023FE70 /* Electric.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D46213C53800023FE70 /* Electric.png */; };
+		9F18DAF9214807140084DB5E /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F18DAF8214807140084DB5E /* Pokemon.swift */; };
 		9F318CCA2142ED4C00419677 /* Water.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F318CC92142ED4B00419677 /* Water.png */; };
 		9F8EDD9121475DC000090249 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FF5F2C92102594200933483 /* Info.plist */; };
 		9FA56A3E2140334600C81E53 /* x-sp-atk-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA562912140300A00C81E53 /* x-sp-atk-6.png */; };
@@ -2093,6 +2094,7 @@
 		9F034D44213C537F0023FE70 /* Ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ground.png; sourceTree = "<group>"; };
 		9F034D45213C537F0023FE70 /* Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dark.png; sourceTree = "<group>"; };
 		9F034D46213C53800023FE70 /* Electric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Electric.png; sourceTree = "<group>"; };
+		9F18DAF8214807140084DB5E /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		9F318CC92142ED4B00419677 /* Water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Water.png; sourceTree = "<group>"; };
 		9F83ED3821304CDB0074BA35 /* PokemonTeamBuilder.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = PokemonTeamBuilder.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9FA562912140300A00C81E53 /* x-sp-atk-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-sp-atk-6.png"; sourceTree = "<group>"; };
@@ -6219,6 +6221,7 @@
 			children = (
 				9FB1257921140AE300A234C8 /* Resources */,
 				9FF5F2EC210259D300933483 /* Pokedex.swift */,
+				9F18DAF8214807140084DB5E /* Pokemon.swift */,
 				9FF5F2ED210259D400933483 /* Support Functions.swift */,
 				9F83ED3821304CDB0074BA35 /* PokemonTeamBuilder.playground */,
 				9FF5F2EE210259D400933483 /* Team.swift */,
@@ -8436,6 +8439,7 @@
 				9FF5F2C12102593C00933483 /* AppDelegate.swift in Sources */,
 				9FF5F2F5210259D400933483 /* Team.swift in Sources */,
 				9FF5F2EF210259D400933483 /* Pokedex.swift in Sources */,
+				9F18DAF9214807140084DB5E /* Pokemon.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
