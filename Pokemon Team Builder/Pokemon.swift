@@ -205,15 +205,17 @@ class Pokemon: NSObject {
 	//calc virtual stats
 	static func calcVirtualStats(pokemon: Pokemon) -> [String: Int] {
 		var virtuallyAlteredStats = [String]()
+		let actualStats: [String: Int] = pokemon.actualStats
+		var virtualStats: [String: Int] = actualStats
 		//check for virtual stats
 		if pokemon.item.statMods != ["": 1.0] {
-			pokemon.virtualStats = pokemon.actualStats
+//			pokemon.virtualStats = pokemon.actualStats
 			for (stat, value) in pokemon.item.statMods {
-				pokemon.virtualStats[stat] = Int.init(Double(pokemon.virtualStats[stat]!) * value)
-				virtuallyAlteredStats.append(stat)
+				virtualStats[stat] = Int.init(Double(virtualStats[stat]!) * value)
+				virtuallyAlteredStats.append(stat) //this does nothing right now
 			}
 		}
-		return pokemon.virtualStats
+		return virtualStats
 		//make something return an array of altered virtual stats for text color!!!-----Reminder!!!!!
 	}
 	// method to calc BST
@@ -239,10 +241,10 @@ class Pokemon: NSObject {
 			let suffIndex = learnsetSearchName.firstIndex(of: "-")
 			let learnsetName = learnsetSearchName.prefix(upTo: suffIndex!)
 			learnsetSearchName = String(learnsetName)
-		} else if learnsetSearchName.contains("-alola") {
-			let suffIndex = learnsetSearchName.firstIndex(of: "-")
-			let learnsetName = learnsetSearchName.prefix(upTo: suffIndex!)
-			learnsetSearchName = String(learnsetName)
+//		} else if learnsetSearchName.contains("-alola") {
+//			let suffIndex = learnsetSearchName.firstIndex(of: "-")
+//			let learnsetName = learnsetSearchName.prefix(upTo: suffIndex!)
+//			learnsetSearchName = String(learnsetName)
 		} else if learnsetSearchName.contains("-therian") {
 			let suffIndex = learnsetSearchName.firstIndex(of: "-")
 			let learnsetName = learnsetSearchName.prefix(upTo: suffIndex!)

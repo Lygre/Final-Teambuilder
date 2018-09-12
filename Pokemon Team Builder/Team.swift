@@ -171,27 +171,32 @@ class Team: NSObject {
 	// Method for assessing additionalAttributes that team members allow us to meet
 	func determineAttributes() -> [String: Bool] {
 		var attrDict: [String: Bool] = [
-			"stealthrock": false,
-			"stickyweb": false,
-			"spikes": false,
-			"lightscreen": false,
-			"reflect": false,
-			"auroraveil": false,
-			"defog": false,
-			"rapidspin": false,
-			"taunt": false,
-//			"phaser": false,
-//			"statusMove": false
+			"Stealth Rock": false,
+			"Sticky Web": false,
+			"Spikes": false,
+			"Light Screen": false,
+			"Reflect": false,
+			"Aurora Veil": false,
+			"Defog": false,
+			"Rapid Spin": false,
+			"Taunt": false,
+			"Phaser": false
 		]
-		
+//			"statusMove": false
 		let attrLabelArray = ["stealthrock", "stickyweb", "spikes", "lightscreen", "reflect", "auroraveil", "defog", "rapidspin", "taunt"]
+		let phaserLabelArray = ["roar", "whirlwind", "dragontail", "circlethrow"]
 		
 		for mon in members {
-//			for move in mon.moves {
-//				if attrLabelArray.contains(move.id) {
-//					attrDict[move.id] = true
-//				}
-//			}
+			let monMoveArray: [Move] = [mon.move1, mon.move2, mon.move3, mon.move4]
+			for move in monMoveArray {
+				if attrLabelArray.contains(move.id) {
+					attrDict[move.name] = true
+				}
+				if phaserLabelArray.contains(move.id) {
+					attrDict["Phaser"] = true
+				}
+			}
+
 		}
 		
 		return attrDict

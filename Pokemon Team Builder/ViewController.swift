@@ -185,6 +185,8 @@ class TeamViewController: NSViewController {
 	
 	@objc dynamic var teamCoverageTableBind: [String: [String: Bool]] = [:]
 	
+	@objc dynamic var teamAttributeTableBind: [String: Bool] = [:]
+	
 	@objc dynamic var colorTable: [String: NSColor] = ["Weak": NSColor.systemRed,
 													   "Resist": NSColor.systemGreen,
 													   "Neutral": NSColor.systemGray]
@@ -214,6 +216,7 @@ class TeamViewController: NSViewController {
 		for (nature, _) in Dex.natureList {
 			natureList.append(nature)
 		}
+		natureList.sort()
 		repeat {
 			levelArray.append(levelArray.count + 1)
 		} while levelArray.count < 100
@@ -244,6 +247,7 @@ class TeamViewController: NSViewController {
 		monToAdd.nature = "mild"
 		//calc actual stats
 		monToAdd.actualStats = Pokemon.calcStats(pokemon: monToAdd)
+		monToAdd.virtualStats = Pokemon.calcVirtualStats(pokemon: monToAdd)
 		//add pokemon object to objc team variable (bound to array controller)
 		self.team.append(monToAdd)
 		if team2test.members.isEmpty {
@@ -255,6 +259,7 @@ class TeamViewController: NSViewController {
 		team2test.teamWeaknesses = team2test.determineTeamWeaknesses()
 		teamWeaknessTableBind[monToAdd.species] = monToAdd.getPokemonWeaknesses(pokemonName: monToAdd)
 		teamWeaknessTableBind["Cumulative"] = team2test.determineTeamWeaknesses()
+		team2test.additionalAttributes = team2test.determineAttributes()
 
 		//---------
 		team2test.teamCoverage = team2test.determineTeamCoverage()
@@ -295,12 +300,12 @@ class TeamViewController: NSViewController {
 			
 			// get virtual stat values for selected mon
 			mon.virtualStats = Pokemon.calcVirtualStats(pokemon: mon)
-			actualHP.stringValue = "\(mon.virtualStats["hp"] ?? 0)"
-			actualATK.stringValue = "\(mon.virtualStats["atk"] ?? 0)"
-			actualDEF.stringValue = "\(mon.virtualStats["def"] ?? 0)"
-			actualSPA.stringValue = "\(mon.virtualStats["spa"] ?? 0)"
-			actualSPD.stringValue = "\(mon.virtualStats["spd"] ?? 0)"
-			actualSPE.stringValue = "\(mon.virtualStats["spe"] ?? 0)"
+			virtualHP.stringValue = "\(mon.virtualStats["hp"] ?? 0)"
+			virtualATK.stringValue = "\(mon.virtualStats["atk"] ?? 0)"
+			virtualDEF.stringValue = "\(mon.virtualStats["def"] ?? 0)"
+			virtualSPA.stringValue = "\(mon.virtualStats["spa"] ?? 0)"
+			virtualSPD.stringValue = "\(mon.virtualStats["spd"] ?? 0)"
+			virtualSPE.stringValue = "\(mon.virtualStats["spe"] ?? 0)"
 			
 			// create bar graph level bars for corresponding baseStats
 			hpLevel.integerValue = mon.virtualStats["hp"]!
@@ -436,6 +441,7 @@ class TeamViewController: NSViewController {
 	@IBAction func speSliderAction(_ sender: Any) {
 		speSlider.minValue = 0.0
 		speSlider.maxValue = 252.0
+		// possibly able to put a method to determine what max value should be using default value
 		speSlider.numberOfTickMarks = 63
 		speSlider.allowsTickMarkValuesOnly = true
 		
@@ -457,12 +463,12 @@ class TeamViewController: NSViewController {
 		if index > -1 {
 			let mon: Pokemon = team[index]
 			mon.virtualStats = Pokemon.calcVirtualStats(pokemon: mon)
-			actualHP.stringValue = "\(mon.virtualStats["hp"] ?? 0)"
-			actualATK.stringValue = "\(mon.virtualStats["atk"] ?? 0)"
-			actualDEF.stringValue = "\(mon.virtualStats["def"] ?? 0)"
-			actualSPA.stringValue = "\(mon.virtualStats["spa"] ?? 0)"
-			actualSPD.stringValue = "\(mon.virtualStats["spd"] ?? 0)"
-			actualSPE.stringValue = "\(mon.virtualStats["spe"] ?? 0)"
+			virtualHP.stringValue = "\(mon.virtualStats["hp"] ?? 0)"
+			virtualATK.stringValue = "\(mon.virtualStats["atk"] ?? 0)"
+			virtualDEF.stringValue = "\(mon.virtualStats["def"] ?? 0)"
+			virtualSPA.stringValue = "\(mon.virtualStats["spa"] ?? 0)"
+			virtualSPD.stringValue = "\(mon.virtualStats["spd"] ?? 0)"
+			virtualSPE.stringValue = "\(mon.virtualStats["spe"] ?? 0)"
 		}
 	}
 	
@@ -478,6 +484,7 @@ class TeamViewController: NSViewController {
 //			mon.moves = movesArray
 //		}
 		teamCoverageTableBind = team2test.determineTeamCoverage()
+		teamAttributeTableBind = team2test.determineAttributes()
 	}
 	@IBAction func move2Selected(_ sender: Any) {
 //		movesToSet["move2"] = MoveDex.searchMovedex(searchParam: (move2Select.selectedItem?.title)!)
@@ -491,6 +498,7 @@ class TeamViewController: NSViewController {
 //			mon.moves = movesArray
 //		}
 		teamCoverageTableBind = team2test.determineTeamCoverage()
+		teamAttributeTableBind = team2test.determineAttributes()
 	}
 	@IBAction func move3Selected(_ sender: Any) {
 //		movesToSet["move3"] = MoveDex.searchMovedex(searchParam: (move3Select.selectedItem?.title)!)
@@ -504,6 +512,7 @@ class TeamViewController: NSViewController {
 //			mon.moves = movesArray
 //		}
 		teamCoverageTableBind = team2test.determineTeamCoverage()
+		teamAttributeTableBind = team2test.determineAttributes()
 	}
 	@IBAction func move4Selected(_ sender: Any) {
 //		movesToSet["move4"] = MoveDex.searchMovedex(searchParam: (move4Select.selectedItem?.title)!)
@@ -517,6 +526,7 @@ class TeamViewController: NSViewController {
 //			mon.moves = movesArray
 //		}
 		teamCoverageTableBind = team2test.determineTeamCoverage()
+		teamAttributeTableBind = team2test.determineAttributes()
 	}
 	
 	// Nature select action
@@ -532,6 +542,14 @@ class TeamViewController: NSViewController {
 			actualSPA.stringValue = "\(mon.actualStats["spa"] ?? 0)"
 			actualSPD.stringValue = "\(mon.actualStats["spd"] ?? 0)"
 			actualSPE.stringValue = "\(mon.actualStats["spe"] ?? 0)"
+			
+			mon.virtualStats = Pokemon.calcVirtualStats(pokemon: mon)
+			virtualHP.stringValue = "\(mon.virtualStats["hp"] ?? 0)"
+			virtualATK.stringValue = "\(mon.virtualStats["atk"] ?? 0)"
+			virtualDEF.stringValue = "\(mon.virtualStats["def"] ?? 0)"
+			virtualSPA.stringValue = "\(mon.virtualStats["spa"] ?? 0)"
+			virtualSPD.stringValue = "\(mon.virtualStats["spd"] ?? 0)"
+			virtualSPE.stringValue = "\(mon.virtualStats["spe"] ?? 0)"
 		}
 	}
 	
