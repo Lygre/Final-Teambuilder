@@ -140,6 +140,13 @@ class TeamViewController: NSViewController {
 	@IBOutlet weak var speSlider: NSSlider!
 	
 	@IBOutlet weak var hpSliderCell: NSSliderCell!
+	@IBOutlet weak var atkSliderCell: NSSliderCell!
+	@IBOutlet weak var defSliderCell: NSSliderCell!
+	@IBOutlet weak var spaSliderCell: NSSliderCell!
+	@IBOutlet weak var spdSliderCell: NSSliderCell!
+	@IBOutlet weak var speSliderCell: NSSliderCell!
+	
+	
 	//remains to be done with programming the rest of the sliders
 	//on the backend, everything works, but not sure how to have sliders
 	//re-draw if the desired set value for EVs is not possible in context
@@ -230,7 +237,48 @@ class TeamViewController: NSViewController {
 		}
 	}
 	
-	
+	func updatePokemon() {
+		let index: Int = tableView.selectedRow
+		
+		if index > -1 {
+			let mon: Pokemon = team[index]
+			//get actual stat values for selected mon
+			mon.actualStats = Pokemon.calcStats(pokemon: mon)
+			actualHP.stringValue = "\(mon.actualStats["hp"] ?? 0)"
+			actualATK.stringValue = "\(mon.actualStats["atk"] ?? 0)"
+			actualDEF.stringValue = "\(mon.actualStats["def"] ?? 0)"
+			actualSPA.stringValue = "\(mon.actualStats["spa"] ?? 0)"
+			actualSPD.stringValue = "\(mon.actualStats["spd"] ?? 0)"
+			actualSPE.stringValue = "\(mon.actualStats["spe"] ?? 0)"
+			
+			
+			// get virtual stat values for selected mon
+			mon.virtualStats = Pokemon.calcVirtualStats(pokemon: mon)
+			virtualHP.stringValue = "\(mon.virtualStats["hp"] ?? 0)"
+			virtualATK.stringValue = "\(mon.virtualStats["atk"] ?? 0)"
+			virtualDEF.stringValue = "\(mon.virtualStats["def"] ?? 0)"
+			virtualSPA.stringValue = "\(mon.virtualStats["spa"] ?? 0)"
+			virtualSPD.stringValue = "\(mon.virtualStats["spd"] ?? 0)"
+			virtualSPE.stringValue = "\(mon.virtualStats["spe"] ?? 0)"
+			
+			// create bar graph level bars for corresponding baseStats
+			
+			hpLevel.integerValue = mon.virtualStats["hp"]!
+			atkLevel.integerValue = mon.virtualStats["atk"]!
+			defLevel.integerValue = mon.virtualStats["def"]!
+			spaLevel.integerValue = mon.virtualStats["spa"]!
+			spdLevel.integerValue = mon.virtualStats["spd"]!
+			speLevel.integerValue = mon.virtualStats["spe"]!
+			//alter level objects max value
+			var maxStatsForLevel = Pokemon.calcMaxStats()
+			hpLevel.maxValue = Double.init(maxStatsForLevel["hp"]!)
+			atkLevel.maxValue = Double.init(maxStatsForLevel["atk"]!)
+			defLevel.maxValue = Double.init(maxStatsForLevel["def"]!)
+			spaLevel.maxValue = Double.init(maxStatsForLevel["spa"]!)
+			spdLevel.maxValue = Double.init(maxStatsForLevel["spd"]!)
+			speLevel.maxValue = Double.init(maxStatsForLevel["spe"]!)
+		}
+	}
 	
 	@IBAction func addToTeam(_ sender: Any) {
 		if (searchForTeam.stringValue == "") {
@@ -363,7 +411,7 @@ class TeamViewController: NSViewController {
 		hpSlider.maxValue = 252.0
 		hpSlider.numberOfTickMarks = 63
 		hpSlider.allowsTickMarkValuesOnly = true
-
+		hpSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
 			let index = tableView.selectedRow
@@ -371,6 +419,9 @@ class TeamViewController: NSViewController {
 				let mon: Pokemon = team[index]
 				mon.eVs["hp"] = hpSlider.integerValue
 				print(mon.eVs["hp"]!)
+				
+				//update pokemon
+				updatePokemon()
 			}
 		} else {
 			return
@@ -384,7 +435,7 @@ class TeamViewController: NSViewController {
 		atkSlider.maxValue = 252.0
 		atkSlider.numberOfTickMarks = 63
 		atkSlider.allowsTickMarkValuesOnly = true
-		
+		atkSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
 			let index = tableView.selectedRow
@@ -392,6 +443,8 @@ class TeamViewController: NSViewController {
 				let mon: Pokemon = team[index]
 				mon.eVs["atk"] = atkSlider.integerValue
 				print(mon.eVs["atk"]!)
+				//update pokemon
+				updatePokemon()
 			}
 		} else { return }
 	}
@@ -401,7 +454,7 @@ class TeamViewController: NSViewController {
 		defSlider.maxValue = 252.0
 		defSlider.numberOfTickMarks = 63
 		defSlider.allowsTickMarkValuesOnly = true
-		
+		defSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
 			let index = tableView.selectedRow
@@ -409,6 +462,8 @@ class TeamViewController: NSViewController {
 				let mon: Pokemon = team[index]
 				mon.eVs["def"] = defSlider.integerValue
 				print(mon.eVs["def"]!)
+				//update pokemon
+				updatePokemon()
 			}
 		} else { return }
 	}
@@ -418,7 +473,7 @@ class TeamViewController: NSViewController {
 		spaSlider.maxValue = 252.0
 		spaSlider.numberOfTickMarks = 63
 		spaSlider.allowsTickMarkValuesOnly = true
-		
+		spaSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
 			let index = tableView.selectedRow
@@ -426,6 +481,8 @@ class TeamViewController: NSViewController {
 				let mon: Pokemon = team[index]
 				mon.eVs["spa"] = spaSlider.integerValue
 				print(mon.eVs["spa"]!)
+				//update pokemon
+				updatePokemon()
 			}
 		} else { return }
 	}
@@ -435,7 +492,7 @@ class TeamViewController: NSViewController {
 		spdSlider.maxValue = 252.0
 		spdSlider.numberOfTickMarks = 63
 		spdSlider.allowsTickMarkValuesOnly = true
-		
+		spdSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
 			let index = tableView.selectedRow
@@ -443,6 +500,8 @@ class TeamViewController: NSViewController {
 				let mon: Pokemon = team[index]
 				mon.eVs["spd"] = spdSlider.integerValue
 				print(mon.eVs["spd"]!)
+				//update pokemon
+				updatePokemon()
 			}
 		} else { return }
 	}
@@ -453,7 +512,7 @@ class TeamViewController: NSViewController {
 		// possibly able to put a method to determine what max value should be using default value
 		speSlider.numberOfTickMarks = 63
 		speSlider.allowsTickMarkValuesOnly = true
-		
+		speSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
 			let index = tableView.selectedRow
@@ -461,6 +520,8 @@ class TeamViewController: NSViewController {
 				let mon: Pokemon = team[index]
 				mon.eVs["spe"] = speSlider.integerValue
 				print(mon.eVs["spe"]!)
+				//update pokemon
+				updatePokemon()
 			}
 		} else { return }
 	}
@@ -479,6 +540,8 @@ class TeamViewController: NSViewController {
 			virtualSPD.stringValue = "\(mon.virtualStats["spd"] ?? 0)"
 			virtualSPE.stringValue = "\(mon.virtualStats["spe"] ?? 0)"
 		}
+		//update pokemon
+		updatePokemon()
 	}
 	
 	@IBAction func move1Selected(_ sender: Any) {
@@ -560,23 +623,51 @@ class TeamViewController: NSViewController {
 			virtualSPD.stringValue = "\(mon.virtualStats["spd"] ?? 0)"
 			virtualSPE.stringValue = "\(mon.virtualStats["spe"] ?? 0)"
 		}
+		//update pokemon
+		updatePokemon()
 	}
 	
 	
-	@IBAction func checkToConsole(_ sender: Any) {
+	@IBAction func exportTeam(_ sender: Any) {
 		//placeholder function to check whatever needed to console
-
-//		print(team2test)
-//		print(team[0].move1, team[0].move2, team[0].move3, team[0].move4)
-		let index = tableView.selectedRow
-		if index > -1 {
-			let mon = team[index]
-			var monRealStats = Pokemon.calcStats(pokemon: mon)
-			for (stat, value) in monRealStats {
-				print(stat, value)
+		let numberOfTeamMembers = tableView.numberOfRows
+		var output: String = ""
+		
+		if numberOfTeamMembers > 0 {
+			for mon in team {
+				output.append("\(mon.species) @ \(mon.item.name)\n")
+				output.append("Ability: \(mon.ability)\n")
+				if mon.eVs != ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0] {
+					var evString: String = "EVs: "
+					for (stat, value) in mon.eVs {
+						if value != 0 {
+							evString.append("\(value) \(stat) - ")
+						}
+					}
+					evString = evString.replacingOccurrences(of: "-", with: "/")
+					evString.removeLast(3)
+					evString.append("\n")
+					output.append(evString)
+					
+				}
+				var natureString: String = "\(mon.nature)"
+				natureString = natureString.capitalized
+				natureString.append(" Nature\n")
+				output.append(natureString)
+				
+				//come back later and address IV exceptions here
+				output.append("- \(mon.move1.name)\n")
+				output.append("- \(mon.move2.name)\n")
+				output.append("- \(mon.move3.name)\n")
+				output.append("- \(mon.move4.name)\n")
+				output.append("\n")
 			}
-		}
+			
+			let pasteboard = NSPasteboard.general
+			pasteboard.declareTypes([NSPasteboard.PasteboardType.string], owner: nil)
+			pasteboard.setString(output, forType: NSPasteboard.PasteboardType.string)
 
+		}
 	}
 	
 }
