@@ -181,12 +181,10 @@ class Pokemon: NSObject {
 		var actualStats: [String: Int] = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
 
 		for (stat, value) in baseStats {
-			
 			var statMod: Double = 1.0
 			let eScalar = Double(evs[stat]! / 4)
 			let baseStatCalc: Double = (2.0 * Double(value) + Double(ivs[stat]!) + eScalar)
 			//var levelScalar: Double = (Double(level) / 100.0 + 5.0)
-			
 			if (Dex.natureList[nature]![stat] != nil) {
 				statMod = Dex.natureList[nature]![stat]!
 			}
@@ -195,12 +193,29 @@ class Pokemon: NSObject {
 			} else {
 				actualStats[stat] = Int.init(Double((baseStatCalc * Double(level) / 100.0 + 5.0) * statMod))
 			}
+		}
+		return actualStats
+	}
+	//calc Max virtual stat values for Level indicators
+	static func calcMaxStats() -> [String: Int] {
+		let natureMod: Double = 1.1
+		let level: Int = 100
+		let baseStats: [String: Int] = ["hp": 255, "atk": 190, "def": 230, "spa": 194, "spd": 230, "spe": 255]
+		let ivs: [String: Int] = ["hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31]
+		let evs: [String: Int] = ["hp": 255, "atk": 255, "def": 255, "spa": 255, "spd": 255, "spe": 255]
+		var maxStats: [String: Int] = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
+		for (stat, value) in baseStats {
+			let eScalar = Double(evs[stat]! / 4)
+			let baseStatCalc: Double = (2.0 * Double(value) + Double(ivs[stat]!) + eScalar)
+			if stat == "hp" {
+				maxStats[stat] = Int.init(Double((baseStatCalc * Double(level) / 100.0 + Double(level) + 10.0) * 1.5))
+			} else {
+				maxStats[stat] = Int.init(Double((baseStatCalc * Double(level) / 100.0 + 5.0) * natureMod * 1.5))
+			}
 			
 		}
 		
-		
-		return actualStats
-		
+		return maxStats
 	}
 	//calc virtual stats
 	static func calcVirtualStats(pokemon: Pokemon) -> [String: Int] {

@@ -308,12 +308,21 @@ class TeamViewController: NSViewController {
 			virtualSPE.stringValue = "\(mon.virtualStats["spe"] ?? 0)"
 			
 			// create bar graph level bars for corresponding baseStats
+			
 			hpLevel.integerValue = mon.virtualStats["hp"]!
 			atkLevel.integerValue = mon.virtualStats["atk"]!
 			defLevel.integerValue = mon.virtualStats["def"]!
 			spaLevel.integerValue = mon.virtualStats["spa"]!
 			spdLevel.integerValue = mon.virtualStats["spd"]!
 			speLevel.integerValue = mon.virtualStats["spe"]!
+			//alter level objects max value
+			var maxStatsForLevel = Pokemon.calcMaxStats()
+			hpLevel.maxValue = Double.init(maxStatsForLevel["hp"]!)
+			atkLevel.maxValue = Double.init(maxStatsForLevel["atk"]!)
+			defLevel.maxValue = Double.init(maxStatsForLevel["def"]!)
+			spaLevel.maxValue = Double.init(maxStatsForLevel["spa"]!)
+			spdLevel.maxValue = Double.init(maxStatsForLevel["spd"]!)
+			speLevel.maxValue = Double.init(maxStatsForLevel["spe"]!)
 			
 			// populate mon type interaction table for selected mon
 			let monWeaknessesDict: [String: Int] = mon.getPokemonWeaknesses(pokemonName: mon)
