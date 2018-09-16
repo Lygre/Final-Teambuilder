@@ -109,6 +109,8 @@ class TeamBuilderController: NSViewController {
 //	}
 //}
 
+var teamMaster = Team()
+
 class TeamViewController: NSViewController {
 	
 	@IBOutlet var teamController: NSArrayController!
@@ -239,7 +241,13 @@ class TeamViewController: NSViewController {
 			
 		}
 	}
-	
+	func updateTeam() {
+		teamMaster = Team(members: team)
+		teamMaster.teamWeaknesses = teamMaster.determineTeamWeaknesses()
+		teamMaster.teamCoverage = teamMaster.determineTeamCoverage()
+		teamMaster.additionalAttributes = teamMaster.determineAttributes()
+		print(teamMaster)
+	}
 	func updatePokemon() {
 		let index: Int = tableView.selectedRow
 		
@@ -314,6 +322,9 @@ class TeamViewController: NSViewController {
 
 		//---------
 		team2test.teamCoverage = team2test.determineTeamCoverage()
+		
+		teamMaster = team2test
+		updateTeam()
 	}
 
 	@IBAction func teamTypeTableAction(_ sender: Any) {
