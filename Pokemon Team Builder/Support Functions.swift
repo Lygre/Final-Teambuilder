@@ -153,3 +153,33 @@ func dexNumToSprite(_ mon: Pokemon) -> String? {
 //		super.init()
 //	}
 //}
+
+func determineMonInteractionIconTable(pokemon: Pokemon) -> [String: NSImage] {
+	var monWeaknessDict: [String: Int]
+	
+	var monWeaknessDictTransformed: [String: NSImage] = [:]
+	
+	monWeaknessDict = pokemon.getPokemonWeaknesses(pokemonName: pokemon)
+	
+	
+	for (type, scalar) in monWeaknessDict {
+		var typeModImg: NSImage = NSImage(imageLiteralResourceName: "neutral.png")
+		if scalar == 0 {
+			typeModImg = NSImage(imageLiteralResourceName: "immune.png")
+		} else if scalar == 1 {
+			typeModImg = NSImage(imageLiteralResourceName: "neutral.png")
+		} else if scalar == -2 {
+			typeModImg = NSImage(imageLiteralResourceName: "resist2.png")
+		} else if scalar == -4 {
+			typeModImg = NSImage(imageLiteralResourceName: "resist4.png")
+		} else if scalar == 2 {
+			typeModImg = NSImage(imageLiteralResourceName: "weak2.png")
+		} else if scalar == 4 {
+			typeModImg = NSImage(imageLiteralResourceName: "weak4.png")
+		}
+		monWeaknessDictTransformed[type] = typeModImg
+	}
+	
+	return monWeaknessDictTransformed
+	
+}

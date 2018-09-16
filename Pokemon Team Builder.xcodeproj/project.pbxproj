@@ -26,6 +26,12 @@
 		9F034D58213C53800023FE70 /* Electric.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D46213C53800023FE70 /* Electric.png */; };
 		9F18DAF9214807140084DB5E /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F18DAF8214807140084DB5E /* Pokemon.swift */; };
 		9F318CCA2142ED4C00419677 /* Water.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F318CC92142ED4B00419677 /* Water.png */; };
+		9F4C0A44214DDEDA00DBC809 /* weak4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4C0A3E214DDED800DBC809 /* weak4.png */; };
+		9F4C0A45214DDEDA00DBC809 /* immune.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4C0A3F214DDED800DBC809 /* immune.png */; };
+		9F4C0A46214DDEDA00DBC809 /* neutral.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4C0A40214DDED900DBC809 /* neutral.png */; };
+		9F4C0A47214DDEDA00DBC809 /* resist2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4C0A41214DDED900DBC809 /* resist2.png */; };
+		9F4C0A48214DDEDA00DBC809 /* weak2.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4C0A42214DDED900DBC809 /* weak2.png */; };
+		9F4C0A49214DDEDA00DBC809 /* resist4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4C0A43214DDEDA00DBC809 /* resist4.png */; };
 		9F8EDD9121475DC000090249 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FF5F2C92102594200933483 /* Info.plist */; };
 		9FA56A3E2140334600C81E53 /* x-sp-atk-6.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA562912140300A00C81E53 /* x-sp-atk-6.png */; };
 		9FA56A3F2140334600C81E53 /* roto-exp-points.png in Resources */ = {isa = PBXBuildFile; fileRef = 9FA562922140300B00C81E53 /* roto-exp-points.png */; };
@@ -2096,6 +2102,12 @@
 		9F034D46213C53800023FE70 /* Electric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Electric.png; sourceTree = "<group>"; };
 		9F18DAF8214807140084DB5E /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		9F318CC92142ED4B00419677 /* Water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Water.png; sourceTree = "<group>"; };
+		9F4C0A3E214DDED800DBC809 /* weak4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weak4.png; sourceTree = "<group>"; };
+		9F4C0A3F214DDED800DBC809 /* immune.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = immune.png; sourceTree = "<group>"; };
+		9F4C0A40214DDED900DBC809 /* neutral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neutral.png; sourceTree = "<group>"; };
+		9F4C0A41214DDED900DBC809 /* resist2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resist2.png; sourceTree = "<group>"; };
+		9F4C0A42214DDED900DBC809 /* weak2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weak2.png; sourceTree = "<group>"; };
+		9F4C0A43214DDEDA00DBC809 /* resist4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resist4.png; sourceTree = "<group>"; };
 		9F83ED3821304CDB0074BA35 /* PokemonTeamBuilder.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = PokemonTeamBuilder.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		9FA562912140300A00C81E53 /* x-sp-atk-6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-sp-atk-6.png"; sourceTree = "<group>"; };
 		9FA562922140300B00C81E53 /* roto-exp-points.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "roto-exp-points.png"; sourceTree = "<group>"; };
@@ -5044,6 +5056,12 @@
 		9FB1257921140AE300A234C8 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				9F4C0A3F214DDED800DBC809 /* immune.png */,
+				9F4C0A40214DDED900DBC809 /* neutral.png */,
+				9F4C0A41214DDED900DBC809 /* resist2.png */,
+				9F4C0A43214DDEDA00DBC809 /* resist4.png */,
+				9F4C0A42214DDED900DBC809 /* weak2.png */,
+				9F4C0A3E214DDED800DBC809 /* weak4.png */,
 				9F318CC92142ED4B00419677 /* Water.png */,
 				9FA5629021402FD500C81E53 /* Items */,
 				9F034D3D213C53790023FE70 /* Bug.png */,
@@ -6643,6 +6661,7 @@
 				9FC3696D21384976003442E1 /* 398.png in Resources */,
 				9FC36CBA21384977003442E1 /* 584.png in Resources */,
 				9FC36A6621384976003442E1 /* 766.png in Resources */,
+				9F4C0A48214DDEDA00DBC809 /* weak2.png in Resources */,
 				9FC3699821384976003442E1 /* 720-unbound.png in Resources */,
 				9FC369EA21384976003442E1 /* 240.png in Resources */,
 				9FC36AA121384976003442E1 /* 772.png in Resources */,
@@ -6914,6 +6933,7 @@
 				9FC36D4221384977003442E1 /* 127-mega.png in Resources */,
 				9FC36CD121384977003442E1 /* 205.png in Resources */,
 				9FC3699921384976003442E1 /* 175.png in Resources */,
+				9F4C0A46214DDEDA00DBC809 /* neutral.png in Resources */,
 				9FC36C9121384977003442E1 /* 736.png in Resources */,
 				9FC3696E21384976003442E1 /* 218.png in Resources */,
 				9FC36D1221384977003442E1 /* 258.png in Resources */,
@@ -7452,6 +7472,7 @@
 				9FC36D5F21384977003442E1 /* 531.png in Resources */,
 				9FA56CE22140334700C81E53 /* assault-vest.png in Resources */,
 				9FA56E272140334700C81E53 /* lucarionite.png in Resources */,
+				9F4C0A49214DDEDA00DBC809 /* resist4.png in Resources */,
 				9FA570FD2140334700C81E53 /* grassium-z--held.png in Resources */,
 				9FC36C1421384977003442E1 /* 296.png in Resources */,
 				9FA56D3B2140334700C81E53 /* luck-incense.png in Resources */,
@@ -7929,6 +7950,7 @@
 				9FC36CC321384977003442E1 /* 51-alola.png in Resources */,
 				9FA5718E2140334700C81E53 /* tm-ghost.png in Resources */,
 				9FC36B8221384977003442E1 /* 623.png in Resources */,
+				9F4C0A44214DDEDA00DBC809 /* weak4.png in Resources */,
 				9FC36CFF21384977003442E1 /* 559.png in Resources */,
 				9FC36CB521384977003442E1 /* 24.png in Resources */,
 				9FC369C321384976003442E1 /* 539.png in Resources */,
@@ -8003,6 +8025,7 @@
 				9FC36C1D21384977003442E1 /* 493-water.png in Resources */,
 				9FA56D922140334700C81E53 /* sweet-heart.png in Resources */,
 				9FA56A7C2140334600C81E53 /* chill-drive.png in Resources */,
+				9F4C0A47214DDEDA00DBC809 /* resist2.png in Resources */,
 				9FA56F192140334700C81E53 /* coba-berry.png in Resources */,
 				9FC36B7121384977003442E1 /* 222.png in Resources */,
 				9FC3693921384976003442E1 /* 70.png in Resources */,
@@ -8215,6 +8238,7 @@
 				9FC36D4321384977003442E1 /* 591.png in Resources */,
 				9FC36D3721384977003442E1 /* 105-totem.png in Resources */,
 				9FA56DCB2140334700C81E53 /* shoal-shell.png in Resources */,
+				9F4C0A45214DDEDA00DBC809 /* immune.png in Resources */,
 				9FA56D152140334700C81E53 /* audinite.png in Resources */,
 				9FC36AA921384976003442E1 /* 518.png in Resources */,
 				9FC369A921384976003442E1 /* 534.png in Resources */,

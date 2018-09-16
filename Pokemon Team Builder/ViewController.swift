@@ -180,6 +180,7 @@ class TeamViewController: NSViewController {
 	@IBOutlet weak var virtualSPD: NSTextField!
 	@IBOutlet weak var virtualSPE: NSTextField!
 	
+	@IBOutlet weak var teamInteractionTableView: NSTableView!
 	
 	
 //	@objc dynamic var weaknessTable:
@@ -188,7 +189,7 @@ class TeamViewController: NSViewController {
 	
 	@objc dynamic var team2test = Team()
 	
-	@objc dynamic var teamWeaknessTableBind: [String: [String: Int]] = [:]
+	@objc dynamic var teamWeaknessTableBind: [String: [String: NSImage]] = [:]
 	
 	@objc dynamic var teamCoverageTableBind: [String: [String: Bool]] = [:]
 	
@@ -227,6 +228,8 @@ class TeamViewController: NSViewController {
 		repeat {
 			levelArray.append(levelArray.count + 1)
 		} while levelArray.count < 100
+		
+//		tableView.canDragRows(with: tableView.selectedRowIndexes, at: NSPoint.init())
 	}
 	
 	override var representedObject: Any? {
@@ -305,8 +308,8 @@ class TeamViewController: NSViewController {
 		}
 
 		team2test.teamWeaknesses = team2test.determineTeamWeaknesses()
-		teamWeaknessTableBind[monToAdd.species] = monToAdd.getPokemonWeaknesses(pokemonName: monToAdd)
-		teamWeaknessTableBind["Cumulative"] = team2test.determineTeamWeaknesses()
+		teamWeaknessTableBind[monToAdd.species] = determineMonInteractionIconTable(pokemon: monToAdd)
+		teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
 		team2test.additionalAttributes = team2test.determineAttributes()
 
 		//---------

@@ -85,6 +85,36 @@ class Team: NSObject {
 		return teamWeaknessDict
 	}
 	
+	func determineCumulativeInteractionIconTable() -> [String: NSImage] {
+		var teamWeaknessDict: [String: Int]
+		
+		var teamWeaknessDictTransformed: [String: NSImage] = [:]
+		
+		teamWeaknessDict = self.determineTeamWeaknesses()
+		
+		
+		for (type, scalar) in teamWeaknessDict {
+			var typeModImg: NSImage = NSImage(imageLiteralResourceName: "neutral.png")
+			if scalar == 0 {
+				typeModImg = NSImage(imageLiteralResourceName: "immune.png")
+			} else if scalar == 1 {
+				typeModImg = NSImage(imageLiteralResourceName: "neutral.png")
+			} else if scalar == -2 {
+				typeModImg = NSImage(imageLiteralResourceName: "resist2.png")
+			} else if scalar == -4 {
+				typeModImg = NSImage(imageLiteralResourceName: "resist4.png")
+			} else if scalar == 2 {
+				typeModImg = NSImage(imageLiteralResourceName: "weak2.png")
+			} else if scalar == 4 {
+				typeModImg = NSImage(imageLiteralResourceName: "weak4.png")
+			}
+			teamWeaknessDictTransformed[type] = typeModImg
+		}
+
+		return teamWeaknessDictTransformed
+		
+	}
+	
 	// Method for calculating team type coverage
 	func determineTeamCoverage() -> [String: [String: Bool]] {
 		var coverageDict = [String: [String: Bool]]()
