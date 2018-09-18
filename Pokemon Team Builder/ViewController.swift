@@ -114,6 +114,7 @@ var teamMaster = Team()
 class TeamViewController: NSViewController {
 	
 	@IBOutlet var teamController: NSArrayController!
+	@IBOutlet var suggestedMonController: NSArrayController!
 	
 	//@IBOutlet var teamMembersController: NSArrayController!
 	@IBOutlet weak var searchForTeam: NSTextField!
@@ -200,6 +201,8 @@ class TeamViewController: NSViewController {
 	@objc dynamic var colorTable: [String: NSColor] = ["Weak": NSColor.systemRed,
 													   "Resist": NSColor.systemGreen,
 													   "Neutral": NSColor.systemGray]
+	
+	@objc dynamic var suggestedMonTableBind = [Pokemon]()
 	
 	@objc dynamic var itemList = [Item]()
 	
@@ -324,6 +327,8 @@ class TeamViewController: NSViewController {
 		team2test.teamCoverage = team2test.determineTeamCoverage()
 		
 		teamMaster = team2test
+		suggestedMonTableBind = findSuggestedMons(team: teamMaster)
+		print(suggestedMonTableBind)
 		updateTeam()
 	}
 

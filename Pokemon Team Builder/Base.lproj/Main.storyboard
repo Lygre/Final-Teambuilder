@@ -862,7 +862,7 @@
             <objects>
                 <arrayController objectClassName="Pokemon_Team_Builder.Pokemon" preservesSelection="NO" selectsInsertedObjects="NO" avoidsEmptySelection="NO" clearsFilterPredicateOnInsertion="NO" id="jhH-mS-kkV">
                     <connections>
-                        <binding destination="fWV-ZE-09i" name="contentArray" keyPath="team" id="zPf-Bn-yX9">
+                        <binding destination="fWV-ZE-09i" name="contentArray" keyPath="team" id="Hxv-lu-wyt">
                             <dictionary key="options">
                                 <bool key="NSConditionallySetsEditable" value="NO"/>
                                 <bool key="NSDeletesObjectsOnRemove" value="YES"/>
@@ -886,6 +886,17 @@
                         <binding destination="fWV-ZE-09i" name="contentDictionary" keyPath="teamAttributeTableBind" id="qwZ-uv-L6p"/>
                     </connections>
                 </dictionaryController>
+                <arrayController objectClassName="Pokemon_Team_Builder.Pokemon" preservesSelection="NO" selectsInsertedObjects="NO" avoidsEmptySelection="NO" clearsFilterPredicateOnInsertion="NO" id="L4X-8q-XKJ" userLabel="suggestedMonController">
+                    <connections>
+                        <binding destination="fWV-ZE-09i" name="contentArray" keyPath="suggestedMonTableBind" id="YMU-7A-fy8">
+                            <dictionary key="options">
+                                <bool key="NSConditionallySetsEditable" value="NO"/>
+                                <bool key="NSDeletesObjectsOnRemove" value="YES"/>
+                                <bool key="NSHandlesContentAsCompoundValue" value="YES"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </arrayController>
                 <customObject id="m8X-ta-M5n" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController id="fWV-ZE-09i" customClass="TeamViewController" customModule="Pokemon_Team_Builder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="xAw-XS-5TC">
@@ -2621,7 +2632,7 @@
                                                     <rect key="frame" x="17" y="17" width="1277" height="217"/>
                                                     <clipView key="contentView" id="klv-Xh-zuN">
                                                         <rect key="frame" x="1" y="0.0" width="1275" height="216"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="1zo-dq-saS" viewBased="YES" id="Ee6-zm-h9K">
                                                                 <rect key="frame" x="0.0" y="0.0" width="1275" height="191"/>
@@ -2784,7 +2795,7 @@
                                                     <rect key="frame" x="17" y="17" width="1277" height="217"/>
                                                     <clipView key="contentView" id="plc-oh-hyW">
                                                         <rect key="frame" x="1" y="0.0" width="1275" height="216"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="42" rowSizeStyle="automatic" headerView="q0n-Gs-Nba" viewBased="YES" id="Mh0-6i-Aig">
                                                                 <rect key="frame" x="0.0" y="0.0" width="1275" height="191"/>
@@ -2898,6 +2909,89 @@
                                             </constraints>
                                         </view>
                                     </tabViewItem>
+                                    <tabViewItem label="Suggested Mons" identifier="" id="Qsw-5n-KJV" userLabel="Team Suggestions">
+                                        <view key="view" id="vyB-Ap-GBE">
+                                            <rect key="frame" x="10" y="33" width="991" height="237"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <scrollView autohidesScrollers="YES" horizontalLineScroll="44" horizontalPageScroll="10" verticalLineScroll="44" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mDb-cx-nY8">
+                                                    <rect key="frame" x="17" y="17" width="1277" height="217"/>
+                                                    <clipView key="contentView" id="7I2-xL-f3g">
+                                                        <rect key="frame" x="1" y="0.0" width="1275" height="216"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="42" rowSizeStyle="automatic" headerView="TOP-xv-O4w" viewBased="YES" id="8Wq-Dx-Cgi">
+                                                                <rect key="frame" x="0.0" y="0.0" width="1275" height="191"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <size key="intercellSpacing" width="3" height="2"/>
+                                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                                                <tableColumns>
+                                                                    <tableColumn width="233" minWidth="40" maxWidth="1000" id="k7y-xb-2xK" userLabel="Suggested Mon">
+                                                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Suggested Mon">
+                                                                            <font key="font" metaFont="smallSystem"/>
+                                                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                                            <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                                        </tableHeaderCell>
+                                                                        <imageCell key="dataCell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="FMZ-lc-zT4"/>
+                                                                        <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                                        <prototypeCellViews>
+                                                                            <tableCellView id="gJN-As-HfF">
+                                                                                <rect key="frame" x="1" y="1" width="233" height="67"/>
+                                                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                                                <subviews>
+                                                                                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Vdi-DY-W5T">
+                                                                                        <rect key="frame" x="0.0" y="25" width="233" height="17"/>
+                                                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="tLa-cf-Acr">
+                                                                                            <font key="font" metaFont="system"/>
+                                                                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                                        </textFieldCell>
+                                                                                        <connections>
+                                                                                            <binding destination="gJN-As-HfF" name="value" keyPath="objectValue.species" id="gSp-kr-SrJ"/>
+                                                                                        </connections>
+                                                                                    </textField>
+                                                                                </subviews>
+                                                                                <constraints>
+                                                                                    <constraint firstItem="Vdi-DY-W5T" firstAttribute="centerX" secondItem="gJN-As-HfF" secondAttribute="centerX" id="I7J-n8-7xs"/>
+                                                                                    <constraint firstItem="Vdi-DY-W5T" firstAttribute="leading" secondItem="gJN-As-HfF" secondAttribute="leading" constant="2" id="doH-iL-OBZ"/>
+                                                                                    <constraint firstItem="Vdi-DY-W5T" firstAttribute="centerY" secondItem="gJN-As-HfF" secondAttribute="centerY" id="gC6-v0-dJL"/>
+                                                                                </constraints>
+                                                                                <connections>
+                                                                                    <outlet property="textField" destination="Vdi-DY-W5T" id="elq-9C-1Lz"/>
+                                                                                </connections>
+                                                                            </tableCellView>
+                                                                        </prototypeCellViews>
+                                                                    </tableColumn>
+                                                                </tableColumns>
+                                                                <connections>
+                                                                    <binding destination="L4X-8q-XKJ" name="content" keyPath="arrangedObjects" id="cNP-De-L5v"/>
+                                                                </connections>
+                                                            </tableView>
+                                                        </subviews>
+                                                    </clipView>
+                                                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="IFD-5O-cej">
+                                                        <rect key="frame" x="1" y="201" width="955" height="15"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    </scroller>
+                                                    <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="xaL-8n-Iy1">
+                                                        <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    </scroller>
+                                                    <tableHeaderView key="headerView" id="TOP-xv-O4w">
+                                                        <rect key="frame" x="0.0" y="0.0" width="1275" height="25"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    </tableHeaderView>
+                                                </scrollView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="mDb-cx-nY8" secondAttribute="bottom" constant="17" id="DS1-ed-fy9"/>
+                                                <constraint firstItem="mDb-cx-nY8" firstAttribute="leading" secondItem="vyB-Ap-GBE" secondAttribute="leading" constant="17" id="KwH-XR-jsX"/>
+                                                <constraint firstItem="mDb-cx-nY8" firstAttribute="top" secondItem="vyB-Ap-GBE" secondAttribute="top" constant="3" id="OVO-NK-AXf"/>
+                                                <constraint firstAttribute="trailing" secondItem="mDb-cx-nY8" secondAttribute="trailing" constant="-303" id="Pj1-Ob-b3A"/>
+                                            </constraints>
+                                        </view>
+                                    </tabViewItem>
                                 </tabViewItems>
                             </tabView>
                         </subviews>
@@ -2967,6 +3061,7 @@
                         <outlet property="speLevel" destination="MoQ-ay-x15" id="t3b-vb-UDa"/>
                         <outlet property="speSlider" destination="9bc-Tg-k8I" id="Ro5-Gt-o4m"/>
                         <outlet property="speSliderCell" destination="9MD-pq-kZS" id="CAh-1b-irr"/>
+                        <outlet property="suggestedMonController" destination="L4X-8q-XKJ" id="jMl-yY-oaL"/>
                         <outlet property="tableView" destination="2TU-zY-DPj" id="yei-Q0-fL0"/>
                         <outlet property="teamController" destination="jhH-mS-kkV" id="n0g-S0-RSZ"/>
                         <outlet property="teamInteractionTableView" destination="6MZ-5m-KDY" id="WhZ-su-QTD"/>
