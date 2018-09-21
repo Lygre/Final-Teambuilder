@@ -36,22 +36,31 @@ func calculateAllMoves(p1: Pokemon, p2: Pokemon, field: Field) {
 	
 }
 
-func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Field) -> [Move: Int] {
-	var dmgResult: [Move: Int] = [Move: Int]()
-	var baseDamage: Int = Int()
+func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Field) -> (Int, Double) {
+	var dmgResult: (Int, Double) = (1, 1.00)
+	var _: Int = Int()
 	var finalD = Int()
-	var D: Int = Int()
-	var attack = Int()
-	var defense = Int()
+	var D: Double = Double()
+//	var attack = Int()
+//	var defense = Int()
 	var modifier = Double()
+	var adRatio: Double = Double()
+	
+	var percentHP: Double = Double()
 	
 	if move.category == "Physical" {
-//		D = (((((2*attacker.level/5)+2) * move.basePower * (attacker.virtualStats["atk"] / defender.virtualStats["def"])) / 50)+2)
+		adRatio = (Double.init(attacker.virtualStats["atk"]!) / Double.init(defender.virtualStats["def"]!))
 	} else if move.category == "Special" {
-//		D = (((((2*attacker.level/5)+2) * move.basePower * (attacker.virtualStats["spa"] / defender.virtualStats["spd"])) / 50)+2)
+		adRatio = (Double.init(attacker.virtualStats["spa"]!) / Double.init(defender.virtualStats["spd"]!))
 	}
-	var weather, crit, random, stab, type, burn, other: Double
+
+	D = (((((2.0*Double.init(attacker.level)/5.0)+2.0) * Double.init(move.basePower) * adRatio) / 50.0)+2.0)
+
+	var weather, crit, random, stab, typeMod, other: Double
+	//removed 'burn' var because do not have property for status added to class Pokemon yet
+	
 	//calc weather mod
+	weather = 1.0
 	if field.weather != "None" {
 		if field.weather == "Rain" && move.type == "Water" {
 			weather = 1.5
@@ -68,6 +77,7 @@ func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Fi
 	// random to make later
 	random = 1.0
 	//stab mod
+	stab = 1.0
 	for type in attacker.types {
 		if move.type == type {
 			stab = 1.5
@@ -75,14 +85,41 @@ func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Fi
 		}
 	}
 	//type mod
-	var defenderTypeTable: [String: Int] = defender.getPokemonWeaknesses(pokemonName: defender)
+	typeMod = 1.0
+	let defenderTypeTable: [String: Int] = defender.getPokemonWeaknesses(pokemonName: defender)
 	//make iterator over dictionary here
-	modifier = 1.0
+	for (type, vector) in defenderTypeTable {
+		if type == move.type {
+			switch vector {
+			case 1:
+				typeMod = 1.0
+			case 2:
+				typeMod = 2.0
+			case 4:
+				typeMod = 4.0
+			case -2:
+				typeMod = 0.5
+			case -4:
+				typeMod = 0.25
+			default:
+				typeMod = 1.0
+			}
+		}
+	}
 	
-	var modD = Double.init(D) * modifier
+	other = 1.0
+	
+	modifier = weather * crit * random * stab * typeMod * other
+	
+	let modD = D * modifier
 	finalD = Int.init(modD)
+	percentHP = modD / Double(defender.virtualStats["hp"]!)
 	
-	
+	dmgResult = (finalD, percentHP)
+
+//	for (move, dmg) in dmgResult {
+//		print(move.name, dmg.0, dmg.1)
+//	}
 	
 	return dmgResult
 }

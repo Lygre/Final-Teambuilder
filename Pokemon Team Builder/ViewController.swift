@@ -700,22 +700,46 @@ extension TeamViewController {
 	}
 }
 
-//class MoveTableView: NSTableView {
-//	weak var MoveTableDelegate: NSTableViewDelegate?
-//
-//	override init(frame: NSRect) {
-//		super.init(frame: NSRect)
-//	}
-//
-//	required init?(coder: NSCoder) {
-//		fatalError("init(coder:) has not been implemented")
-//	}
-//
-//	override func canDragRows(with rowIndexes: IndexSet, at mouseDownPoint: NSPoint) -> Bool {
-//		return true
-//	}
-//
-//}
+class CalcViewController: NSViewController {
+	
+	@objc dynamic var moveDamageTableBind: [String: [String: Any]] = [:]
+	
+	@objc dynamic var team: Team = teamMaster
+	
+	@objc dynamic var attackingMon = Pokemon()
+	
+	@objc dynamic var defendingMon = Pokemon()
+	
+	@objc dynamic var currentField = Field()
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		Dex.initializeDex()
+		MoveDex.initializeMoveDex()
+		Dex.defineTypeMatchups()
+		
+	}
+	
+	override var representedObject: Any? {
+		didSet {
+			// Update view if already loaded
+		}
+	}
+	
+	@IBAction func attackerSelected(_ sender: Any) {
+		let movesOrdered = [attackingMon.move1, attackingMon.move2, attackingMon.move3, attackingMon.move4]
+		moveDamageTableBind = [:]
+		for orderedMove in movesOrdered {
+			let damageResultForMove = getDamageResult(attacker: attackingMon, defender: defendingMon, move: orderedMove, field: currentField)
+			moveDamageTableBind[orderedMove.name] = ["intDmg": damageResultForMove.0,
+													 "doubleDmg": damageResultForMove.1]
+		}
+		
+	}
+	
+	
+}
+
 
 
 class TestViewController: NSViewController {
