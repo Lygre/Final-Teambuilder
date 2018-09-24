@@ -224,7 +224,6 @@ class TeamViewController: NSViewController {
 		ItemDex.initializeItemDex()
 		for item in ItemDex.itemDexArray {
 			itemList.append(item)
-//			itemSelectButton.addItem(withTitle: item.name)
 		}
 		for (nature, _) in Dex.natureList {
 			natureList.append(nature)
@@ -714,12 +713,45 @@ class CalcViewController: NSViewController {
 	
 	@objc dynamic var currentField = Field()
 	
+	@objc dynamic var pokedex = [Pokemon]()
+	
+	@objc dynamic var itemList = [Item]()
+	
+	@objc dynamic var natureList = [String]()
+	
+	@objc dynamic var learnsetMoves = [Move]()
+	
+	@objc dynamic var levelArray = [Int]()
+	
+	
+	@IBOutlet weak var hpSlider: NSSlider!
+	@IBOutlet weak var atkSlider: NSSlider!
+	@IBOutlet weak var defSlider: NSSlider!
+	@IBOutlet weak var spaSlider: NSSlider!
+	@IBOutlet weak var spdSlider: NSSlider!
+	@IBOutlet weak var speSlider: NSSlider!
+	
+	
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		Dex.initializeDex()
 		MoveDex.initializeMoveDex()
 		Dex.defineTypeMatchups()
-		
+		pokedex = Dex.dexArray
+		ItemDex.initializeItemDex()
+		for item in ItemDex.itemDexArray {
+			itemList.append(item)
+		}
+		for (nature, _) in Dex.natureList {
+			natureList.append(nature)
+		}
+		natureList.sort()
+		repeat {
+			levelArray.append(levelArray.count + 1)
+		} while levelArray.count < 100
+
+		updateSliders()
 	}
 	
 	override var representedObject: Any? {
@@ -728,7 +760,61 @@ class CalcViewController: NSViewController {
 		}
 	}
 	
+	func updateSliders() {
+		hpSlider.minValue = 0.0
+		hpSlider.maxValue = 252.0
+		hpSlider.numberOfTickMarks = 63
+		hpSlider.allowsTickMarkValuesOnly = true
+		hpSlider.trackFillColor = NSColor.systemBlue
+		defendingMon.eVs["hp"] = hpSlider.integerValue
+
+		atkSlider.minValue = 0.0
+		atkSlider.maxValue = 252.0
+		atkSlider.numberOfTickMarks = 63
+		atkSlider.allowsTickMarkValuesOnly = true
+		atkSlider.trackFillColor = NSColor.systemBlue
+		defendingMon.eVs["atk"] = atkSlider.integerValue
+
+		defSlider.minValue = 0.0
+		defSlider.maxValue = 252.0
+		defSlider.numberOfTickMarks = 63
+		defSlider.allowsTickMarkValuesOnly = true
+		defSlider.trackFillColor = NSColor.systemBlue
+		defendingMon.eVs["def"] = defSlider.integerValue
+
+		spaSlider.minValue = 0.0
+		spaSlider.maxValue = 252.0
+		spaSlider.numberOfTickMarks = 63
+		spaSlider.allowsTickMarkValuesOnly = true
+		spaSlider.trackFillColor = NSColor.systemBlue
+		defendingMon.eVs["spa"] = spaSlider.integerValue
+
+		spdSlider.minValue = 0.0
+		spdSlider.maxValue = 252.0
+		spdSlider.numberOfTickMarks = 63
+		spdSlider.allowsTickMarkValuesOnly = true
+		spdSlider.trackFillColor = NSColor.systemBlue
+		defendingMon.eVs["spd"] = spdSlider.integerValue
+
+		speSlider.minValue = 0.0
+		speSlider.maxValue = 252.0
+		speSlider.numberOfTickMarks = 63
+		speSlider.allowsTickMarkValuesOnly = true
+		speSlider.trackFillColor = NSColor.systemBlue
+		defendingMon.eVs["spe"] = speSlider.integerValue
+
+		
+		//update pokemon
+		updateDefendingMon()
+	}
+	
+	func updateDefendingMon() {
+		defendingMon.actualStats = Pokemon.calcStats(pokemon: defendingMon)
+		defendingMon.virtualStats = Pokemon.calcVirtualStats(pokemon: defendingMon)
+	}
+	
 	@IBAction func attackerSelected(_ sender: Any) {
+		updateDefendingMon()
 		let movesOrdered = [attackingMon.move1, attackingMon.move2, attackingMon.move3, attackingMon.move4]
 		moveDamageTableBind = [:]
 		for orderedMove in movesOrdered {
@@ -745,6 +831,48 @@ class CalcViewController: NSViewController {
 													 "doubleDmg": damageResultForMove.1]
 		}
 	}
+	
+	
+	@IBAction func defenderSelected(_ sender: Any) {
+		let learnset = defendingMon.getPokemonLearnset(pokemon: defendingMon)
+		learnsetMoves = [Move]()
+		for move in learnset {
+			let moveToAdd = MoveDex.searchMovedex(searchParam: move)
+			learnsetMoves.append(moveToAdd)
+		}
+	}
+	
+	@IBAction func natureSelected(_ sender: Any) {
+//		updateDefendingMon()
+	}
+	
+	@IBAction func itemSelected(_ sender: Any) {
+//		updateDefendingMon()
+	}
+	
+	@IBAction func levelSelected(_ sender: Any) {
+//		updateDefendingMon()
+	}
+
+	@IBAction func hpSliderChanged(_ sender: Any) {
+		updateSliders()
+	}
+	@IBAction func atkSliderChanged(_ sender: Any) {
+		updateSliders()
+	}
+	@IBAction func defSliderChanged(_ sender: Any) {
+		updateSliders()
+	}
+	@IBAction func spaSliderChanged(_ sender: Any) {
+		updateSliders()
+	}
+	@IBAction func spdSliderChanged(_ sender: Any) {
+		updateSliders()
+	}
+	@IBAction func speSliderChanged(_ sender: Any) {
+		updateSliders()
+	}
+	
 	
 	
 }
