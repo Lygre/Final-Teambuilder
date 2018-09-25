@@ -447,7 +447,7 @@ class TeamViewController: NSViewController {
 			monResistances.stringValue = ""
 			monResistances.textColor = NSColor.systemGreen
 			monWeaknesses.stringValue = ""
-			monWeaknesses.textColor = NSColor.systemOrange
+			monWeaknesses.textColor = NSColor.systemRed
 			for (type, scalar) in monWeaknessesDict {
 				if scalar > 1 {
 					monWeaknesses.stringValue += "\(type)\n"
@@ -875,6 +875,7 @@ class CalcViewController: NSViewController {
 		spaSlider.doubleValue = 0.0
 		spdSlider.doubleValue = 0.0
 		speSlider.doubleValue = 0.0
+	}
 		
 	func updateDefendingMon() {
 		hpLabel.integerValue = hpSlider.integerValue
@@ -905,11 +906,7 @@ class CalcViewController: NSViewController {
 													  "doubleDmg": damageResultForMove.1]
 		}
 	}
-	
-	func updateDefendingMon() {
-		defendingMon.actualStats = Pokemon.calcStats(pokemon: defendingMon)
-		defendingMon.virtualStats = Pokemon.calcVirtualStats(pokemon: defendingMon)
-	}
+
 	
 	@IBAction func attackerSelected(_ sender: Any) {
 		updateCalcs()
