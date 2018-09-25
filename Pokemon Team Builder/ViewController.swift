@@ -731,6 +731,15 @@ class CalcViewController: NSViewController {
 	@IBOutlet weak var spdSlider: NSSlider!
 	@IBOutlet weak var speSlider: NSSlider!
 	
+	@IBOutlet weak var hpLabel: NSTextField!
+	@IBOutlet weak var atkLabel: NSTextField!
+	@IBOutlet weak var defLabel: NSTextField!
+	@IBOutlet weak var spaLabel: NSTextField!
+	@IBOutlet weak var spdLabel: NSTextField!
+	@IBOutlet weak var speLabel: NSTextField!
+	
+	
+	
 	
 	
 	override func viewDidLoad() {
@@ -809,6 +818,12 @@ class CalcViewController: NSViewController {
 	}
 	
 	func updateDefendingMon() {
+		hpLabel.integerValue = hpSlider.integerValue
+		atkLabel.integerValue = atkSlider.integerValue
+		defLabel.integerValue = defSlider.integerValue
+		spaLabel.integerValue = spaSlider.integerValue
+		spdLabel.integerValue = spdSlider.integerValue
+		speLabel.integerValue = speSlider.integerValue
 		defendingMon.actualStats = Pokemon.calcStats(pokemon: defendingMon)
 		defendingMon.virtualStats = Pokemon.calcVirtualStats(pokemon: defendingMon)
 	}

@@ -912,7 +912,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TfI-u4-ZWX">
-                                <rect key="frame" x="137" y="550" width="385" height="32"/>
+                                <rect key="frame" x="137" y="550" width="65" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="QkZ-HH-ERP"/>
                                 </constraints>
@@ -925,13 +925,13 @@
                                 </connections>
                             </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ud8-IP-uQQ">
-                                <rect key="frame" x="20" y="362" width="496" height="168"/>
+                                <rect key="frame" x="20" y="362" width="176" height="168"/>
                                 <clipView key="contentView" id="qSW-Ru-5Xc">
-                                    <rect key="frame" x="1" y="0.0" width="494" height="167"/>
+                                    <rect key="frame" x="1" y="0.0" width="174" height="167"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="gjM-V6-vCh" viewBased="YES" id="2TU-zY-DPj">
-                                            <rect key="frame" x="0.0" y="0.0" width="494" height="142"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="174" height="142"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -998,7 +998,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="gjM-V6-vCh">
-                                    <rect key="frame" x="0.0" y="0.0" width="494" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="174" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -1574,7 +1574,7 @@
                                                     <rect key="frame" x="17" y="14" width="411" height="217"/>
                                                     <clipView key="contentView" id="q2P-9u-rVO">
                                                         <rect key="frame" x="1" y="0.0" width="409" height="216"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="KyA-9o-0BY" viewBased="YES" id="C2x-qD-l9E">
                                                                 <rect key="frame" x="0.0" y="0.0" width="409" height="191"/>
@@ -1921,7 +1921,7 @@
                                 </tabViewItems>
                             </tabView>
                             <tabView translatesAutoresizingMaskIntoConstraints="NO" id="6TF-Nt-0Ec">
-                                <rect key="frame" x="575" y="301" width="691" height="283"/>
+                                <rect key="frame" x="255" y="301" width="1011" height="283"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Mon Type Interactions" identifier="" id="inv-SW-zct" userLabel="Mon Type Int">
@@ -2015,17 +2015,17 @@
                                     </tabViewItem>
                                     <tabViewItem label="Team Type Interactions" identifier="" id="Nv6-IV-cc0">
                                         <view key="view" id="Hah-Nz-vTO">
-                                            <rect key="frame" x="10" y="33" width="991" height="234"/>
+                                            <rect key="frame" x="10" y="33" width="991" height="237"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView autohidesScrollers="YES" horizontalLineScroll="23" horizontalPageScroll="10" verticalLineScroll="23" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OB3-Ri-9MZ">
-                                                    <rect key="frame" x="17" y="15" width="957" height="216"/>
+                                                    <rect key="frame" x="17" y="15" width="957" height="219"/>
                                                     <clipView key="contentView" id="nFM-sZ-c3L">
-                                                        <rect key="frame" x="1" y="0.0" width="955" height="215"/>
-                                                        <autoresizingMask key="autoresizingMask"/>
+                                                        <rect key="frame" x="1" y="0.0" width="955" height="218"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="21" headerView="UvD-u0-TR4" viewBased="YES" id="6MZ-5m-KDY">
-                                                                <rect key="frame" x="0.0" y="0.0" width="955" height="190"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="955" height="193"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -3997,16 +3997,16 @@
                                         </items>
                                     </menu>
                                     <connections>
+                                        <binding destination="ALr-y8-pQf" name="contentObjects" keyPath="arrangedObjects" previousBinding="dZZ-sg-aGI" id="GiO-fb-GQF">
+                                            <dictionary key="options">
+                                                <bool key="NSInsertsNullPlaceholder" value="YES"/>
+                                            </dictionary>
+                                        </binding>
                                         <binding destination="ALr-y8-pQf" name="content" keyPath="arrangedObjects" id="dZZ-sg-aGI">
                                             <dictionary key="options">
                                                 <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                                 <string key="NSNoSelectionPlaceholder">No Selection</string>
                                                 <string key="NSNullPlaceholder">Nothing selected</string>
-                                            </dictionary>
-                                        </binding>
-                                        <binding destination="ALr-y8-pQf" name="contentObjects" keyPath="arrangedObjects" previousBinding="dZZ-sg-aGI" id="GiO-fb-GQF">
-                                            <dictionary key="options">
-                                                <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                             </dictionary>
                                         </binding>
                                         <binding destination="ALr-y8-pQf" name="contentValues" keyPath="arrangedObjects.species" previousBinding="GiO-fb-GQF" id="dOb-p4-gEE">
@@ -4179,6 +4179,7 @@
                                         </items>
                                     </menu>
                                     <connections>
+                                        <binding destination="qQf-cJ-uRi" name="selectedObject" keyPath="defendingMon.item" previousBinding="CS3-gg-bqm" id="b45-CJ-6FE"/>
                                         <binding destination="qQf-cJ-uRi" name="content" keyPath="itemList" id="3um-DJ-A0A">
                                             <dictionary key="options">
                                                 <bool key="NSInsertsNullPlaceholder" value="YES"/>
@@ -4194,7 +4195,6 @@
                                                 <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                             </dictionary>
                                         </binding>
-                                        <binding destination="qQf-cJ-uRi" name="selectedObject" keyPath="defendingMon.item" previousBinding="CS3-gg-bqm" id="b45-CJ-6FE"/>
                                     </connections>
                                 </popUpButtonCell>
                                 <connections>
@@ -4215,8 +4215,8 @@
                                         </items>
                                     </menu>
                                     <connections>
-                                        <binding destination="qQf-cJ-uRi" name="content" keyPath="natureList" id="btO-db-LwS"/>
                                         <binding destination="qQf-cJ-uRi" name="selectedObject" keyPath="defendingMon.nature" previousBinding="btO-db-LwS" id="2ta-nU-80I"/>
+                                        <binding destination="qQf-cJ-uRi" name="content" keyPath="natureList" id="btO-db-LwS"/>
                                     </connections>
                                 </popUpButtonCell>
                                 <connections>
@@ -4237,12 +4237,13 @@
                                         </items>
                                     </menu>
                                     <connections>
-                                        <binding destination="qQf-cJ-uRi" name="content" keyPath="learnsetMoves" id="dCo-D0-0gQ">
+                                        <binding destination="qQf-cJ-uRi" name="selectedObject" keyPath="defendingMon.move1" previousBinding="PWM-1f-3Ja" id="LLD-pv-7fU"/>
+                                        <binding destination="qQf-cJ-uRi" name="contentObjects" keyPath="learnsetMoves" previousBinding="dCo-D0-0gQ" id="Ab0-Ik-rGs">
                                             <dictionary key="options">
                                                 <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                             </dictionary>
                                         </binding>
-                                        <binding destination="qQf-cJ-uRi" name="contentObjects" keyPath="learnsetMoves" previousBinding="dCo-D0-0gQ" id="Ab0-Ik-rGs">
+                                        <binding destination="qQf-cJ-uRi" name="content" keyPath="learnsetMoves" id="dCo-D0-0gQ">
                                             <dictionary key="options">
                                                 <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                             </dictionary>
@@ -4252,7 +4253,6 @@
                                                 <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                             </dictionary>
                                         </binding>
-                                        <binding destination="qQf-cJ-uRi" name="selectedObject" keyPath="defendingMon.move1" previousBinding="PWM-1f-3Ja" id="LLD-pv-7fU"/>
                                     </connections>
                                 </popUpButtonCell>
                             </popUpButton>
@@ -4270,10 +4270,10 @@
                                         </items>
                                     </menu>
                                     <connections>
-                                        <binding destination="qQf-cJ-uRi" name="content" keyPath="learnsetMoves" id="mhc-nR-wVg"/>
-                                        <binding destination="qQf-cJ-uRi" name="contentObjects" keyPath="learnsetMoves" previousBinding="mhc-nR-wVg" id="F1u-ed-cWU"/>
-                                        <binding destination="qQf-cJ-uRi" name="contentValues" keyPath="learnsetMoves.name" previousBinding="F1u-ed-cWU" id="bIG-nX-SZT"/>
                                         <binding destination="qQf-cJ-uRi" name="selectedObject" keyPath="defendingMon.move2" previousBinding="bIG-nX-SZT" id="VP4-yl-1m6"/>
+                                        <binding destination="qQf-cJ-uRi" name="contentObjects" keyPath="learnsetMoves" previousBinding="mhc-nR-wVg" id="F1u-ed-cWU"/>
+                                        <binding destination="qQf-cJ-uRi" name="content" keyPath="learnsetMoves" id="mhc-nR-wVg"/>
+                                        <binding destination="qQf-cJ-uRi" name="contentValues" keyPath="learnsetMoves.name" previousBinding="F1u-ed-cWU" id="bIG-nX-SZT"/>
                                     </connections>
                                 </popUpButtonCell>
                             </popUpButton>
@@ -4291,6 +4291,7 @@
                                         </items>
                                     </menu>
                                     <connections>
+                                        <binding destination="qQf-cJ-uRi" name="selectedObject" keyPath="defendingMon.move3" previousBinding="dZm-YO-32s" id="MCL-4Z-PJX"/>
                                         <binding destination="qQf-cJ-uRi" name="content" keyPath="learnsetMoves" id="UOf-2z-cOg">
                                             <dictionary key="options">
                                                 <bool key="NSInsertsNullPlaceholder" value="YES"/>
@@ -4306,7 +4307,6 @@
                                                 <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                             </dictionary>
                                         </binding>
-                                        <binding destination="qQf-cJ-uRi" name="selectedObject" keyPath="defendingMon.move3" previousBinding="dZm-YO-32s" id="MCL-4Z-PJX"/>
                                     </connections>
                                 </popUpButtonCell>
                             </popUpButton>
@@ -4324,12 +4324,13 @@
                                         </items>
                                     </menu>
                                     <connections>
-                                        <binding destination="qQf-cJ-uRi" name="content" keyPath="learnsetMoves" id="QW9-Nd-vJ9">
+                                        <binding destination="qQf-cJ-uRi" name="selectedObject" keyPath="defendingMon.move4" previousBinding="iR0-wM-Aqz" id="7f3-Ma-Kcx"/>
+                                        <binding destination="qQf-cJ-uRi" name="contentObjects" keyPath="learnsetMoves" previousBinding="QW9-Nd-vJ9" id="BvF-4T-VWP">
                                             <dictionary key="options">
                                                 <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                             </dictionary>
                                         </binding>
-                                        <binding destination="qQf-cJ-uRi" name="contentObjects" keyPath="learnsetMoves" previousBinding="QW9-Nd-vJ9" id="BvF-4T-VWP">
+                                        <binding destination="qQf-cJ-uRi" name="content" keyPath="learnsetMoves" id="QW9-Nd-vJ9">
                                             <dictionary key="options">
                                                 <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                             </dictionary>
@@ -4339,7 +4340,6 @@
                                                 <bool key="NSInsertsNullPlaceholder" value="YES"/>
                                             </dictionary>
                                         </binding>
-                                        <binding destination="qQf-cJ-uRi" name="selectedObject" keyPath="defendingMon.move4" previousBinding="iR0-wM-Aqz" id="7f3-Ma-Kcx"/>
                                     </connections>
                                 </popUpButtonCell>
                             </popUpButton>
@@ -4357,8 +4357,8 @@
                                         </items>
                                     </menu>
                                     <connections>
-                                        <binding destination="qQf-cJ-uRi" name="content" keyPath="levelArray" id="83E-JV-mVH"/>
                                         <binding destination="qQf-cJ-uRi" name="selectedObject" keyPath="defendingMon.level" previousBinding="83E-JV-mVH" id="Pbi-ys-fg0"/>
+                                        <binding destination="qQf-cJ-uRi" name="content" keyPath="levelArray" id="83E-JV-mVH"/>
                                     </connections>
                                 </popUpButtonCell>
                                 <connections>
@@ -4486,14 +4486,74 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sfv-db-T0J">
+                                <rect key="frame" x="839" y="242" width="55" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="ATK EVs" id="2Bh-2y-iAY">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bFU-9C-lri">
+                                <rect key="frame" x="839" y="219" width="55" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="DEF EVs" id="God-7f-VEG">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5wx-Nv-FGA">
+                                <rect key="frame" x="839" y="196" width="55" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="SPA EVs" id="tYb-Zx-l4h">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="p4D-Uy-1N5">
+                                <rect key="frame" x="839" y="173" width="56" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="SPD EVs" id="BiP-uk-lsz">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jnj-OO-cWl">
+                                <rect key="frame" x="839" y="150" width="55" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="SPE EVs" id="nXL-zi-oI3">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5MZ-Ds-COu">
+                                <rect key="frame" x="839" y="265" width="48" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="HP EVs" id="f1Q-9l-O7F">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="atkLabel" destination="sfv-db-T0J" id="b5T-at-duj"/>
                         <outlet property="atkSlider" destination="Et4-6h-Gr5" id="1Db-ri-0rO"/>
+                        <outlet property="defLabel" destination="bFU-9C-lri" id="htv-TZ-vtx"/>
                         <outlet property="defSlider" destination="LRA-Ie-Dsu" id="RkB-7E-MiY"/>
+                        <outlet property="hpLabel" destination="5MZ-Ds-COu" id="Rfq-lm-3U5"/>
                         <outlet property="hpSlider" destination="9AS-mF-VjO" id="X9d-MR-Vog"/>
+                        <outlet property="spaLabel" destination="5wx-Nv-FGA" id="fSG-5b-Cu2"/>
                         <outlet property="spaSlider" destination="eY9-X4-06A" id="IMI-ZF-Wij"/>
+                        <outlet property="spdLabel" destination="p4D-Uy-1N5" id="wXd-1g-Ufa"/>
                         <outlet property="spdSlider" destination="NY5-yw-Shv" id="y11-Ee-p9E"/>
+                        <outlet property="speLabel" destination="Jnj-OO-cWl" id="Zvd-CT-qHb"/>
                         <outlet property="speSlider" destination="clP-XQ-TBG" id="VgK-0Q-XH6"/>
                     </connections>
                 </viewController>
