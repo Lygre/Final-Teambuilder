@@ -136,24 +136,6 @@ func dexNumToSprite(_ mon: Pokemon) -> String? {
 }
 
 
-//class Result: NSObject {
-//	var num: Int? = 0
-//	var species: String? = ""
-//	var types: [String]? = []
-//	var baseStats: [String: Int]? = [:]
-//	var abilities: [String]? = []
-//
-//	init(dictionary: Dictionary<String, AnyObject>) {
-//		num = dictionary["num"] as? Int
-//		species = dictionary["species"] as? String
-//		types = dictionary["types"] as? [String]
-//		baseStats = dictionary["baseStats"] as? [String: Int]
-//		abilities = dictionary["abilities"] as? [String]
-//
-//		super.init()
-//	}
-//}
-
 func determineMonInteractionIconTable(pokemon: Pokemon) -> [String: NSImage] {
 	var monWeaknessDict: [String: Int]
 	
@@ -182,4 +164,78 @@ func determineMonInteractionIconTable(pokemon: Pokemon) -> [String: NSImage] {
 	
 	return monWeaknessDictTransformed
 	
+}
+
+
+// Import mon from text
+func importMonFromShowdown(showdownExportText: String) -> Pokemon {
+	let monImport = """
+\(showdownExportText)
+"""
+	var constructedImportMon: Pokemon
+	
+	var monStringArray = [String]()
+	monStringArray = monImport.components(separatedBy: "\n")
+	var name, item, ability, nature: String
+	name = ""; item = ""; ability = ""; nature = ""
+	var eVs = [String: Int]() ; eVs = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
+	var iVs = [String: Int]() ; iVs = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
+	var moves = [Move]()
+	var move1, move2, move3, move4: Move
+	var itemForConstruct: Item = Item()
+	for line in monStringArray {
+		if line.contains("@") {
+			let nameIndex = monImport.startIndex..<monImport.index(monImport.firstIndex(of: "@")!, offsetBy: -1)
+			//this returns mon's name
+			name = String(monImport[nameIndex])
+			
+			//this gets item
+			let itemIndex = monImport.index(monImport.firstIndex(of: "@")!, offsetBy: 2)..<monImport.firstIndex(of: "\n")!
+			item = String(monImport[itemIndex])
+			itemForConstruct = ItemDex.searchItemDex(searchParam: item)
+		}
+		if line.contains("Ability: ") {
+			let abilityStartIndex = line.firstIndex(of: " ")
+			let abilityEndIndex = line.index(line.endIndex, offsetBy: 0)
+			let abilityIndex = line.index(after: abilityStartIndex!)..<abilityEndIndex
+			ability = String(line[abilityIndex])
+		}
+		if line.contains("EVs: ") {
+			let evString = line[line.index(line.firstIndex(of: " ")!, offsetBy: 1)..<line.endIndex]
+			let evStringArray = evString.components(separatedBy: " / ")
+			for string in evStringArray {
+				let evLabel = String(string[string.index(string.endIndex, offsetBy: -3)..<string.endIndex].lowercased())
+				let evValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])
+				eVs[evLabel] = evValue
+			}
+		}
+		if line.contains(" Nature") {
+			let natureLabel = line[line.startIndex..<line.firstIndex(of: " ")!]
+			nature = String(natureLabel)
+		}
+		if line.contains("IVs: ") {
+			let ivString = line[line.index(line.firstIndex(of: " ")!, offsetBy: 1)..<line.endIndex]
+			let ivStringArray = ivString.components(separatedBy: " / ")
+			for string in ivStringArray {
+				let ivLabel = String(string[string.index(string.endIndex, offsetBy: -3)..<string.endIndex].lowercased())
+				let ivValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])
+				iVs[ivLabel] = ivValue
+			}
+		}
+		if line.contains("- ") {
+			let moveString = String(line[line.index(line.firstIndex(of: " ")!, offsetBy: 1)..<line.endIndex])
+			let moveLiteral: Move = Move.init(id: moveString)
+			moves.append(moveLiteral)
+		}
+	}
+	
+	move1 = moves[0]
+	move2 = moves[1]
+	move3 = moves[2]
+	move4 = moves[3]
+	
+	constructedImportMon = Pokemon.init(species: name, level: 100, nature: nature, ability: ability, iVs: iVs, eVs: eVs, move1: move1, move2: move2, move3: move3, move4: move4, item: itemForConstruct)
+	
+	print(constructedImportMon)
+	return constructedImportMon
 }
