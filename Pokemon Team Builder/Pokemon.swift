@@ -167,6 +167,17 @@ class Pokemon: NSObject {
 				}
 			}
 		}
+		if pokemonName.ability == "Levitate" {
+			pokemonWeakness["Ground"] = 0
+		} else if pokemonName.ability == "Flash Fire" {
+			pokemonWeakness["Fire"] = 0
+		} else if pokemonName.ability == "Volt Absorb" || pokemonName.ability == "Motor Drive" || pokemonName.ability == "Lightningrod" {
+			pokemonWeakness["Electric"] = 0
+		} else if pokemonName.ability == "Water Absorb" || pokemonName.ability == "Storm Drain" || pokemonName.ability == "Dry Skin" {
+			pokemonWeakness["Water"] = 0
+		} else if pokemonName.ability == "Sap Sipper" {
+			pokemonWeakness["Grass"] = 0
+		}
 		// Weakness Dictionary values: -4,-2,0,1,2,4 = x4 resist, resist, immune, neutral, weak, x4 weak
 		return pokemonWeakness
 	}

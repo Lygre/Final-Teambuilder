@@ -179,7 +179,7 @@ func importMonFromShowdown(showdownExportText: String) -> Pokemon {
 	var name, item, ability, nature: String
 	name = ""; item = ""; ability = ""; nature = ""
 	var eVs = [String: Int]() ; eVs = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
-	var iVs = [String: Int]() ; iVs = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
+	var iVs = [String: Int]() ; iVs = ["hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31]
 	var moves = [Move]()
 	var move1, move2, move3, move4: Move
 	var itemForConstruct: Item = Item()

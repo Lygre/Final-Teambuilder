@@ -2579,9 +2579,10 @@ struct MoveDex {
 	}
 	
 	static func searchMovedex(searchParam: String) -> Move {
-		let searchStringLower = searchParam.lowercased()
+		var searchStringLower = searchParam.lowercased()
 		var moveMatch: Move?
-		
+		let remove: Set<Character> = [" "]
+		searchStringLower.removeAll(where: { remove.contains($0) })
 		for move in moveDexArray {
 			if searchStringLower == move.id {
 				moveMatch = move
@@ -3491,7 +3492,7 @@ struct ItemDex {
 			Item(id: "apicotberry", name: "Apicot Berry", statMods: ["": 1.0], desc: "Raises holder's Sp. Def by 1 stage when at 1/4 max HP or less. Single use."),
 			Item(id: "armorfossil", name: "Armor Fossil", statMods: ["": 1.0], desc: "Can be revived into Shieldon."),
 			Item(id: "aspearberry", name: "Aspear Berry", statMods: ["": 1.0], desc: "Holder is cured if it is frozen. Single use."),
-			Item(id: "assaultvest", name: "Assault Vest", statMods: ["": 1.0], desc: "Holder's Sp. Def is 1.5x, but it can only select damaging moves."),
+			Item(id: "assaultvest", name: "Assault Vest", statMods: ["spd": 1.5], desc: "Holder's Sp. Def is 1.5x, but it can only select damaging moves."),
 			Item(id: "audinite", name: "Audinite", statMods: ["": 1.0], desc: "If holder is an Audino, this item allows it to Mega Evolve in battle."),
 			Item(id: "babiriberry", name: "Babiri Berry", statMods: ["": 1.0], desc: "A babiri berry"),
 			Item(id: "banettite", name: "Banettite", statMods: ["": 1.0], desc: "If holder is a Banette, this item allows it to Mega Evolve in battle."),
@@ -3824,7 +3825,9 @@ struct ItemDex {
 	}
 	
 	static func searchItemDex(searchParam: String) -> Item {
-		let searchString = searchParam.lowercased()
+		let remove: Set<Character> = [" "]
+		var searchString = searchParam.lowercased()
+		searchString.removeAll(where: { remove.contains($0) })
 		var itemMatch: Item?
 		
 		for item in itemDexArray {

@@ -60,6 +60,7 @@ for line in monStringArray {
 	if line.contains("- ") {
 		let moveString = String(line[line.index(line.firstIndex(of: " ")!, offsetBy: 1)..<line.endIndex])
 		moves.append(moveString)
+		print(moveString)
 	}
 }
 

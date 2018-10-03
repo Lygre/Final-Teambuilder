@@ -111,7 +111,9 @@ class TeamBuilderController: NSViewController {
 
 var teamMaster = Team()
 
-class TeamViewController: NSViewController {
+class TeamViewController: NSViewController, ImportDelegate {
+	
+	static let notificationName = Notification.Name("importingPokemon")
 	
 	@IBOutlet var teamController: NSArrayController!
 	@IBOutlet var suggestedMonController: NSArrayController!
@@ -184,7 +186,7 @@ class TeamViewController: NSViewController {
 	@IBOutlet weak var virtualSPE: NSTextField!
 	
 	@IBOutlet weak var teamInteractionTableView: NSTableView!
-	
+
 	
 //	@objc dynamic var weaknessTable:
 	
@@ -217,6 +219,8 @@ class TeamViewController: NSViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+//		NotificationCenter.default.addObserver(self, selector: #selector(onNotification(notification:)), name: TeamViewController.notificationName, object: nil)
+//
 		// Do any additional setup after loading the view.
 		Dex.initializeDex()
 		Dex.defineTypeMatchups()
@@ -298,6 +302,7 @@ class TeamViewController: NSViewController {
 		teamMaster.teamWeaknesses = teamMaster.determineTeamWeaknesses()
 		teamMaster.teamCoverage = teamMaster.determineTeamCoverage()
 		teamMaster.additionalAttributes = teamMaster.determineAttributes()
+//		updatePokemon()
 		print(teamMaster)
 	}
 	
@@ -341,6 +346,9 @@ class TeamViewController: NSViewController {
 			spaLevel.maxValue = Double.init(maxStatsForLevel["spa"]!)
 			spdLevel.maxValue = Double.init(maxStatsForLevel["spd"]!)
 			speLevel.maxValue = Double.init(maxStatsForLevel["spe"]!)
+			
+			teamWeaknessTableBind[mon.species] = determineMonInteractionIconTable(pokemon: mon)
+			teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
 		}
 	}
 	
@@ -382,6 +390,35 @@ class TeamViewController: NSViewController {
 		updateTeam()
 	}
 
+	func addToTeam2(pokemon: Pokemon) {
+		
+		let monToAdd: Pokemon = pokemon
+		
+		team.append(monToAdd)
+		if team2test.members.isEmpty {
+			team2test = Team(members: team)
+		} else {
+			team2test.addMember(monToAdd)
+		}
+		
+		team2test.teamWeaknesses = team2test.determineTeamWeaknesses()
+		teamWeaknessTableBind[monToAdd.species] = determineMonInteractionIconTable(pokemon: monToAdd)
+		teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
+		team2test.additionalAttributes = team2test.determineAttributes()
+		
+		//---------
+		team2test.teamCoverage = team2test.determineTeamCoverage()
+		
+		teamMaster = team2test
+		suggestedMonTableBind = findSuggestedMons(team: teamMaster)
+		print(suggestedMonTableBind)
+		updateTeam()
+
+	}
+
+	
+	
+	
 	@IBAction func teamTypeTableAction(_ sender: Any) {
 		
 	}
@@ -466,6 +503,9 @@ class TeamViewController: NSViewController {
 			}
 			//add mon's current item to itemList
 			itemList.append(mon.item)
+			
+			teamWeaknessTableBind[mon.species] = determineMonInteractionIconTable(pokemon: mon)
+			teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
 		}
 	}
 	
@@ -614,63 +654,28 @@ class TeamViewController: NSViewController {
 	}
 	
 	@IBAction func move1Selected(_ sender: Any) {
-//		movesToSet["move1"] = MoveDex.searchMovedex(searchParam: (move1Select.selectedItem?.title)!)
-//		var movesArray = [Move]()
-//		for (_, move) in movesToSet {
-//			movesArray.append(move)
-//		}
-//		let index = tableView.selectedRow
-//		if index > -1 {
-//			let mon = team[index]
-//			mon.moves = movesArray
-//		}
 		teamCoverageTableBind = team2test.determineTeamCoverage()
 		teamAttributeTableBind = team2test.determineAttributes()
 	}
 	@IBAction func move2Selected(_ sender: Any) {
-//		movesToSet["move2"] = MoveDex.searchMovedex(searchParam: (move2Select.selectedItem?.title)!)
-//		var movesArray = [Move]()
-//		for (_, move) in movesToSet {
-//			movesArray.append(move)
-//		}
-//		let index = tableView.selectedRow
-//		if index > -1 {
-//			let mon = team[index]
-//			mon.moves = movesArray
-//		}
 		teamCoverageTableBind = team2test.determineTeamCoverage()
 		teamAttributeTableBind = team2test.determineAttributes()
 	}
 	@IBAction func move3Selected(_ sender: Any) {
-//		movesToSet["move3"] = MoveDex.searchMovedex(searchParam: (move3Select.selectedItem?.title)!)
-//		var movesArray = [Move]()
-//		for (_, move) in movesToSet {
-//			movesArray.append(move)
-//		}
-//		let index = tableView.selectedRow
-//		if index > -1 {
-//			let mon = team[index]
-//			mon.moves = movesArray
-//		}
 		teamCoverageTableBind = team2test.determineTeamCoverage()
 		teamAttributeTableBind = team2test.determineAttributes()
 	}
 	@IBAction func move4Selected(_ sender: Any) {
-//		movesToSet["move4"] = MoveDex.searchMovedex(searchParam: (move4Select.selectedItem?.title)!)
-//		var movesArray = [Move]()
-//		for (_, move) in movesToSet {
-//			movesArray.append(move)
-//		}
-//		let index = tableView.selectedRow
-//		if index > -1 {
-//			let mon = team[index]
-//			mon.moves = movesArray
-//		}
 		teamCoverageTableBind = team2test.determineTeamCoverage()
 		teamAttributeTableBind = team2test.determineAttributes()
 	}
 	
 	// Nature select action
+	@IBAction func abilitySelected(_ sender: Any) {
+		updatePokemon()
+		updateTeam()
+	}
+	
 	
 	@IBAction func natureSelected(_ sender: Any) {
 		let index = tableView.selectedRow
@@ -694,6 +699,13 @@ class TeamViewController: NSViewController {
 		}
 		//update pokemon
 		updatePokemon()
+	}
+	
+	
+	@IBAction func importMonClicked(_ sender: Any) {
+		let vc = ImportViewController(nibName: "ImportViewController", bundle: nil)
+		vc.teamViewController = self
+		vc.delegate = self
 	}
 	
 	
@@ -739,6 +751,23 @@ class TeamViewController: NSViewController {
 		}
 	}
 	
+//	override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+//		if segue.destinationController is ImportViewController {
+//			let vc = segue.destinationController as? ImportViewController
+//			vc?.monToImport = Pokemon()
+//		}
+//	}
+//
+//	func onUserAction(data: String) {
+//		print("Data received: \(data)")
+//	}
+	
+//	 --------- objc functions
+//	 for receiving data from import view controller
+	@objc func onNotification(notification: Notification) {
+		print(notification)
+	}
+
 }
 
 extension TeamViewController {
@@ -965,6 +994,55 @@ class CalcViewController: NSViewController {
 }
 
 
+class ImportViewController: NSViewController {
+	
+	var teamViewController: TeamViewController?
+	
+	var delegate: ImportDelegate?
+
+	@IBOutlet weak var importTextField: NSTextField!
+	
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		Dex.initializeDex()
+		MoveDex.initializeMoveDex()
+		Dex.defineTypeMatchups()
+		
+		//		importTextField?.stringValue = importText
+		
+	}
+	
+	override var representedObject: Any? {
+		didSet {
+			// Update view if already loaded
+		}
+	}
+	
+	override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+		if segue.destinationController is TeamViewController {
+			let vc = segue.destinationController as? TeamViewController
+			let monToImport: Pokemon = importMonFromShowdown(showdownExportText: importTextField.stringValue)
+			vc?.addToTeam2(pokemon: monToImport)
+			
+		}
+	}
+	
+
+	
+	
+	//	@IBAction func importTapped(_ sender: Any) {
+	//
+	//		monToImport = importMonFromShowdown(showdownExportText: importTextField.stringValue)
+	//
+	//		NotificationCenter.default.post(name: TeamViewController.notificationName, object: monToImport)
+	//	}
+	
+	
+}
+
+
+
 
 class TestViewController: NSViewController {
 
@@ -1021,7 +1099,6 @@ class TestViewController: NSViewController {
 	
 }
 
-	
 	
 	
 
