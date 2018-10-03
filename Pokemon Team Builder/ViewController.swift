@@ -501,6 +501,19 @@ class TeamViewController: NSViewController, ImportDelegate {
 				let moveToAdd = MoveDex.searchMovedex(searchParam: move)
 				learnsetMoves.append(moveToAdd)
 			}
+			//show any current moves set and update them in view
+			if mon.move1.name != "Struggle" {
+				move1Select.selectItem(withTitle: mon.move1.name)
+			}
+			if mon.move2.name != "Struggle" {
+				move2Select.selectItem(withTitle: mon.move2.name)
+			}
+			if mon.move3.name != "Struggle" {
+				move3Select.selectItem(withTitle: mon.move3.name)
+			}
+			if mon.move4.name != "Struggle" {
+				move4Select.selectItem(withTitle: mon.move4.name)
+			}
 			//add mon's current item to itemList
 			itemList.append(mon.item)
 			
@@ -1023,6 +1036,8 @@ class ImportViewController: NSViewController {
 		if segue.destinationController is TeamViewController {
 			let vc = segue.destinationController as? TeamViewController
 			let monToImport: Pokemon = importMonFromShowdown(showdownExportText: importTextField.stringValue)
+			vc?.team = teamMaster.members
+			vc?.team2test = teamMaster
 			vc?.addToTeam2(pokemon: monToImport)
 			
 		}
