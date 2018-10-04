@@ -950,7 +950,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TfI-u4-ZWX">
-                                <rect key="frame" x="137" y="550" width="65" height="32"/>
+                                <rect key="frame" x="137" y="550" width="385" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="QkZ-HH-ERP"/>
                                 </constraints>
@@ -963,13 +963,13 @@
                                 </connections>
                             </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ud8-IP-uQQ">
-                                <rect key="frame" x="20" y="362" width="176" height="168"/>
+                                <rect key="frame" x="20" y="362" width="496" height="168"/>
                                 <clipView key="contentView" id="qSW-Ru-5Xc">
-                                    <rect key="frame" x="1" y="0.0" width="174" height="167"/>
+                                    <rect key="frame" x="1" y="0.0" width="494" height="167"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="gjM-V6-vCh" viewBased="YES" id="2TU-zY-DPj">
-                                            <rect key="frame" x="0.0" y="0.0" width="174" height="142"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="494" height="142"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1036,7 +1036,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="gjM-V6-vCh">
-                                    <rect key="frame" x="0.0" y="0.0" width="174" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="494" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -1172,7 +1172,12 @@
                                                     <rect key="frame" x="269" y="139" width="96" height="18"/>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="NgK-4h-LOE">
                                                         <connections>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evHPBind" id="HYJ-8C-nQR">
+                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evHPMaxValueBind" id="Nqx-F6-jo3">
+                                                                <dictionary key="options">
+                                                                    <integer key="NSNullPlaceholder" value="252"/>
+                                                                </dictionary>
+                                                            </binding>
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evHPBind" previousBinding="Nqx-F6-jo3" id="Nfq-k4-vd8">
                                                                 <dictionary key="options">
                                                                     <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
@@ -1187,7 +1192,12 @@
                                                     <rect key="frame" x="269" y="89" width="96" height="19"/>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Nx7-GC-TsJ">
                                                         <connections>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evDEFBind" id="28a-MR-3AQ">
+                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evDEFMaxValueBind" id="1Sf-LK-9QD">
+                                                                <dictionary key="options">
+                                                                    <integer key="NSNullPlaceholder" value="252"/>
+                                                                </dictionary>
+                                                            </binding>
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evDEFBind" previousBinding="1Sf-LK-9QD" id="dsf-AU-XYi">
                                                                 <dictionary key="options">
                                                                     <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
@@ -1202,7 +1212,12 @@
                                                     <rect key="frame" x="269" y="65" width="96" height="19"/>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Q4L-Kx-av2">
                                                         <connections>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPABind" id="5PB-QO-CYC">
+                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evSPAMaxValueBind" id="ku0-qz-arV">
+                                                                <dictionary key="options">
+                                                                    <integer key="NSNullPlaceholder" value="252"/>
+                                                                </dictionary>
+                                                            </binding>
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPABind" previousBinding="ku0-qz-arV" id="cd5-1N-Vsx">
                                                                 <dictionary key="options">
                                                                     <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
@@ -1220,7 +1235,12 @@
                                                     </constraints>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="y98-uu-YHY">
                                                         <connections>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPDBind" id="IEU-LA-P7D">
+                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evSPDMaxValueBind" id="9lF-lV-qeE">
+                                                                <dictionary key="options">
+                                                                    <integer key="NSNullPlaceholder" value="252"/>
+                                                                </dictionary>
+                                                            </binding>
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPDBind" previousBinding="9lF-lV-qeE" id="8n1-XR-vMy">
                                                                 <dictionary key="options">
                                                                     <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
@@ -1235,7 +1255,12 @@
                                                     <rect key="frame" x="269" y="113" width="96" height="19"/>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="JlS-c2-Yp2">
                                                         <connections>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evATKBind" id="62H-DC-tpg">
+                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evATKMaxValueBind" id="j7c-HI-N5J">
+                                                                <dictionary key="options">
+                                                                    <integer key="NSNullPlaceholder" value="252"/>
+                                                                </dictionary>
+                                                            </binding>
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evATKBind" previousBinding="j7c-HI-N5J" id="uFA-O7-C8K">
                                                                 <dictionary key="options">
                                                                     <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
@@ -1285,7 +1310,12 @@
                                                     <rect key="frame" x="269" y="18" width="96" height="18"/>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="9MD-pq-kZS">
                                                         <connections>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPEBind" id="bgQ-DR-qGv">
+                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evSPEMaxValueBind" id="jqZ-My-bFn">
+                                                                <dictionary key="options">
+                                                                    <integer key="NSNullPlaceholder" value="252"/>
+                                                                </dictionary>
+                                                            </binding>
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPEBind" previousBinding="jqZ-My-bFn" id="0HA-dy-Bv4">
                                                                 <dictionary key="options">
                                                                     <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
@@ -2020,7 +2050,7 @@
                                 </tabViewItems>
                             </tabView>
                             <tabView translatesAutoresizingMaskIntoConstraints="NO" id="6TF-Nt-0Ec">
-                                <rect key="frame" x="255" y="301" width="1011" height="283"/>
+                                <rect key="frame" x="575" y="301" width="691" height="283"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Mon Type Interactions" identifier="" id="inv-SW-zct" userLabel="Mon Type Int">
@@ -2731,7 +2761,7 @@
                                                     <rect key="frame" x="17" y="17" width="1277" height="217"/>
                                                     <clipView key="contentView" id="klv-Xh-zuN">
                                                         <rect key="frame" x="1" y="0.0" width="1275" height="216"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="1zo-dq-saS" viewBased="YES" id="Ee6-zm-h9K">
                                                                 <rect key="frame" x="0.0" y="0.0" width="1275" height="191"/>
@@ -4698,7 +4728,6 @@
         <image name="NSActionTemplate" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Pya-LM-Ger"/>
         <segue reference="cp4-0k-VZV"/>
     </inferredMetricsTieBreakers>
 </document>

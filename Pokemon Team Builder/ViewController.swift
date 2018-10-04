@@ -231,6 +231,13 @@ class TeamViewController: NSViewController, ImportDelegate {
 	@objc dynamic var evSPDBind = Int()
 	@objc dynamic var evSPEBind = Int()
 	
+	@objc dynamic var evHPMaxValueBind = Double()
+	@objc dynamic var evATKMaxValueBind = Double()
+	@objc dynamic var evDEFMaxValueBind = Double()
+	@objc dynamic var evSPAMaxValueBind = Double()
+	@objc dynamic var evSPDMaxValueBind = Double()
+	@objc dynamic var evSPEMaxValueBind = Double()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -557,6 +564,8 @@ class TeamViewController: NSViewController, ImportDelegate {
 			evSPDBind = evs["spd"]!
 			evSPEBind = evs["spe"]!
 			
+			determineMaxValueForEVSliders()
+			
 			teamWeaknessTableBind[mon.species] = determineMonInteractionIconTable(pokemon: mon)
 			teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
 		}
@@ -568,9 +577,36 @@ class TeamViewController: NSViewController, ImportDelegate {
 		else { return false }
 	}
 	
+	func determineMaxSliderValue(currentValue: Int) -> Double {
+		var allowedMaxValue: Int
+		let evSliderSum: Int = hpSlider.integerValue + atkSlider.integerValue + defSlider.integerValue + spaSlider.integerValue + spdSlider.integerValue + speSlider.integerValue
+		allowedMaxValue = 510 - evSliderSum
+
+		if allowedMaxValue > 252 {
+			allowedMaxValue = 252
+		} else if (allowedMaxValue + currentValue) < 253 {
+			allowedMaxValue = allowedMaxValue + currentValue
+		} else {
+			allowedMaxValue = 252
+		}
+//		print(allowedMaxValue)
+		let returnDouble = Double.init(allowedMaxValue)
+		return returnDouble
+	}
+	
+	func determineMaxValueForEVSliders() {
+		evHPMaxValueBind = determineMaxSliderValue(currentValue: hpSlider.integerValue)
+		evATKMaxValueBind = determineMaxSliderValue(currentValue: atkSlider.integerValue)
+		evDEFMaxValueBind = determineMaxSliderValue(currentValue: defSlider.integerValue)
+		evSPAMaxValueBind = determineMaxSliderValue(currentValue: spaSlider.integerValue)
+		evSPDMaxValueBind = determineMaxSliderValue(currentValue: spdSlider.integerValue)
+		evSPEMaxValueBind = determineMaxSliderValue(currentValue: speSlider.integerValue)
+	}
+	
 	@IBAction func hpSliderAction(_ sender: Any) {
 		hpSlider.minValue = 0.0
-		hpSlider.maxValue = 252.0
+//		hpSlider.maxValue = 252.0
+		determineMaxValueForEVSliders()
 		hpSlider.numberOfTickMarks = 63
 		hpSlider.allowsTickMarkValuesOnly = false
 		hpSlider.trackFillColor = NSColor.systemBlue
@@ -580,7 +616,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 			if index > -1 {
 				let mon: Pokemon = team[index]
 				mon.eVs["hp"] = hpSlider.integerValue
-				print(mon.eVs["hp"]!)
+//				print(mon.eVs["hp"]!)
 				
 				//update pokemon
 				updatePokemon()
@@ -594,7 +630,8 @@ class TeamViewController: NSViewController, ImportDelegate {
 
 	@IBAction func atkSliderAction(_ sender: Any) {
 		atkSlider.minValue = 0.0
-		atkSlider.maxValue = 252.0
+//		atkSlider.maxValue = 252.0
+		determineMaxValueForEVSliders()
 		atkSlider.numberOfTickMarks = 63
 		atkSlider.allowsTickMarkValuesOnly = false
 		atkSlider.trackFillColor = NSColor.systemBlue
@@ -604,7 +641,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 			if index > -1 {
 				let mon: Pokemon = team[index]
 				mon.eVs["atk"] = atkSlider.integerValue
-				print(mon.eVs["atk"]!)
+//				print(mon.eVs["atk"]!)
 				//update pokemon
 				updatePokemon()
 			}
@@ -613,7 +650,8 @@ class TeamViewController: NSViewController, ImportDelegate {
 	
 	@IBAction func defSliderAction(_ sender: Any) {
 		defSlider.minValue = 0.0
-		defSlider.maxValue = 252.0
+//		defSlider.maxValue = 252.0
+		determineMaxValueForEVSliders()
 		defSlider.numberOfTickMarks = 63
 		defSlider.allowsTickMarkValuesOnly = false
 		defSlider.trackFillColor = NSColor.systemBlue
@@ -623,7 +661,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 			if index > -1 {
 				let mon: Pokemon = team[index]
 				mon.eVs["def"] = defSlider.integerValue
-				print(mon.eVs["def"]!)
+//				print(mon.eVs["def"]!)
 				//update pokemon
 				updatePokemon()
 			}
@@ -632,7 +670,8 @@ class TeamViewController: NSViewController, ImportDelegate {
 	
 	@IBAction func spaSliderAction(_ sender: Any) {
 		spaSlider.minValue = 0.0
-		spaSlider.maxValue = 252.0
+//		spaSlider.maxValue = 252.0
+		determineMaxValueForEVSliders()
 		spaSlider.numberOfTickMarks = 63
 		spaSlider.allowsTickMarkValuesOnly = false
 		spaSlider.trackFillColor = NSColor.systemBlue
@@ -642,7 +681,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 			if index > -1 {
 				let mon: Pokemon = team[index]
 				mon.eVs["spa"] = spaSlider.integerValue
-				print(mon.eVs["spa"]!)
+//				print(mon.eVs["spa"]!)
 				//update pokemon
 				updatePokemon()
 			}
@@ -651,7 +690,8 @@ class TeamViewController: NSViewController, ImportDelegate {
 
 	@IBAction func spdSliderAction(_ sender: Any) {
 		spdSlider.minValue = 0.0
-		spdSlider.maxValue = 252.0
+//		spdSlider.maxValue = 252.0
+		determineMaxValueForEVSliders()
 		spdSlider.numberOfTickMarks = 63
 		spdSlider.allowsTickMarkValuesOnly = false
 		spdSlider.trackFillColor = NSColor.systemBlue
@@ -661,7 +701,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 			if index > -1 {
 				let mon: Pokemon = team[index]
 				mon.eVs["spd"] = spdSlider.integerValue
-				print(mon.eVs["spd"]!)
+//				print(mon.eVs["spd"]!)
 				//update pokemon
 				updatePokemon()
 			}
@@ -670,7 +710,8 @@ class TeamViewController: NSViewController, ImportDelegate {
 
 	@IBAction func speSliderAction(_ sender: Any) {
 		speSlider.minValue = 0.0
-		speSlider.maxValue = 252.0
+//		speSlider.maxValue = 252.0
+		determineMaxValueForEVSliders()
 		// possibly able to put a method to determine what max value should be using default value
 		speSlider.numberOfTickMarks = 63
 		speSlider.allowsTickMarkValuesOnly = false
@@ -681,7 +722,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 			if index > -1 {
 				let mon: Pokemon = team[index]
 				mon.eVs["spe"] = speSlider.integerValue
-				print(mon.eVs["spe"]!)
+//				print(mon.eVs["spe"]!)
 				//update pokemon
 				updatePokemon()
 			}
