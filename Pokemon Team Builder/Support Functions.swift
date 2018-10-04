@@ -204,8 +204,18 @@ func importMonFromShowdown(showdownExportText: String) -> Pokemon {
 			let evString = line[line.index(line.firstIndex(of: " ")!, offsetBy: 1)..<line.endIndex]
 			let evStringArray = evString.components(separatedBy: " / ")
 			for string in evStringArray {
-				let evLabel = String(string[string.index(string.endIndex, offsetBy: -3)..<string.endIndex].lowercased())
-				let evValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])
+				var evLabel: String = String()
+				var evValue: Int = Int()
+				if string.contains("HP") {
+					evLabel = String(string[string.index(string.endIndex, offsetBy: -2)..<string.endIndex].lowercased())
+					evValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
+				} else if (evStringArray.endIndex - 1) == evStringArray.lastIndex(of: string)  {
+					evLabel = String(string[string.index(string.endIndex, offsetBy: -5)..<string.index(string.endIndex, offsetBy: -2)].lowercased())
+					evValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
+				} else {
+					evLabel = String(string[string.index(string.endIndex, offsetBy: -3)..<string.endIndex].lowercased())
+					evValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
+				}
 				eVs[evLabel] = evValue
 			}
 		}

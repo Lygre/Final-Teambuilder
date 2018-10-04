@@ -2,15 +2,14 @@ import Cocoa
 
 
 var monImport = """
-Tapu Lele @ Fightinium Z
-Ability: Psychic Surge
-EVs: 252 SpA / 4 SpD / 252 Spe
-Timid Nature
-IVs: 0 Atk / 0 SpA
-- Calm Mind
-- Psychic
-- Moonblast
-- Focus Blast
+Landorus-Therian @ Choice Scarf
+Ability: Intimidate
+EVs: 128 HP / 104 Atk / 44 Def / 232 Spe
+Jolly Nature
+- U-turn
+- Earthquake
+- Defog
+- Knock Off
 """
 
 var monStringArray = [String]()
@@ -39,8 +38,15 @@ for line in monStringArray {
 		let evString = line[line.index(line.firstIndex(of: " ")!, offsetBy: 1)..<line.endIndex]
 		let evStringArray = evString.components(separatedBy: " / ")
 		for string in evStringArray {
-			let evLabel = String(string[string.index(string.endIndex, offsetBy: -3)..<string.endIndex].lowercased())
-			let evValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])
+			var evLabel: String = String()
+			var evValue: Int = Int()
+			if string.contains("HP") {
+				evLabel = String(string[string.index(string.endIndex, offsetBy: -2)..<string.endIndex].lowercased())
+				evValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
+			} else {
+				evLabel = String(string[string.index(string.endIndex, offsetBy: -3)..<string.endIndex].lowercased())
+				evValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
+			}
 			eVs[evLabel] = evValue
 		}
 	}
@@ -69,3 +75,4 @@ move2 = moves[1]
 move3 = moves[2]
 move4 = moves[3]
 iVs
+eVs

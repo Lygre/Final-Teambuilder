@@ -2581,7 +2581,7 @@ struct MoveDex {
 	static func searchMovedex(searchParam: String) -> Move {
 		var searchStringLower = searchParam.lowercased()
 		var moveMatch: Move?
-		let remove: Set<Character> = [" ", "[", "]"]
+		let remove: Set<Character> = [" ", "[", "]", "-"]
 		searchStringLower.removeAll(where: { remove.contains($0) })
 		for move in moveDexArray {
 			if searchStringLower == move.id {

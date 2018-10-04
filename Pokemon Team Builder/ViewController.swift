@@ -130,6 +130,14 @@ class TeamViewController: NSViewController, ImportDelegate {
 	@IBOutlet weak var baseSPD: NSTextField!
 	@IBOutlet weak var baseSPE: NSTextField!
 	
+	@IBOutlet weak var hpEVLabel: NSTextField!
+	@IBOutlet weak var atkEVLabel: NSTextField!
+	@IBOutlet weak var defEVLabel: NSTextField!
+	@IBOutlet weak var spaEVLabel: NSTextField!
+	@IBOutlet weak var spdEVLabel: NSTextField!
+	@IBOutlet weak var speEVLabel: NSTextField!
+	
+	
 	@IBOutlet weak var hpLevel: NSLevelIndicator!
 	@IBOutlet weak var atkLevel: NSLevelIndicator!
 	@IBOutlet weak var defLevel: NSLevelIndicator!
@@ -253,45 +261,44 @@ class TeamViewController: NSViewController, ImportDelegate {
 		hpSlider.minValue = 0.0
 		hpSlider.maxValue = 252.0
 		hpSlider.numberOfTickMarks = 63
-		hpSlider.allowsTickMarkValuesOnly = true
+		hpSlider.allowsTickMarkValuesOnly = false
 		hpSlider.trackFillColor = NSColor.systemBlue
 //		defendingMon.eVs["hp"] = hpSlider.integerValue
 		
 		atkSlider.minValue = 0.0
 		atkSlider.maxValue = 252.0
 		atkSlider.numberOfTickMarks = 63
-		atkSlider.allowsTickMarkValuesOnly = true
+		atkSlider.allowsTickMarkValuesOnly = false
 		atkSlider.trackFillColor = NSColor.systemBlue
 //		defendingMon.eVs["atk"] = atkSlider.integerValue
 		
 		defSlider.minValue = 0.0
 		defSlider.maxValue = 252.0
 		defSlider.numberOfTickMarks = 63
-		defSlider.allowsTickMarkValuesOnly = true
+		defSlider.allowsTickMarkValuesOnly = false
 		defSlider.trackFillColor = NSColor.systemBlue
 //		defendingMon.eVs["def"] = defSlider.integerValue
 		
 		spaSlider.minValue = 0.0
 		spaSlider.maxValue = 252.0
 		spaSlider.numberOfTickMarks = 63
-		spaSlider.allowsTickMarkValuesOnly = true
+		spaSlider.allowsTickMarkValuesOnly = false
 		spaSlider.trackFillColor = NSColor.systemBlue
 //		defendingMon.eVs["spa"] = spaSlider.integerValue
 		
 		spdSlider.minValue = 0.0
 		spdSlider.maxValue = 252.0
 		spdSlider.numberOfTickMarks = 63
-		spdSlider.allowsTickMarkValuesOnly = true
+		spdSlider.allowsTickMarkValuesOnly = false
 		spdSlider.trackFillColor = NSColor.systemBlue
 //		defendingMon.eVs["spd"] = spdSlider.integerValue
 		
 		speSlider.minValue = 0.0
 		speSlider.maxValue = 252.0
 		speSlider.numberOfTickMarks = 63
-		speSlider.allowsTickMarkValuesOnly = true
+		speSlider.allowsTickMarkValuesOnly = false
 		speSlider.trackFillColor = NSColor.systemBlue
 //		defendingMon.eVs["spe"] = speSlider.integerValue
-		
 		
 		//update pokemon
 		
@@ -320,6 +327,13 @@ class TeamViewController: NSViewController, ImportDelegate {
 			actualSPD.stringValue = "\(mon.actualStats["spd"] ?? 0)"
 			actualSPE.stringValue = "\(mon.actualStats["spe"] ?? 0)"
 			
+			let evs = mon.eVs
+			hpEVLabel.stringValue = "\(evs["hp"] ?? 0)"
+			atkEVLabel.stringValue = "\(evs["atk"] ?? 0)"
+			defEVLabel.stringValue = "\(evs["def"] ?? 0)"
+			spaEVLabel.stringValue = "\(evs["spa"] ?? 0)"
+			spdEVLabel.stringValue = "\(evs["spd"] ?? 0)"
+			speEVLabel.stringValue = "\(evs["spe"] ?? 0)"
 			
 			// get virtual stat values for selected mon
 			mon.virtualStats = Pokemon.calcVirtualStats(pokemon: mon)
@@ -393,6 +407,8 @@ class TeamViewController: NSViewController, ImportDelegate {
 	func addToTeam2(pokemon: Pokemon) {
 		
 		let monToAdd: Pokemon = pokemon
+		monToAdd.actualStats = Pokemon.calcStats(pokemon: monToAdd)
+		monToAdd.virtualStats = Pokemon.calcVirtualStats(pokemon: monToAdd)
 		
 		team.append(monToAdd)
 		if team2test.members.isEmpty {
@@ -441,6 +457,15 @@ class TeamViewController: NSViewController, ImportDelegate {
 			baseSPA.stringValue = "\(mon.baseStats["spa"] ?? 0)"
 			baseSPD.stringValue = "\(mon.baseStats["spd"] ?? 0)"
 			baseSPE.stringValue = "\(mon.baseStats["spe"] ?? 0)"
+			
+			let evs = mon.eVs
+			print(evs)
+			hpEVLabel.stringValue = "\(evs["hp"] ?? 0)"
+			atkEVLabel.stringValue = "\(evs["atk"] ?? 0)"
+			defEVLabel.stringValue = "\(evs["def"] ?? 0)"
+			spaEVLabel.stringValue = "\(evs["spa"] ?? 0)"
+			spdEVLabel.stringValue = "\(evs["spd"] ?? 1)"
+			speEVLabel.stringValue = "\(evs["spe"] ?? 0)"
 			
 			//get actual stat values for selected mon
 			mon.actualStats = Pokemon.calcStats(pokemon: mon)
@@ -524,7 +549,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 	
 	func getEVAllowedChange() -> Bool {
 		let evSliderSum: Int = hpSlider.integerValue + atkSlider.integerValue + defSlider.integerValue + spaSlider.integerValue + spdSlider.integerValue + speSlider.integerValue
-		if evSliderSum < 510 { return true }
+		if evSliderSum < 900 { return true }
 		else { return false }
 	}
 	
@@ -532,7 +557,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 		hpSlider.minValue = 0.0
 		hpSlider.maxValue = 252.0
 		hpSlider.numberOfTickMarks = 63
-		hpSlider.allowsTickMarkValuesOnly = true
+		hpSlider.allowsTickMarkValuesOnly = false
 		hpSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
@@ -556,7 +581,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 		atkSlider.minValue = 0.0
 		atkSlider.maxValue = 252.0
 		atkSlider.numberOfTickMarks = 63
-		atkSlider.allowsTickMarkValuesOnly = true
+		atkSlider.allowsTickMarkValuesOnly = false
 		atkSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
@@ -575,7 +600,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 		defSlider.minValue = 0.0
 		defSlider.maxValue = 252.0
 		defSlider.numberOfTickMarks = 63
-		defSlider.allowsTickMarkValuesOnly = true
+		defSlider.allowsTickMarkValuesOnly = false
 		defSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
@@ -594,7 +619,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 		spaSlider.minValue = 0.0
 		spaSlider.maxValue = 252.0
 		spaSlider.numberOfTickMarks = 63
-		spaSlider.allowsTickMarkValuesOnly = true
+		spaSlider.allowsTickMarkValuesOnly = false
 		spaSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
@@ -613,7 +638,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 		spdSlider.minValue = 0.0
 		spdSlider.maxValue = 252.0
 		spdSlider.numberOfTickMarks = 63
-		spdSlider.allowsTickMarkValuesOnly = true
+		spdSlider.allowsTickMarkValuesOnly = false
 		spdSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
@@ -633,7 +658,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 		speSlider.maxValue = 252.0
 		// possibly able to put a method to determine what max value should be using default value
 		speSlider.numberOfTickMarks = 63
-		speSlider.allowsTickMarkValuesOnly = true
+		speSlider.allowsTickMarkValuesOnly = false
 		speSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
