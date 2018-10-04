@@ -224,6 +224,13 @@ class TeamViewController: NSViewController, ImportDelegate {
 	
 	@objc dynamic var levelArray = [Int]()
 	
+	@objc dynamic var evHPBind = Int()
+	@objc dynamic var evATKBind = Int()
+	@objc dynamic var evDEFBind = Int()
+	@objc dynamic var evSPABind = Int()
+	@objc dynamic var evSPDBind = Int()
+	@objc dynamic var evSPEBind = Int()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
@@ -542,6 +549,14 @@ class TeamViewController: NSViewController, ImportDelegate {
 			//add mon's current item to itemList
 			itemList.append(mon.item)
 			
+			//update EVs for evTableBind
+			evHPBind = evs["hp"]!
+			evATKBind = evs["atk"]!
+			evDEFBind = evs["def"]!
+			evSPABind = evs["spa"]!
+			evSPDBind = evs["spd"]!
+			evSPEBind = evs["spe"]!
+			
 			teamWeaknessTableBind[mon.species] = determineMonInteractionIconTable(pokemon: mon)
 			teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
 		}
@@ -549,7 +564,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 	
 	func getEVAllowedChange() -> Bool {
 		let evSliderSum: Int = hpSlider.integerValue + atkSlider.integerValue + defSlider.integerValue + spaSlider.integerValue + spdSlider.integerValue + speSlider.integerValue
-		if evSliderSum < 900 { return true }
+		if evSliderSum < 511 { return true }
 		else { return false }
 	}
 	
