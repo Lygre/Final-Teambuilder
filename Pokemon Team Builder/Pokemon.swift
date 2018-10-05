@@ -28,6 +28,8 @@ class Pokemon: NSObject {
 	@objc dynamic var move4: Move
 	@objc dynamic var item: Item
 	
+	@objc dynamic var statBoosts: [String: Double]
+	
 	//override init
 	override init() {
 		num = 0
@@ -48,6 +50,8 @@ class Pokemon: NSObject {
 		move3 = Move()
 		move4 = Move()
 		item = Item()
+		
+		statBoosts = ["atk": 1.0, "def": 1.0, "spa": 1.0, "spd": 1.0, "spe": 1.0]
 		
 		super.init()
 	}
@@ -73,6 +77,8 @@ class Pokemon: NSObject {
 		self.move4 = Move()
 		self.item = Item()
 		
+		self.statBoosts = ["atk": 1.0, "def": 1.0, "spa": 1.0, "spd": 1.0, "spe": 1.0]
+		
 		super.init()
 	}
 	// initialization from ?? creating a specific mon for team << ex.
@@ -96,6 +102,8 @@ class Pokemon: NSObject {
 		self.move3 = move3
 		self.move4 = move4
 		self.item = item
+		
+		self.statBoosts = ["atk": 1.0, "def": 1.0, "spa": 1.0, "spd": 1.0, "spe": 1.0]
 		
 		super.init()
 	}
@@ -241,6 +249,13 @@ class Pokemon: NSObject {
 				virtuallyAlteredStats.append(stat) //this does nothing right now
 			}
 		}
+		let boostSum: Double = pokemon.statBoosts["atk"]! + pokemon.statBoosts["def"]! + pokemon.statBoosts["spa"]! + pokemon.statBoosts["spd"]! + pokemon.statBoosts["spe"]!
+		if boostSum != 5.0 {
+			for (stat, boostMult) in pokemon.statBoosts {
+				virtualStats[stat] = Int.init(Double(virtualStats[stat]!) * boostMult)
+			}
+		}
+		
 		return virtualStats
 		//make something return an array of altered virtual stats for text color!!!-----Reminder!!!!!
 	}

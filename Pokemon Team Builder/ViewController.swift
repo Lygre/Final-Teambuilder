@@ -912,7 +912,34 @@ class CalcViewController: NSViewController {
 	@IBOutlet weak var spdLabel: NSTextField!
 	@IBOutlet weak var speLabel: NSTextField!
 	
+	@IBOutlet weak var virtualHP: NSTextField!
+	@IBOutlet weak var virtualATK: NSTextField!
+	@IBOutlet weak var virtualDEF: NSTextField!
+	@IBOutlet weak var virtualSPA: NSTextField!
+	@IBOutlet weak var virtualSPD: NSTextField!
+	@IBOutlet weak var virtualSPE: NSTextField!
 	
+	@IBOutlet weak var atkStepper2: NSStepper!
+	@IBOutlet weak var atkBoostTextField2: NSTextField!
+	@IBOutlet weak var defStepper2: NSStepper!
+	@IBOutlet weak var defBoostTextField2: NSTextField!
+	@IBOutlet weak var spaStepper2: NSStepper!
+	@IBOutlet weak var spaBoostTextField2: NSTextField!
+	@IBOutlet weak var spdStepper2: NSStepper!
+	@IBOutlet weak var spdBoostTextField2: NSTextField!
+	@IBOutlet weak var speStepper2: NSStepper!
+	@IBOutlet weak var speBoostTextField2: NSTextField!
+	
+	@IBOutlet weak var atkStepper: NSStepper!
+	@IBOutlet weak var atkBoostTextField: NSTextField!
+	@IBOutlet weak var defStepper: NSStepper!
+	@IBOutlet weak var defBoostTextField: NSTextField!
+	@IBOutlet weak var spaStepper: NSStepper!
+	@IBOutlet weak var spaBoostTextField: NSTextField!
+	@IBOutlet weak var spdStepper: NSStepper!
+	@IBOutlet weak var spdBoostTextField: NSTextField!
+	@IBOutlet weak var speStepper: NSStepper!
+	@IBOutlet weak var speBoostTextField: NSTextField!
 	
 	
 	
@@ -988,7 +1015,7 @@ class CalcViewController: NSViewController {
 
 		
 		//update pokemon
-		updateDefendingMon()
+//		updateDefendingMon()
 	}
 	
 	func resetSliders() {
@@ -1007,12 +1034,110 @@ class CalcViewController: NSViewController {
 		spaLabel.integerValue = spaSlider.integerValue
 		spdLabel.integerValue = spdSlider.integerValue
 		speLabel.integerValue = speSlider.integerValue
+		
+// stat boosts for defending mon
+		if atkStepper.integerValue > 0 {
+			let divisor: Double = 2.0 + Double.init(atkStepper.integerValue)
+			defendingMon.statBoosts["atk"] = divisor/2.0
+		} else if atkStepper.integerValue < 0 {
+			let dividend: Double = 2.0 + (-1.0 * Double.init(atkStepper.integerValue))
+			defendingMon.statBoosts["atk"] = 2.0/dividend
+		} else { defendingMon.statBoosts["atk"] = 1.0 }
+
+		if defStepper.integerValue > 0 {
+			let divisor: Double = 2.0 + Double.init(defStepper.integerValue)
+			defendingMon.statBoosts["def"] = divisor/2.0
+		} else if defStepper.integerValue < 0 {
+			let dividend: Double = 2.0 + (-1.0 * Double.init(defStepper.integerValue))
+			defendingMon.statBoosts["def"] = 2.0/dividend
+		} else { defendingMon.statBoosts["def"] = 1.0 }
+		
+		if spaStepper.integerValue > 0 {
+			let divisor: Double = 2.0 + Double.init(spaStepper.integerValue)
+			defendingMon.statBoosts["spa"] = divisor/2.0
+		} else if atkStepper.integerValue < 0 {
+			let dividend: Double = 2.0 + (-1.0 * Double.init(spaStepper.integerValue))
+			defendingMon.statBoosts["spa"] = 2.0/dividend
+		} else { defendingMon.statBoosts["spa"] = 1.0 }
+		
+		if spdStepper.integerValue > 0 {
+			let divisor: Double = 2.0 + Double.init(spdStepper.integerValue)
+			defendingMon.statBoosts["spd"] = divisor/2.0
+		} else if spdStepper.integerValue < 0 {
+			let dividend: Double = 2.0 + (-1.0 * Double.init(spdStepper.integerValue))
+			defendingMon.statBoosts["spd"] = 2.0/dividend
+		} else { defendingMon.statBoosts["spd"] = 1.0 }
+		
+		if speStepper.integerValue > 0 {
+			let divisor: Double = 2.0 + Double.init(speStepper.integerValue)
+			defendingMon.statBoosts["spe"] = divisor/2.0
+		} else if speStepper.integerValue < 0 {
+			let dividend: Double = 2.0 + (-1.0 * Double.init(speStepper.integerValue))
+			defendingMon.statBoosts["spe"] = 2.0/dividend
+		} else { defendingMon.statBoosts["spe"] = 1.0 }
+		
 		defendingMon.actualStats = Pokemon.calcStats(pokemon: defendingMon)
 		defendingMon.virtualStats = Pokemon.calcVirtualStats(pokemon: defendingMon)
+		
+		virtualHP.stringValue = "\(defendingMon.virtualStats["hp"] ?? 0)"
+		virtualATK.stringValue = "\(defendingMon.virtualStats["atk"] ?? 0)"
+		virtualDEF.stringValue = "\(defendingMon.virtualStats["def"] ?? 0)"
+		virtualSPA.stringValue = "\(defendingMon.virtualStats["spa"] ?? 0)"
+		virtualSPD.stringValue = "\(defendingMon.virtualStats["spd"] ?? 0)"
+		virtualSPE.stringValue = "\(defendingMon.virtualStats["spe"] ?? 0)"
 	}
+	
+	func updateAttackingMon() {
+		
+		if atkStepper2.integerValue > 0 {
+			let divisor: Double = 2.0 + Double.init(atkStepper2.integerValue)
+			attackingMon.statBoosts["atk"] = divisor/2.0
+		} else if atkStepper2.integerValue < 0 {
+			let dividend: Double = 2.0 + (-1.0 * Double.init(atkStepper2.integerValue))
+			attackingMon.statBoosts["atk"] = 2.0/dividend
+		} else { attackingMon.statBoosts["atk"] = 1.0 }
+		
+		if defStepper2.integerValue > 0 {
+			let divisor: Double = 2.0 + Double.init(defStepper2.integerValue)
+			attackingMon.statBoosts["def"] = divisor/2.0
+		} else if defStepper2.integerValue < 0 {
+			let dividend: Double = 2.0 + (-1.0 * Double.init(defStepper2.integerValue))
+			attackingMon.statBoosts["def"] = 2.0/dividend
+		} else { attackingMon.statBoosts["def"] = 1.0 }
+		
+		if spaStepper2.integerValue > 0 {
+			let divisor: Double = 2.0 + Double.init(spaStepper2.integerValue)
+			attackingMon.statBoosts["spa"] = divisor/2.0
+		} else if atkStepper2.integerValue < 0 {
+			let dividend: Double = 2.0 + (-1.0 * Double.init(spaStepper2.integerValue))
+			attackingMon.statBoosts["spa"] = 2.0/dividend
+		} else { attackingMon.statBoosts["spa"] = 1.0 }
+		
+		if spdStepper2.integerValue > 0 {
+			let divisor: Double = 2.0 + Double.init(spdStepper2.integerValue)
+			attackingMon.statBoosts["spd"] = divisor/2.0
+		} else if spdStepper2.integerValue < 0 {
+			let dividend: Double = 2.0 + (-1.0 * Double.init(spdStepper2.integerValue))
+			attackingMon.statBoosts["spd"] = 2.0/dividend
+		} else { attackingMon.statBoosts["spd"] = 1.0 }
+		
+		if speStepper2.integerValue > 0 {
+			let divisor: Double = 2.0 + Double.init(speStepper2.integerValue)
+			attackingMon.statBoosts["spe"] = divisor/2.0
+		} else if speStepper2.integerValue < 0 {
+			let dividend: Double = 2.0 + (-1.0 * Double.init(speStepper2.integerValue))
+			attackingMon.statBoosts["spe"] = 2.0/dividend
+		} else { attackingMon.statBoosts["spe"] = 1.0 }
+		
+		attackingMon.actualStats = Pokemon.calcStats(pokemon: attackingMon)
+		attackingMon.virtualStats = Pokemon.calcVirtualStats(pokemon: attackingMon)
+		
+	}
+	
 	
 	func updateCalcs() {
 		updateDefendingMon()
+		updateAttackingMon()
 		let movesOrdered = [attackingMon.move1, attackingMon.move2, attackingMon.move3, attackingMon.move4]
 		moveDamageTableBind = [:]
 		for orderedMove in movesOrdered {
@@ -1083,6 +1208,10 @@ class CalcViewController: NSViewController {
 		updateCalcs()
 	}
 	
+	@IBAction func statBoostChanged(_ sender: Any) {
+		updateSliders()
+		updateCalcs()
+	}
 	
 	
 }

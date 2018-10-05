@@ -76,3 +76,5 @@ move3 = moves[2]
 move4 = moves[3]
 iVs
 eVs
+
+Double(1.0 + 1.0)
