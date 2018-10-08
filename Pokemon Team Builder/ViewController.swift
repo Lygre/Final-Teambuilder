@@ -159,11 +159,6 @@ class TeamViewController: NSViewController, ImportDelegate {
 	@IBOutlet weak var spdSliderCell: NSSliderCell!
 	@IBOutlet weak var speSliderCell: NSSliderCell!
 	
-	
-	//remains to be done with programming the rest of the sliders
-	//on the backend, everything works, but not sure how to have sliders
-	//re-draw if the desired set value for EVs is not possible in context
-	
 
 	@IBOutlet weak var monWeaknesses: NSTextField!
 	@IBOutlet weak var monResistances: NSTextField!
@@ -237,6 +232,15 @@ class TeamViewController: NSViewController, ImportDelegate {
 	@objc dynamic var evSPAMaxValueBind = Double()
 	@objc dynamic var evSPDMaxValueBind = Double()
 	@objc dynamic var evSPEMaxValueBind = Double()
+	
+	@IBOutlet weak var hpIVs: NSTextField!
+	@IBOutlet weak var atkIVs: NSTextField!
+	@IBOutlet weak var defIVs: NSTextField!
+	@IBOutlet weak var spaIVs: NSTextField!
+	@IBOutlet weak var spdIVs: NSTextField!
+	@IBOutlet weak var speIVs: NSTextField!
+	
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -323,8 +327,28 @@ class TeamViewController: NSViewController, ImportDelegate {
 		teamMaster.teamWeaknesses = teamMaster.determineTeamWeaknesses()
 		teamMaster.teamCoverage = teamMaster.determineTeamCoverage()
 		teamMaster.additionalAttributes = teamMaster.determineAttributes()
-//		updatePokemon()
-		print(teamMaster)
+
+		team2test = Team(members: team)
+		team2test.teamWeaknesses = team2test.determineTeamWeaknesses()
+		team2test.teamCoverage = team2test.determineTeamCoverage()
+		team2test.additionalAttributes = team2test.determineAttributes()
+		
+		team2test.teamWeaknesses = team2test.determineTeamWeaknesses()
+		teamWeaknessTableBind = [:]
+		for mon in team2test.members {
+			teamWeaknessTableBind[mon.species] = determineMonInteractionIconTable(pokemon: mon)
+		}
+		teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
+		
+		team2test.additionalAttributes = team2test.determineAttributes()
+		team2test.teamCoverage = team2test.determineTeamCoverage()
+		
+		teamCoverageTableBind = team2test.teamCoverage
+		teamAttributeTableBind = team2test.additionalAttributes
+		
+		teamMaster = team2test
+		suggestedMonTableBind = findSuggestedMons(team: teamMaster)
+		
 	}
 	
 	func updatePokemon() {
@@ -348,6 +372,14 @@ class TeamViewController: NSViewController, ImportDelegate {
 			spaEVLabel.stringValue = "\(evs["spa"] ?? 0)"
 			spdEVLabel.stringValue = "\(evs["spd"] ?? 0)"
 			speEVLabel.stringValue = "\(evs["spe"] ?? 0)"
+			
+			let ivs = mon.iVs
+			hpIVs.integerValue = ivs["hp"] ?? 0
+			atkIVs.integerValue = ivs["atk"] ?? 0
+			defIVs.integerValue = ivs["def"] ?? 0
+			spaIVs.integerValue = ivs["spa"] ?? 0
+			spdIVs.integerValue = ivs["spd"] ?? 0
+			speIVs.integerValue = ivs["spe"] ?? 0
 			
 			// get virtual stat values for selected mon
 			mon.virtualStats = Pokemon.calcVirtualStats(pokemon: mon)
@@ -377,6 +409,8 @@ class TeamViewController: NSViewController, ImportDelegate {
 			
 			teamWeaknessTableBind[mon.species] = determineMonInteractionIconTable(pokemon: mon)
 			teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
+			teamCoverageTableBind = team2test.determineTeamCoverage()
+			teamAttributeTableBind = team2test.determineAttributes()
 		}
 	}
 	
@@ -432,12 +466,17 @@ class TeamViewController: NSViewController, ImportDelegate {
 		}
 		
 		team2test.teamWeaknesses = team2test.determineTeamWeaknesses()
-		teamWeaknessTableBind[monToAdd.species] = determineMonInteractionIconTable(pokemon: monToAdd)
-		teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
-		team2test.additionalAttributes = team2test.determineAttributes()
 		
-		//---------
+		for mon in team2test.members {
+			teamWeaknessTableBind[mon.species] = determineMonInteractionIconTable(pokemon: mon)
+		}
+		teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
+		
+		team2test.additionalAttributes = team2test.determineAttributes()
 		team2test.teamCoverage = team2test.determineTeamCoverage()
+		
+		teamCoverageTableBind = team2test.teamCoverage
+		teamAttributeTableBind = team2test.additionalAttributes
 		
 		teamMaster = team2test
 		suggestedMonTableBind = findSuggestedMons(team: teamMaster)
@@ -446,6 +485,28 @@ class TeamViewController: NSViewController, ImportDelegate {
 
 	}
 
+	//remove from team
+	
+	@IBAction func removeFromTeam(_ sender: Any) {
+//		let mon: Pokemon? = team[tableView.selectedRow]
+//		let removedMon: Pokemon = self.team.remove(at: tableView.selectedRow)
+		team.remove(at: tableView.selectedRow)
+
+		updateTeam()
+	}
+	
+	
+	@IBAction func alteredIVs(_ sender: Any) {
+		let mon: Pokemon = team[tableView.selectedRow]
+		
+		mon.iVs["hp"] = hpIVs.integerValue
+		mon.iVs["atk"] = atkIVs.integerValue
+		mon.iVs["def"] = defIVs.integerValue
+		mon.iVs["spa"] = spaIVs.integerValue
+		mon.iVs["spd"] = spdIVs.integerValue
+		mon.iVs["spe"] = speIVs.integerValue
+		updatePokemon()
+	}
 	
 	
 	
@@ -480,6 +541,15 @@ class TeamViewController: NSViewController, ImportDelegate {
 			spaEVLabel.stringValue = "\(evs["spa"] ?? 0)"
 			spdEVLabel.stringValue = "\(evs["spd"] ?? 1)"
 			speEVLabel.stringValue = "\(evs["spe"] ?? 0)"
+			
+			
+			let ivs = mon.iVs
+			hpIVs.integerValue = ivs["hp"] ?? 0
+			atkIVs.integerValue = ivs["atk"] ?? 0
+			defIVs.integerValue = ivs["def"] ?? 0
+			spaIVs.integerValue = ivs["spa"] ?? 0
+			spdIVs.integerValue = ivs["spd"] ?? 0
+			speIVs.integerValue = ivs["spe"] ?? 0
 			
 			//get actual stat values for selected mon
 			mon.actualStats = Pokemon.calcStats(pokemon: mon)
@@ -567,7 +637,10 @@ class TeamViewController: NSViewController, ImportDelegate {
 			determineMaxValueForEVSliders()
 			
 			teamWeaknessTableBind[mon.species] = determineMonInteractionIconTable(pokemon: mon)
+			team2test.teamWeaknesses = team2test.determineTeamWeaknesses()
 			teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
+			teamCoverageTableBind = team2test.determineTeamCoverage()
+			teamAttributeTableBind = team2test.determineAttributes()
 		}
 	}
 	
@@ -1169,50 +1242,85 @@ class CalcViewController: NSViewController {
 			learnsetMoves.append(moveToAdd)
 		}
 		resetSliders()
+		updateSliders()
+//		updateCalcs()
 	}
 	
 	@IBAction func natureSelected(_ sender: Any) {
-//		updateDefendingMon()
+		if defendingMon.level != 0 {
+			updateSliders()
+			updateCalcs()
+		}
 	}
 	
 	@IBAction func itemSelected(_ sender: Any) {
-//		updateDefendingMon()
+		if defendingMon.level != 0 {
+			updateSliders()
+			updateCalcs()
+		}
 	}
 	
 	@IBAction func levelSelected(_ sender: Any) {
-//		updateDefendingMon()
+		updateSliders()
+		updateCalcs()
 	}
 
+	@IBAction func moveSelected(_ sender: Any) {
+		if defendingMon.level != 0 {
+			updateSliders()
+			updateCalcs()
+		}
+	}
+	
 	@IBAction func hpSliderChanged(_ sender: Any) {
-		updateSliders()
-		updateCalcs()
+		if defendingMon.level != 0 {
+			updateSliders()
+			updateCalcs()
+		}
 	}
 	@IBAction func atkSliderChanged(_ sender: Any) {
-		updateSliders()
-		updateCalcs()
+		if defendingMon.level != 0 {
+			updateSliders()
+			updateCalcs()
+		}
 	}
 	@IBAction func defSliderChanged(_ sender: Any) {
-		updateSliders()
-		updateCalcs()
+		if defendingMon.level != 0 {
+			updateSliders()
+			updateCalcs()
+		}
 	}
 	@IBAction func spaSliderChanged(_ sender: Any) {
-		updateSliders()
-		updateCalcs()
+		if defendingMon.level != 0 {
+			updateSliders()
+			updateCalcs()
+		}
 	}
 	@IBAction func spdSliderChanged(_ sender: Any) {
-		updateSliders()
-		updateCalcs()
+		if defendingMon.level != 0 {
+			updateSliders()
+			updateCalcs()
+		}
 	}
 	@IBAction func speSliderChanged(_ sender: Any) {
-		updateSliders()
-		updateCalcs()
+		if defendingMon.level != 0 {
+			updateSliders()
+			updateCalcs()
+		}
 	}
 	
 	@IBAction func statBoostChanged(_ sender: Any) {
-		updateSliders()
-		updateCalcs()
+		if defendingMon.level != 0 {
+			updateSliders()
+			updateCalcs()
+		}
 	}
-	
+	@IBAction func fieldChanged(_ sender: Any) {
+		if defendingMon.level != 0 {
+			updateSliders()
+			updateCalcs()
+		}
+	}
 	
 }
 

@@ -56,7 +56,7 @@ func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Fi
 
 	D = (((((2.0*Double.init(attacker.level)/5.0)+2.0) * Double.init(move.basePower) * adRatio) / 50.0)+2.0)
 
-	var weather, crit, random, stab, typeMod, other: Double
+	var terrain, weather, crit, random, stab, typeMod, other: Double
 	//removed 'burn' var because do not have property for status added to class Pokemon yet
 	
 	//calc weather mod
@@ -72,6 +72,17 @@ func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Fi
 			weather = 1.5
 		}
 	} else { weather = 1.0 }
+	//calc terrain mod
+	terrain = 1.0
+	if field.terrain != "None" {
+		if field.terrain == "Psychic" && move.type == "Psychic" {
+			terrain = 1.5
+		} else if field.terrain == "Electric" && move.type == "Electric" {
+			terrain = 1.5
+		} else if field.terrain == "Grassy" && move.type == "Grass" {
+			terrain = 1.5
+		}
+	} else { terrain = 1.0 }
 	// crit mod to fix later
 	crit = 1.0
 	// random to make later
@@ -109,7 +120,7 @@ func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Fi
 	
 	other = 1.0
 	
-	modifier = weather * crit * random * stab * typeMod * other
+	modifier = terrain * weather * crit * random * stab * typeMod * other
 	
 	let modD = D * modifier
 	finalD = Int.init(modD)
