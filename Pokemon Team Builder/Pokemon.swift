@@ -135,6 +135,8 @@ class Pokemon: NSObject {
 		let resist = 2
 		let immune = 3
 		
+		var immunities = [String]()
+		
 		let type1Chart: [String: Int] = Dex.typeMatchups[pokemonName.types[0]]!
 		for (type, effectiv) in type1Chart {
 			if effectiv == weak {
@@ -142,6 +144,7 @@ class Pokemon: NSObject {
 			} else if effectiv == resist {
 				pokemonWeakness[type] = -2
 			} else if effectiv == immune {
+				immunities.append(type)
 				pokemonWeakness[type] = 0
 			} else if effectiv == neutral {
 				pokemonWeakness[type] = 1
@@ -171,6 +174,7 @@ class Pokemon: NSObject {
 						}
 					}
 				} else if effectiv == immune {
+					immunities.append(type)
 					pokemonWeakness[type] = 0
 				}
 			}
@@ -186,6 +190,12 @@ class Pokemon: NSObject {
 		} else if pokemonName.ability == "Sap Sipper" {
 			pokemonWeakness["Grass"] = 0
 		}
+		for (type, _) in pokemonWeakness {
+			if immunities.contains(type) {
+				pokemonWeakness[type] = 0
+			}
+		}
+		
 		// Weakness Dictionary values: -4,-2,0,1,2,4 = x4 resist, resist, immune, neutral, weak, x4 weak
 		return pokemonWeakness
 	}

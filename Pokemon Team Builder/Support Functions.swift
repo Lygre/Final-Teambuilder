@@ -224,6 +224,7 @@ func importMonFromShowdown(showdownExportText: String) -> Pokemon {
 			nature = String(natureLabel)
 		}
 		if line.contains("IVs: ") {
+			//need to fix IVs as did for EVs
 			let ivString = line[line.index(line.firstIndex(of: " ")!, offsetBy: 1)..<line.endIndex]
 			let ivStringArray = ivString.components(separatedBy: " / ")
 			for string in ivStringArray {

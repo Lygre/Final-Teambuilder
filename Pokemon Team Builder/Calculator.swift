@@ -171,13 +171,13 @@ func resistSearch(types: [String]) -> [Pokemon] {
 func findSuggestedMons(team: Team) -> [Pokemon] {
 	var suggestedMons: [Pokemon] = [Pokemon]()
 //	let currentMons: [Pokemon] = team.members
-	let teamWeaknesses = team.determineTeamWeaknesses()
+	let teamWeaknesses = team.determineCumulativeTeamWeaknessesUsingDoubles()
 	print(teamWeaknesses)
 	var resistSearchTypes: [String] = [String]()
 //	let suggestedMonStringArray: [String] = Dex.findResistances(resistTypes: resistSearchTypes)
 	
 	for (type, vector) in teamWeaknesses {
-		if vector > 1 {
+		if vector > 0.7 && vector != 1.0 {
 			resistSearchTypes.append(type)
 		}
 	}

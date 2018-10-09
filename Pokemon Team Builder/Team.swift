@@ -81,33 +81,128 @@ class Team: NSObject {
 					teamWeaknessDict[type] = scalar / (self.members.count)
 				}
 			}
+//			print(type, scalar)
 		}
+//		print(teamWeaknessDict)
+		return teamWeaknessDict
+	}
+	
+	func determineCumulativeTeamWeaknessesUsingDoubles() -> [String: Double] {
+		var teamWeaknessDict: [String: Double] = ["Bug": 0.0,
+											   "Dark": 0.0,
+											   "Dragon": 0.0,
+											   "Electric": 0.0,
+											   "Fairy": 0.0,
+											   "Fighting": 0.0,
+											   "Fire": 0.0,
+											   "Flying": 0.0,
+											   "Ghost": 0.0,
+											   "Grass": 0.0,
+											   "Ground": 0.0,
+											   "Ice": 0.0,
+											   "Normal": 0.0,
+											   "Poison": 0.0,
+											   "Psychic": 0.0,
+											   "Rock": 0.0,
+											   "Steel": 0.0,
+											   "Water": 0.0]
+		var immunities = [String]()
+		
+		for mon in members {
+			let monWeaknessDict = mon.getPokemonWeaknesses(pokemonName: mon)
+			for (type, scalar) in monWeaknessDict {
+				if scalar == 0 {
+					immunities.append(type)
+					//					teamWeaknessDict[type] = 1
+				} else if scalar == 1 {
+					//do nothing
+					teamWeaknessDict[type] = teamWeaknessDict[type]! + Double(scalar)
+				} else {
+					teamWeaknessDict[type] = teamWeaknessDict[type]! + Double(scalar)
+				}
+			}
+		}
+		
+//		for mon in members {
+//			let monWeaknessDict = mon.getPokemonWeaknesses(pokemonName: mon)
+//			for (type, scalar) in monWeaknessDict {
+//				if scalar == 0 {
+//					immunities.append(type)
+//				} else if scalar == 1 {
+//					teamWeaknessDict[type] = teamWeaknessDict[type]! + Double(scalar)
+//				} else if scalar == -2 {
+//					teamWeaknessDict[type] = teamWeaknessDict[type]! - 0.5
+//				} else if scalar == -4 {
+//					teamWeaknessDict[type] = teamWeaknessDict[type]! - 2
+//				}
+//			}
+//		}
+		for (type, scalar) in teamWeaknessDict {
+			if immunities.contains(type) {
+				teamWeaknessDict[type] = 0.00
+			} else if scalar == 0 {
+				teamWeaknessDict[type] = 1.00
+			} else {
+				if self.members.count > 1 {
+					teamWeaknessDict[type] = scalar / Double((self.members.count))
+				} else {
+					teamWeaknessDict[type] = scalar / Double((self.members.count))
+				}
+			}
+//			print(type, scalar)
+		}
+//				print(teamWeaknessDict)
 		return teamWeaknessDict
 	}
 	
 	func determineCumulativeInteractionIconTable() -> [String: NSImage] {
-		var teamWeaknessDict: [String: Int]
+		var teamWeaknessDict: [String: Double]
 		
 		var teamWeaknessDictTransformed: [String: NSImage] = [:]
 		
-		teamWeaknessDict = self.determineTeamWeaknesses()
+		teamWeaknessDict = self.determineCumulativeTeamWeaknessesUsingDoubles()
 		
 		
 		for (type, scalar) in teamWeaknessDict {
 			var typeModImg: NSImage = NSImage(imageLiteralResourceName: "neutral.png")
-			if scalar == 0 {
+//			if scalar == 0.0 {
+//				typeModImg = NSImage(imageLiteralResourceName: "immune.png")
+//			} else if scalar == 1.0 {
+//				typeModImg = NSImage(imageLiteralResourceName: "neutral.png")
+//			} else if scalar == -0.5 {
+//				typeModImg = NSImage(imageLiteralResourceName: "resist2.png")
+//			} else if scalar == -1.0 {
+//				typeModImg = NSImage(imageLiteralResourceName: "resist2.png")
+//			} else if scalar == -2.0 {
+//				typeModImg = NSImage(imageLiteralResourceName: "resist2.png")
+//			} else if scalar == -4.0 {
+//				typeModImg = NSImage(imageLiteralResourceName: "resist4.png")
+//			} else if scalar == 1.5 {
+//				typeModImg = NSImage(imageLiteralResourceName: "weak2.png")
+//			} else if scalar == 2.0 {
+//				typeModImg = NSImage(imageLiteralResourceName: "weak2.png")
+//			} else if scalar == 4.0 {
+//				typeModImg = NSImage(imageLiteralResourceName: "weak4.png")
+//			}
+			//trying different logic
+			if scalar == 0.0 {
 				typeModImg = NSImage(imageLiteralResourceName: "immune.png")
-			} else if scalar == 1 {
+			} else if scalar == 1.0 {
 				typeModImg = NSImage(imageLiteralResourceName: "neutral.png")
-			} else if scalar == -2 {
-				typeModImg = NSImage(imageLiteralResourceName: "resist2.png")
-			} else if scalar == -4 {
-				typeModImg = NSImage(imageLiteralResourceName: "resist4.png")
-			} else if scalar == 2 {
+			} else if scalar > 1.0 && scalar <= 1.5 {
 				typeModImg = NSImage(imageLiteralResourceName: "weak2.png")
-			} else if scalar == 4 {
+			} else if scalar < 0.0 && scalar >= -1.0 {
+				typeModImg = NSImage(imageLiteralResourceName: "resist2.png")
+			} else if scalar > 0.0 && scalar < 0.5 {
+				typeModImg = NSImage(imageLiteralResourceName: "resist2.png")
+			} else if scalar == 0.5 {
+				typeModImg = NSImage(imageLiteralResourceName: "neutral.png")
+			} else if scalar > 1.5 {
 				typeModImg = NSImage(imageLiteralResourceName: "weak4.png")
+			} else if scalar < -1.0 {
+				typeModImg = NSImage(imageLiteralResourceName: "resist4.png")
 			}
+			
 			teamWeaknessDictTransformed[type] = typeModImg
 		}
 
