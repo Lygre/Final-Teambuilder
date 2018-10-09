@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="XfG-lQ-9wD">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Import View Controller-->
+        <!--Import View-->
         <scene sceneID="FR5-nr-ceh">
             <objects>
-                <viewController id="wrK-x3-eN2" customClass="ImportViewController" customModule="Pokemon_Team_Builder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Import View" showSeguePresentationStyle="single" id="wrK-x3-eN2" customClass="ImportViewController" customModule="Pokemon_Team_Builder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="rJV-1O-gfO">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -30,7 +30,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="fWV-ZE-09i" kind="sheet" id="cp4-0k-VZV"/>
+                                    <action selector="importClicked:" target="wrK-x3-eN2" id="kx8-Bg-jux"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -721,7 +721,7 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingMode="disallowed" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -895,12 +895,12 @@
             </objects>
             <point key="canvasLocation" x="-180" y="1203.5"/>
         </scene>
-        <!--Team View Controller-->
+        <!--Team Builder View-->
         <scene sceneID="UNX-MU-Xyb">
             <objects>
-                <arrayController objectClassName="Pokemon_Team_Builder.Pokemon" preservesSelection="NO" selectsInsertedObjects="NO" avoidsEmptySelection="NO" clearsFilterPredicateOnInsertion="NO" id="jhH-mS-kkV">
+                <arrayController objectClassName="Pokemon_Team_Builder.Pokemon" automaticallyPreparesContent="YES" clearsFilterPredicateOnInsertion="NO" id="jhH-mS-kkV">
                     <connections>
-                        <binding destination="fWV-ZE-09i" name="contentArray" keyPath="team" id="Hxv-lu-wyt">
+                        <binding destination="fWV-ZE-09i" name="contentArray" keyPath="self.team" id="Oep-dU-sNJ">
                             <dictionary key="options">
                                 <bool key="NSConditionallySetsEditable" value="NO"/>
                                 <bool key="NSDeletesObjectsOnRemove" value="YES"/>
@@ -936,7 +936,7 @@
                     </connections>
                 </arrayController>
                 <customObject id="m8X-ta-M5n" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController id="fWV-ZE-09i" customClass="TeamViewController" customModule="Pokemon_Team_Builder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Team Builder View" showSeguePresentationStyle="single" id="fWV-ZE-09i" customClass="TeamViewController" customModule="Pokemon_Team_Builder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="xAw-XS-5TC">
                         <rect key="frame" x="0.0" y="0.0" width="1279" height="599"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -956,20 +956,20 @@
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ZXe-Td-tl3">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="addToTeam:" target="fWV-ZE-09i" id="PdM-pT-tHA"/>
                                 </connections>
                             </button>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ud8-IP-uQQ">
-                                <rect key="frame" x="20" y="362" width="160" height="168"/>
+                                <rect key="frame" x="20" y="362" width="496" height="168"/>
                                 <clipView key="contentView" id="qSW-Ru-5Xc">
-                                    <rect key="frame" x="1" y="0.0" width="158" height="167"/>
+                                    <rect key="frame" x="1" y="0.0" width="494" height="167"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="gjM-V6-vCh" viewBased="YES" id="2TU-zY-DPj">
-                                            <rect key="frame" x="0.0" y="0.0" width="158" height="142"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="494" height="142"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1036,7 +1036,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="gjM-V6-vCh">
-                                    <rect key="frame" x="0.0" y="0.0" width="158" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="494" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
@@ -2128,7 +2128,7 @@
                                 </tabViewItems>
                             </tabView>
                             <tabView translatesAutoresizingMaskIntoConstraints="NO" id="6TF-Nt-0Ec">
-                                <rect key="frame" x="239" y="301" width="1027" height="283"/>
+                                <rect key="frame" x="575" y="301" width="691" height="283"/>
                                 <font key="font" metaFont="system"/>
                                 <tabViewItems>
                                     <tabViewItem label="Mon Type Interactions" identifier="" id="inv-SW-zct" userLabel="Mon Type Int">
@@ -2229,7 +2229,7 @@
                                                     <rect key="frame" x="17" y="15" width="973" height="219"/>
                                                     <clipView key="contentView" id="nFM-sZ-c3L">
                                                         <rect key="frame" x="1" y="0.0" width="971" height="218"/>
-                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="21" headerView="UvD-u0-TR4" viewBased="YES" id="6MZ-5m-KDY">
                                                                 <rect key="frame" x="0.0" y="0.0" width="971" height="193"/>
@@ -3218,7 +3218,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="oIT-SC-113">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system" size="11"/>
+                                    <font key="font" metaFont="smallSystem"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="removeFromTeam:" target="fWV-ZE-09i" id="Tlj-yu-4YA"/>
@@ -4037,10 +4037,10 @@
             </objects>
             <point key="canvasLocation" x="1300" y="360"/>
         </scene>
-        <!--Calc View Controller-->
+        <!--Calculator View-->
         <scene sceneID="RXa-pm-jZ8">
             <objects>
-                <viewController showSeguePresentationStyle="single" id="qQf-cJ-uRi" customClass="CalcViewController" customModule="Pokemon_Team_Builder" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Calculator View" showSeguePresentationStyle="single" id="qQf-cJ-uRi" customClass="CalcViewController" customModule="Pokemon_Team_Builder" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="tnP-7D-Hec">
                         <rect key="frame" x="0.0" y="0.0" width="1142" height="490"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -5516,7 +5516,4 @@
     <resources>
         <image name="NSActionTemplate" width="14" height="14"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="fUd-gO-gS5"/>
-    </inferredMetricsTieBreakers>
 </document>

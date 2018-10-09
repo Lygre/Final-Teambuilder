@@ -219,6 +219,8 @@ class TeamViewController: NSViewController, ImportDelegate {
 	
 	@objc dynamic var levelArray = [Int]()
 	
+	@objc dynamic var selectedMonImage = NSImage()
+	
 	@objc dynamic var evHPBind = Int()
 	@objc dynamic var evATKBind = Int()
 	@objc dynamic var evDEFBind = Int()
@@ -264,6 +266,8 @@ class TeamViewController: NSViewController, ImportDelegate {
 		} while levelArray.count < 100
 		
 		updateSliders()
+		updateTeam()
+		
 //		tableView.canDragRows(with: tableView.selectedRowIndexes, at: NSPoint.init())
 	}
 	
@@ -458,7 +462,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 		monToAdd.actualStats = Pokemon.calcStats(pokemon: monToAdd)
 		monToAdd.virtualStats = Pokemon.calcVirtualStats(pokemon: monToAdd)
 		
-		team.append(monToAdd)
+		self.team.append(monToAdd)
 		if team2test.members.isEmpty {
 			team2test = Team(members: team)
 		} else {
@@ -470,6 +474,9 @@ class TeamViewController: NSViewController, ImportDelegate {
 		for mon in team2test.members {
 			teamWeaknessTableBind[mon.species] = determineMonInteractionIconTable(pokemon: mon)
 		}
+		print(self.team)
+		print(self.team2test.members)
+		print(teamMaster)
 		teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
 		
 		team2test.additionalAttributes = team2test.determineAttributes()
@@ -480,7 +487,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 		
 		teamMaster = team2test
 		suggestedMonTableBind = findSuggestedMons(team: teamMaster)
-		print(suggestedMonTableBind)
+//		print(suggestedMonTableBind)
 		updateTeam()
 
 	}
@@ -1042,7 +1049,7 @@ class CalcViewController: NSViewController {
 			// Update view if already loaded
 		}
 	}
-	
+
 	func updateSliders() {
 		hpSlider.minValue = 0.0
 		hpSlider.maxValue = 252.0
@@ -1350,19 +1357,31 @@ class ImportViewController: NSViewController {
 		}
 	}
 	
-	override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-		if segue.destinationController is TeamViewController {
-			let vc = segue.destinationController as? TeamViewController
-			let monToImport: Pokemon = importMonFromShowdown(showdownExportText: importTextField.stringValue)
-			vc?.team = teamMaster.members
-			vc?.team2test = teamMaster
-			vc?.addToTeam2(pokemon: monToImport)
-			
-		}
+	@IBAction func importClicked(_ sender: Any) {
+		let vc = self.presentingViewController as! TeamViewController
+		let monToImport: Pokemon = importMonFromShowdown(showdownExportText: importTextField.stringValue)
+//		vc.team.append(monToImport)
+//		vc.teamController.add(monToImport)
+//		vc.team2test = teamMaster
+		vc.addToTeam2(pokemon: monToImport)
+
+		dismiss(self)
+	}
+	
+//	override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+//		if segue.destinationController is TeamViewController {
+//			let vc = segue.destinationController as? TeamViewController
+//			let monToImport: Pokemon = importMonFromShowdown(showdownExportText: importTextField.stringValue)
+//			vc?.team = teamMaster.members
+//			vc?.team2test = teamMaster
+//			vc?.addToTeam2(pokemon: monToImport)
+//			dismiss(self)
+//
+//
+//		}
 	}
 	
 
-	
 	
 	//	@IBAction func importTapped(_ sender: Any) {
 	//
@@ -1372,7 +1391,7 @@ class ImportViewController: NSViewController {
 	//	}
 	
 	
-}
+
 
 
 

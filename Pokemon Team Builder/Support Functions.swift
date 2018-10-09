@@ -246,6 +246,6 @@ func importMonFromShowdown(showdownExportText: String) -> Pokemon {
 	
 	constructedImportMon = Pokemon.init(species: name, level: 100, nature: nature, ability: ability, iVs: iVs, eVs: eVs, move1: move1, move2: move2, move3: move3, move4: move4, item: itemForConstruct)
 	
-	print(constructedImportMon)
+//	print(constructedImportMon)
 	return constructedImportMon
 }

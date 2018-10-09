@@ -76,7 +76,7 @@ class Team: NSObject {
 				teamWeaknessDict[type] = 1
 			} else {
 				if self.members.count > 1 {
-					teamWeaknessDict[type] = scalar / (self.members.count - 1)
+					teamWeaknessDict[type] = scalar / (self.members.count)
 				} else {
 					teamWeaknessDict[type] = scalar / (self.members.count)
 				}
