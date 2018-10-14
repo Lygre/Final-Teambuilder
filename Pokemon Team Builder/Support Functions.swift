@@ -224,12 +224,21 @@ func importMonFromShowdown(showdownExportText: String) -> Pokemon {
 			nature = String(natureLabel)
 		}
 		if line.contains("IVs: ") {
-			//need to fix IVs as did for EVs
 			let ivString = line[line.index(line.firstIndex(of: " ")!, offsetBy: 1)..<line.endIndex]
 			let ivStringArray = ivString.components(separatedBy: " / ")
 			for string in ivStringArray {
-				let ivLabel = String(string[string.index(string.endIndex, offsetBy: -3)..<string.endIndex].lowercased())
-				let ivValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])
+				var ivLabel = String(string[string.index(string.endIndex, offsetBy: -3)..<string.endIndex].lowercased())
+				var ivValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])
+				if string.contains("HP") {
+					ivLabel = String(string[string.index(string.endIndex, offsetBy: -2)..<string.endIndex].lowercased())
+					ivValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
+				} else if (ivStringArray.endIndex - 1) == ivStringArray.lastIndex(of: string)  {
+					ivLabel = String(string[string.index(string.endIndex, offsetBy: -5)..<string.index(string.endIndex, offsetBy: -2)].lowercased())
+					ivValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
+				} else {
+					ivLabel = String(string[string.index(string.endIndex, offsetBy: -3)..<string.endIndex].lowercased())
+					ivValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
+				}
 				iVs[ivLabel] = ivValue
 			}
 		}

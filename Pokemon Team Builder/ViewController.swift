@@ -343,14 +343,10 @@ class TeamViewController: NSViewController, ImportDelegate {
 			teamWeaknessTableBind[mon.species] = determineMonInteractionIconTable(pokemon: mon)
 		}
 		teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
-		
-		team2test.additionalAttributes = team2test.determineAttributes()
-		team2test.teamCoverage = team2test.determineTeamCoverage()
-		
+
 		teamCoverageTableBind = team2test.teamCoverage
 		teamAttributeTableBind = team2test.additionalAttributes
 		
-		teamMaster = team2test
 		suggestedMonTableBind = findSuggestedMons(team: teamMaster)
 		
 	}
@@ -360,6 +356,18 @@ class TeamViewController: NSViewController, ImportDelegate {
 		
 		if index > -1 {
 			let mon: Pokemon = team[index]
+			//get sprite
+			let imgFile = dexNumToSprite(mon)
+			arrayImage.image = NSImage(imageLiteralResourceName: imgFile!)
+			
+			//get base stat values for selected mon
+			baseHP.stringValue = "\(mon.baseStats["hp"] ?? 0)"
+			baseATK.stringValue = "\(mon.baseStats["atk"] ?? 0)"
+			baseDEF.stringValue = "\(mon.baseStats["def"] ?? 0)"
+			baseSPA.stringValue = "\(mon.baseStats["spa"] ?? 0)"
+			baseSPD.stringValue = "\(mon.baseStats["spd"] ?? 0)"
+			baseSPE.stringValue = "\(mon.baseStats["spe"] ?? 0)"
+			
 			//get actual stat values for selected mon
 			mon.actualStats = Pokemon.calcStats(pokemon: mon)
 			actualHP.stringValue = "\(mon.actualStats["hp"] ?? 0)"
@@ -411,7 +419,57 @@ class TeamViewController: NSViewController, ImportDelegate {
 			spdLevel.maxValue = Double.init(maxStatsForLevel["spd"]!)
 			speLevel.maxValue = Double.init(maxStatsForLevel["spe"]!)
 			
+			// populate mon type interaction table for selected mon
+			let monWeaknessesDict: [String: Int] = mon.getPokemonWeaknesses(pokemonName: mon)
+			monImmunities.stringValue = ""
+			monResistances.stringValue = ""
+			monResistances.textColor = NSColor.systemGreen
+			monWeaknesses.stringValue = ""
+			monWeaknesses.textColor = NSColor.systemRed
+			for (type, scalar) in monWeaknessesDict {
+				if scalar > 1 {
+					monWeaknesses.stringValue += "\(type)\n"
+				} else if scalar < 0 {
+					monResistances.stringValue += "\(type)\n"
+				} else if scalar == 0 {
+					monImmunities.stringValue += "\(type)\n"
+				}
+			}
+			// populate learnset table for selected mon
+			let learnset = mon.getPokemonLearnset(pokemon: mon)
+			learnsetMoves = [Move]()
+			for move in learnset {
+				let moveToAdd = MoveDex.searchMovedex(searchParam: move)
+				learnsetMoves.append(moveToAdd)
+			}
+			//show any current moves set and update them in view
+			if mon.move1.name != "Struggle" {
+				move1Select.selectItem(withTitle: mon.move1.name)
+			}
+			if mon.move2.name != "Struggle" {
+				move2Select.selectItem(withTitle: mon.move2.name)
+			}
+			if mon.move3.name != "Struggle" {
+				move3Select.selectItem(withTitle: mon.move3.name)
+			}
+			if mon.move4.name != "Struggle" {
+				move4Select.selectItem(withTitle: mon.move4.name)
+			}
+			//add mon's current item to itemList
+			itemList.append(mon.item)
+			
+			//update EVs for evTableBind
+			evHPBind = evs["hp"]!
+			evATKBind = evs["atk"]!
+			evDEFBind = evs["def"]!
+			evSPABind = evs["spa"]!
+			evSPDBind = evs["spd"]!
+			evSPEBind = evs["spe"]!
+			
+			determineMaxValueForEVSliders()
+			
 			teamWeaknessTableBind[mon.species] = determineMonInteractionIconTable(pokemon: mon)
+			team2test.teamWeaknesses = team2test.determineTeamWeaknesses()
 			teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
 			teamCoverageTableBind = team2test.determineTeamCoverage()
 			teamAttributeTableBind = team2test.determineAttributes()
@@ -474,9 +532,6 @@ class TeamViewController: NSViewController, ImportDelegate {
 		for mon in team2test.members {
 			teamWeaknessTableBind[mon.species] = determineMonInteractionIconTable(pokemon: mon)
 		}
-		print(self.team)
-		print(self.team2test.members)
-		print(teamMaster)
 		teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
 		
 		team2test.additionalAttributes = team2test.determineAttributes()
@@ -540,24 +595,6 @@ class TeamViewController: NSViewController, ImportDelegate {
 			baseSPD.stringValue = "\(mon.baseStats["spd"] ?? 0)"
 			baseSPE.stringValue = "\(mon.baseStats["spe"] ?? 0)"
 			
-			let evs = mon.eVs
-			print(evs)
-			hpEVLabel.stringValue = "\(evs["hp"] ?? 0)"
-			atkEVLabel.stringValue = "\(evs["atk"] ?? 0)"
-			defEVLabel.stringValue = "\(evs["def"] ?? 0)"
-			spaEVLabel.stringValue = "\(evs["spa"] ?? 0)"
-			spdEVLabel.stringValue = "\(evs["spd"] ?? 1)"
-			speEVLabel.stringValue = "\(evs["spe"] ?? 0)"
-			
-			
-			let ivs = mon.iVs
-			hpIVs.integerValue = ivs["hp"] ?? 0
-			atkIVs.integerValue = ivs["atk"] ?? 0
-			defIVs.integerValue = ivs["def"] ?? 0
-			spaIVs.integerValue = ivs["spa"] ?? 0
-			spdIVs.integerValue = ivs["spd"] ?? 0
-			speIVs.integerValue = ivs["spe"] ?? 0
-			
 			//get actual stat values for selected mon
 			mon.actualStats = Pokemon.calcStats(pokemon: mon)
 			actualHP.stringValue = "\(mon.actualStats["hp"] ?? 0)"
@@ -567,7 +604,23 @@ class TeamViewController: NSViewController, ImportDelegate {
 			actualSPD.stringValue = "\(mon.actualStats["spd"] ?? 0)"
 			actualSPE.stringValue = "\(mon.actualStats["spe"] ?? 0)"
 			
+			let evs = mon.eVs
+			print(evs)
+			hpEVLabel.stringValue = "\(evs["hp"] ?? 0)"
+			atkEVLabel.stringValue = "\(evs["atk"] ?? 0)"
+			defEVLabel.stringValue = "\(evs["def"] ?? 0)"
+			spaEVLabel.stringValue = "\(evs["spa"] ?? 0)"
+			spdEVLabel.stringValue = "\(evs["spd"] ?? 1)"
+			speEVLabel.stringValue = "\(evs["spe"] ?? 0)"
 			
+			let ivs = mon.iVs
+			hpIVs.integerValue = ivs["hp"] ?? 0
+			atkIVs.integerValue = ivs["atk"] ?? 0
+			defIVs.integerValue = ivs["def"] ?? 0
+			spaIVs.integerValue = ivs["spa"] ?? 0
+			spdIVs.integerValue = ivs["spd"] ?? 0
+			speIVs.integerValue = ivs["spe"] ?? 0
+
 			// get virtual stat values for selected mon
 			mon.virtualStats = Pokemon.calcVirtualStats(pokemon: mon)
 			virtualHP.stringValue = "\(mon.virtualStats["hp"] ?? 0)"
