@@ -259,6 +259,10 @@ class Pokemon: NSObject {
 				virtuallyAlteredStats.append(stat) //this does nothing right now
 			}
 		}
+		// begin the exception line here
+		if pokemon.ability == "Huge Power" || pokemon.ability == "Pure Power" {
+			pokemon.statBoosts["atk"] = pokemon.statBoosts["atk"]! * 2.0
+		}
 		let boostSum: Double = pokemon.statBoosts["atk"]! + pokemon.statBoosts["def"]! + pokemon.statBoosts["spa"]! + pokemon.statBoosts["spd"]! + pokemon.statBoosts["spe"]!
 		if boostSum != 5.0 {
 			for (stat, boostMult) in pokemon.statBoosts {

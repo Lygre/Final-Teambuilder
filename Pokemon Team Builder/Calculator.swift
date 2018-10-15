@@ -123,36 +123,27 @@ func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Fi
 	modifier = terrain * weather * crit * random * stab * typeMod * other
 	
 	let modD = D * modifier
+	
 	finalD = Int.init(modD)
+	
 	percentHP = modD / Double(defender.virtualStats["hp"]!)
 	
 	dmgResult = (finalD, percentHP)
 
-//	for (move, dmg) in dmgResult {
-//		print(move.name, dmg.0, dmg.1)
-//	}
-	
 	return dmgResult
 }
 
-//func getFinalDamage(level: Int, modifier: Double, power: Int, d:, e: ) -> Int {
-//	var finalD = Int()
-//	var D = (((((2*level/5)+2) * power * (attack / defense)) / 50)+2)
-//	var modD = Double.init(D) * modifier
-//	finalD = Int.init(modD)
-//
-//
-//
-//	return finalD
-//}
+
 
 
 //----------------------------- Class-based resist search functions
 func resistSearch(types: [String]) -> [Pokemon] {
+	
 	var matchMons: [Pokemon] = [Pokemon]()
 	
 	for mon in Dex.dexArray {
 		let monWeaknessDict = mon.getPokemonWeaknesses(pokemonName: mon)
+		
 		var candidate: Bool = true
 		
 		for type in types {
@@ -160,6 +151,7 @@ func resistSearch(types: [String]) -> [Pokemon] {
 				candidate = false
 			}
 		}
+		
 		if candidate == true {
 			matchMons.append(mon)
 		}
@@ -169,12 +161,11 @@ func resistSearch(types: [String]) -> [Pokemon] {
 }
 
 func findSuggestedMons(team: Team) -> [Pokemon] {
-	var suggestedMons: [Pokemon] = [Pokemon]()
-//	let currentMons: [Pokemon] = team.members
+	
 	let teamWeaknesses = team.determineCumulativeTeamWeaknessesUsingDoubles()
-	print(teamWeaknesses)
+	
+	var suggestedMons: [Pokemon] = [Pokemon]()
 	var resistSearchTypes: [String] = [String]()
-//	let suggestedMonStringArray: [String] = Dex.findResistances(resistTypes: resistSearchTypes)
 	
 	for (type, vector) in teamWeaknesses {
 		if vector > 0.7 && vector != 1.0 {

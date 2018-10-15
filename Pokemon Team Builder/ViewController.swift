@@ -83,42 +83,23 @@ class TeamBuilderController: NSViewController {
 		}
 		
 		let dexSearchResults = Dex.searchDex(searchParam: searchTextField.stringValue)
-//		let finalResults = convertPokemonToDict(dexSearchResults).map { return $0["species"] }
 		let finalResults = convertPokemonToDict(dexSearchResults)
-//			.map { return ($0["species"], $0["num"]) }
-//			.map { return Result(dictionary: $0) }
-		
-//		self.searchResultsController.content = convertPokemonToString(Dex.searchDex(searchParam: searchTextField.stringValue))
-		self.searchResultsController.content = finalResults
-		
-		print(self.searchResultsController.content!)
-	}
-	
-	// Button to add members to Team
 
-	
+		self.searchResultsController.content = finalResults
+	}
+
 }
 
-//
-//extension TeamBuilderController {
-//	func control(_ control: NSControl, textView: NSTextView, doCommandBy commandSelector: Selector) -> Bool {
-//		if commandSelector == #selector(insertNewline(_:)) {
-//			searchClicked(searchTextField)
-//		}
-//		return false
-//	}
-//}
-
+// Global team variable.. don't ask why; please.
 var teamMaster = Team()
 
 class TeamViewController: NSViewController, ImportDelegate {
-	
-	static let notificationName = Notification.Name("importingPokemon")
+	//pretty sure this isn't needed; commenting for now
+//	static let notificationName = Notification.Name("importingPokemon")
 	
 	@IBOutlet var teamController: NSArrayController!
 	@IBOutlet var suggestedMonController: NSArrayController!
 	
-	//@IBOutlet var teamMembersController: NSArrayController!
 	@IBOutlet weak var searchForTeam: NSTextField!
 	@IBOutlet weak var arrayImage: NSImageView!
 	@IBOutlet weak var tableView: NSTableView!
@@ -136,7 +117,6 @@ class TeamViewController: NSViewController, ImportDelegate {
 	@IBOutlet weak var spaEVLabel: NSTextField!
 	@IBOutlet weak var spdEVLabel: NSTextField!
 	@IBOutlet weak var speEVLabel: NSTextField!
-	
 	
 	@IBOutlet weak var hpLevel: NSLevelIndicator!
 	@IBOutlet weak var atkLevel: NSLevelIndicator!
@@ -159,13 +139,11 @@ class TeamViewController: NSViewController, ImportDelegate {
 	@IBOutlet weak var spdSliderCell: NSSliderCell!
 	@IBOutlet weak var speSliderCell: NSSliderCell!
 	
-
 	@IBOutlet weak var monWeaknesses: NSTextField!
 	@IBOutlet weak var monResistances: NSTextField!
 	@IBOutlet weak var monImmunities: NSTextField!
 	
 	@IBOutlet weak var itemSelectButton: NSPopUpButton!
-	
 	@IBOutlet weak var move1Select: NSPopUpButton!
 	@IBOutlet weak var move2Select: NSPopUpButton!
 	@IBOutlet weak var move3Select: NSPopUpButton!
@@ -177,9 +155,6 @@ class TeamViewController: NSViewController, ImportDelegate {
 	@IBOutlet weak var actualSPA: NSTextField!
 	@IBOutlet weak var actualSPD: NSTextField!
 	@IBOutlet weak var actualSPE: NSTextField!
-	
-	//virutal stat outlets
-	
 	
 	@IBOutlet weak var virtualHP: NSTextField!
 	@IBOutlet weak var virtualATK: NSTextField!
@@ -234,7 +209,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 	@objc dynamic var evSPAMaxValueBind = Double()
 	@objc dynamic var evSPDMaxValueBind = Double()
 	@objc dynamic var evSPEMaxValueBind = Double()
-	
+	// i want to move these with the other IBOutlets vvvvv
 	@IBOutlet weak var hpIVs: NSTextField!
 	@IBOutlet weak var atkIVs: NSTextField!
 	@IBOutlet weak var defIVs: NSTextField!
@@ -247,8 +222,6 @@ class TeamViewController: NSViewController, ImportDelegate {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-//		NotificationCenter.default.addObserver(self, selector: #selector(onNotification(notification:)), name: TeamViewController.notificationName, object: nil)
-//
 		// Do any additional setup after loading the view.
 		Dex.initializeDex()
 		Dex.defineTypeMatchups()
@@ -267,66 +240,54 @@ class TeamViewController: NSViewController, ImportDelegate {
 		
 		updateSliders()
 		updateTeam()
-		
-//		tableView.canDragRows(with: tableView.selectedRowIndexes, at: NSPoint.init())
+
 	}
 	
 	override var representedObject: Any? {
 		didSet {
 			// Update the view, if already loaded.
-//			updateViewConstraints()
 			
 		}
 	}
 	
 	func updateSliders() {
 		hpSlider.minValue = 0.0
-		hpSlider.maxValue = 252.0
-		hpSlider.numberOfTickMarks = 63
-		hpSlider.allowsTickMarkValuesOnly = false
+//		hpSlider.maxValue = 252.0
+		hpSlider.allowsTickMarkValuesOnly = true
 		hpSlider.trackFillColor = NSColor.systemBlue
-//		defendingMon.eVs["hp"] = hpSlider.integerValue
 		
 		atkSlider.minValue = 0.0
-		atkSlider.maxValue = 252.0
-		atkSlider.numberOfTickMarks = 63
-		atkSlider.allowsTickMarkValuesOnly = false
+//		atkSlider.maxValue = 252.0
+		atkSlider.allowsTickMarkValuesOnly = true
 		atkSlider.trackFillColor = NSColor.systemBlue
-//		defendingMon.eVs["atk"] = atkSlider.integerValue
-		
+
 		defSlider.minValue = 0.0
-		defSlider.maxValue = 252.0
-		defSlider.numberOfTickMarks = 63
-		defSlider.allowsTickMarkValuesOnly = false
+//		defSlider.maxValue = 252.0
+		defSlider.allowsTickMarkValuesOnly = true
 		defSlider.trackFillColor = NSColor.systemBlue
-//		defendingMon.eVs["def"] = defSlider.integerValue
-		
+
 		spaSlider.minValue = 0.0
-		spaSlider.maxValue = 252.0
-		spaSlider.numberOfTickMarks = 63
-		spaSlider.allowsTickMarkValuesOnly = false
+//		spaSlider.maxValue = 252.0
+		spaSlider.allowsTickMarkValuesOnly = true
 		spaSlider.trackFillColor = NSColor.systemBlue
-//		defendingMon.eVs["spa"] = spaSlider.integerValue
-		
+
 		spdSlider.minValue = 0.0
-		spdSlider.maxValue = 252.0
-		spdSlider.numberOfTickMarks = 63
-		spdSlider.allowsTickMarkValuesOnly = false
+//		spdSlider.maxValue = 252.0
+		spdSlider.allowsTickMarkValuesOnly = true
 		spdSlider.trackFillColor = NSColor.systemBlue
-//		defendingMon.eVs["spd"] = spdSlider.integerValue
-		
+
 		speSlider.minValue = 0.0
-		speSlider.maxValue = 252.0
-		speSlider.numberOfTickMarks = 63
-		speSlider.allowsTickMarkValuesOnly = false
+//		speSlider.maxValue = 252.0
+		speSlider.allowsTickMarkValuesOnly = true
 		speSlider.trackFillColor = NSColor.systemBlue
-//		defendingMon.eVs["spe"] = speSlider.integerValue
 		
+		determineNumberOfTickMarks()
 		//update pokemon
 		
 	}
 	
 	func updateTeam() {
+		//yes this is a very redundant ugly method. will fix
 		teamMaster = Team(members: team)
 		teamMaster.teamWeaknesses = teamMaster.determineTeamWeaknesses()
 		teamMaster.teamCoverage = teamMaster.determineTeamCoverage()
@@ -410,6 +371,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 			spaLevel.integerValue = mon.virtualStats["spa"]!
 			spdLevel.integerValue = mon.virtualStats["spd"]!
 			speLevel.integerValue = mon.virtualStats["spe"]!
+			
 			//alter level objects max value
 			var maxStatsForLevel = Pokemon.calcMaxStats()
 			hpLevel.maxValue = Double.init(maxStatsForLevel["hp"]!)
@@ -437,7 +399,9 @@ class TeamViewController: NSViewController, ImportDelegate {
 			}
 			// populate learnset table for selected mon
 			let learnset = mon.getPokemonLearnset(pokemon: mon)
+			
 			learnsetMoves = [Move]()
+			
 			for move in learnset {
 				let moveToAdd = MoveDex.searchMovedex(searchParam: move)
 				learnsetMoves.append(moveToAdd)
@@ -578,136 +542,33 @@ class TeamViewController: NSViewController, ImportDelegate {
 
 	
 	@IBAction func tableViewAction(_ sender: Any) {
-		let index: Int = tableView.selectedRow
-		
-		if index > -1 {
-			let mon: Pokemon = team[index]
-			
-			// get sprite for selected mon
-			let imgFile = dexNumToSprite(mon)
-			arrayImage.image = NSImage(imageLiteralResourceName: imgFile!)
-			
-			//get base stat values for selected mon
-			baseHP.stringValue = "\(mon.baseStats["hp"] ?? 0)"
-			baseATK.stringValue = "\(mon.baseStats["atk"] ?? 0)"
-			baseDEF.stringValue = "\(mon.baseStats["def"] ?? 0)"
-			baseSPA.stringValue = "\(mon.baseStats["spa"] ?? 0)"
-			baseSPD.stringValue = "\(mon.baseStats["spd"] ?? 0)"
-			baseSPE.stringValue = "\(mon.baseStats["spe"] ?? 0)"
-			
-			//get actual stat values for selected mon
-			mon.actualStats = Pokemon.calcStats(pokemon: mon)
-			actualHP.stringValue = "\(mon.actualStats["hp"] ?? 0)"
-			actualATK.stringValue = "\(mon.actualStats["atk"] ?? 0)"
-			actualDEF.stringValue = "\(mon.actualStats["def"] ?? 0)"
-			actualSPA.stringValue = "\(mon.actualStats["spa"] ?? 0)"
-			actualSPD.stringValue = "\(mon.actualStats["spd"] ?? 0)"
-			actualSPE.stringValue = "\(mon.actualStats["spe"] ?? 0)"
-			
-			let evs = mon.eVs
-			print(evs)
-			hpEVLabel.stringValue = "\(evs["hp"] ?? 0)"
-			atkEVLabel.stringValue = "\(evs["atk"] ?? 0)"
-			defEVLabel.stringValue = "\(evs["def"] ?? 0)"
-			spaEVLabel.stringValue = "\(evs["spa"] ?? 0)"
-			spdEVLabel.stringValue = "\(evs["spd"] ?? 1)"
-			speEVLabel.stringValue = "\(evs["spe"] ?? 0)"
-			
-			let ivs = mon.iVs
-			hpIVs.integerValue = ivs["hp"] ?? 0
-			atkIVs.integerValue = ivs["atk"] ?? 0
-			defIVs.integerValue = ivs["def"] ?? 0
-			spaIVs.integerValue = ivs["spa"] ?? 0
-			spdIVs.integerValue = ivs["spd"] ?? 0
-			speIVs.integerValue = ivs["spe"] ?? 0
-
-			// get virtual stat values for selected mon
-			mon.virtualStats = Pokemon.calcVirtualStats(pokemon: mon)
-			virtualHP.stringValue = "\(mon.virtualStats["hp"] ?? 0)"
-			virtualATK.stringValue = "\(mon.virtualStats["atk"] ?? 0)"
-			virtualDEF.stringValue = "\(mon.virtualStats["def"] ?? 0)"
-			virtualSPA.stringValue = "\(mon.virtualStats["spa"] ?? 0)"
-			virtualSPD.stringValue = "\(mon.virtualStats["spd"] ?? 0)"
-			virtualSPE.stringValue = "\(mon.virtualStats["spe"] ?? 0)"
-			
-			// create bar graph level bars for corresponding baseStats
-			
-			hpLevel.integerValue = mon.virtualStats["hp"]!
-			atkLevel.integerValue = mon.virtualStats["atk"]!
-			defLevel.integerValue = mon.virtualStats["def"]!
-			spaLevel.integerValue = mon.virtualStats["spa"]!
-			spdLevel.integerValue = mon.virtualStats["spd"]!
-			speLevel.integerValue = mon.virtualStats["spe"]!
-			//alter level objects max value
-			var maxStatsForLevel = Pokemon.calcMaxStats()
-			hpLevel.maxValue = Double.init(maxStatsForLevel["hp"]!)
-			atkLevel.maxValue = Double.init(maxStatsForLevel["atk"]!)
-			defLevel.maxValue = Double.init(maxStatsForLevel["def"]!)
-			spaLevel.maxValue = Double.init(maxStatsForLevel["spa"]!)
-			spdLevel.maxValue = Double.init(maxStatsForLevel["spd"]!)
-			speLevel.maxValue = Double.init(maxStatsForLevel["spe"]!)
-			
-			// populate mon type interaction table for selected mon
-			let monWeaknessesDict: [String: Int] = mon.getPokemonWeaknesses(pokemonName: mon)
-			monImmunities.stringValue = ""
-			monResistances.stringValue = ""
-			monResistances.textColor = NSColor.systemGreen
-			monWeaknesses.stringValue = ""
-			monWeaknesses.textColor = NSColor.systemRed
-			for (type, scalar) in monWeaknessesDict {
-				if scalar > 1 {
-					monWeaknesses.stringValue += "\(type)\n"
-				} else if scalar < 0 {
-					monResistances.stringValue += "\(type)\n"
-				} else if scalar == 0 {
-					monImmunities.stringValue += "\(type)\n"
-				}
-			}
-			// populate learnset table for selected mon
-			let learnset = mon.getPokemonLearnset(pokemon: mon)
-			learnsetMoves = [Move]()
-			for move in learnset {
-				let moveToAdd = MoveDex.searchMovedex(searchParam: move)
-				learnsetMoves.append(moveToAdd)
-			}
-			//show any current moves set and update them in view
-			if mon.move1.name != "Struggle" {
-				move1Select.selectItem(withTitle: mon.move1.name)
-			}
-			if mon.move2.name != "Struggle" {
-				move2Select.selectItem(withTitle: mon.move2.name)
-			}
-			if mon.move3.name != "Struggle" {
-				move3Select.selectItem(withTitle: mon.move3.name)
-			}
-			if mon.move4.name != "Struggle" {
-				move4Select.selectItem(withTitle: mon.move4.name)
-			}
-			//add mon's current item to itemList
-			itemList.append(mon.item)
-			
-			//update EVs for evTableBind
-			evHPBind = evs["hp"]!
-			evATKBind = evs["atk"]!
-			evDEFBind = evs["def"]!
-			evSPABind = evs["spa"]!
-			evSPDBind = evs["spd"]!
-			evSPEBind = evs["spe"]!
-			
-			determineMaxValueForEVSliders()
-			
-			teamWeaknessTableBind[mon.species] = determineMonInteractionIconTable(pokemon: mon)
-			team2test.teamWeaknesses = team2test.determineTeamWeaknesses()
-			teamWeaknessTableBind["~~~"] = team2test.determineCumulativeInteractionIconTable()
-			teamCoverageTableBind = team2test.determineTeamCoverage()
-			teamAttributeTableBind = team2test.determineAttributes()
-		}
+		updatePokemon()
+ 
 	}
 	
 	func getEVAllowedChange() -> Bool {
 		let evSliderSum: Int = hpSlider.integerValue + atkSlider.integerValue + defSlider.integerValue + spaSlider.integerValue + spdSlider.integerValue + speSlider.integerValue
 		if evSliderSum < 511 { return true }
 		else { return false }
+	}
+	
+	func determineNumberOfTickMarks() {
+		var tickMarkDict: [NSSlider: Int] = [:]
+		
+		tickMarkDict[hpSlider] = hpSlider.numberOfTickMarks
+		tickMarkDict[atkSlider] = atkSlider.numberOfTickMarks
+		tickMarkDict[defSlider] = defSlider.numberOfTickMarks
+		tickMarkDict[spaSlider] = spaSlider.numberOfTickMarks
+		tickMarkDict[spdSlider] = spdSlider.numberOfTickMarks
+		tickMarkDict[speSlider] = speSlider.numberOfTickMarks
+		
+		for (slider, _) in tickMarkDict {
+			let maxSliderValue: Double = determineMaxSliderValue(currentValue: slider.integerValue)
+			let newTickCount: Int = Int.init((maxSliderValue/4.0)+1.0)
+			tickMarkDict[slider] = newTickCount
+			slider.numberOfTickMarks = newTickCount
+		}
+		
 	}
 	
 	func determineMaxSliderValue(currentValue: Int) -> Double {
@@ -721,6 +582,12 @@ class TeamViewController: NSViewController, ImportDelegate {
 			allowedMaxValue = allowedMaxValue + currentValue
 		} else {
 			allowedMaxValue = 252
+		}
+		
+		let allowedEVMax: Double = Double.init(allowedMaxValue)
+		let remainder = allowedEVMax.remainder(dividingBy: 4.0)
+		if (remainder != 0) {
+			allowedMaxValue = Int.init(allowedEVMax - remainder)
 		}
 //		print(allowedMaxValue)
 		let returnDouble = Double.init(allowedMaxValue)
@@ -738,44 +605,36 @@ class TeamViewController: NSViewController, ImportDelegate {
 	
 	@IBAction func hpSliderAction(_ sender: Any) {
 		hpSlider.minValue = 0.0
-//		hpSlider.maxValue = 252.0
 		determineMaxValueForEVSliders()
-		hpSlider.numberOfTickMarks = 63
-		hpSlider.allowsTickMarkValuesOnly = false
+		determineNumberOfTickMarks()
+		hpSlider.allowsTickMarkValuesOnly = true
 		hpSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
 			let index = tableView.selectedRow
 			if index > -1 {
 				let mon: Pokemon = team[index]
-				mon.eVs["hp"] = hpSlider.integerValue
-//				print(mon.eVs["hp"]!)
-				
-				//update pokemon
+
+				mon.eVs["hp"] = Int.init(hpSlider.closestTickMarkValue(toValue: hpSlider.doubleValue))
+//				print(hpSlider.closestTickMarkValue(toValue: hpSlider.doubleValue))
 				updatePokemon()
 			}
-		} else {
-			return
-//			let defaultPositon = hpSliderCell.rectOfTickMark(at: 4)
-//			hpSliderCell.drawKnob(defaultPositon)
-		}
+		} else { return }
 	}
 
 	@IBAction func atkSliderAction(_ sender: Any) {
 		atkSlider.minValue = 0.0
-//		atkSlider.maxValue = 252.0
 		determineMaxValueForEVSliders()
-		atkSlider.numberOfTickMarks = 63
-		atkSlider.allowsTickMarkValuesOnly = false
+		determineNumberOfTickMarks()
+		atkSlider.allowsTickMarkValuesOnly = true
 		atkSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
 			let index = tableView.selectedRow
 			if index > -1 {
 				let mon: Pokemon = team[index]
-				mon.eVs["atk"] = atkSlider.integerValue
-//				print(mon.eVs["atk"]!)
-				//update pokemon
+				mon.eVs["atk"] = Int.init(atkSlider.closestTickMarkValue(toValue: atkSlider.doubleValue))
+//				print(atkSlider.closestTickMarkValue(toValue: atkSlider.doubleValue))
 				updatePokemon()
 			}
 		} else { return }
@@ -783,19 +642,16 @@ class TeamViewController: NSViewController, ImportDelegate {
 	
 	@IBAction func defSliderAction(_ sender: Any) {
 		defSlider.minValue = 0.0
-//		defSlider.maxValue = 252.0
 		determineMaxValueForEVSliders()
-		defSlider.numberOfTickMarks = 63
-		defSlider.allowsTickMarkValuesOnly = false
+		determineNumberOfTickMarks()
+		defSlider.allowsTickMarkValuesOnly = true
 		defSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
 			let index = tableView.selectedRow
 			if index > -1 {
 				let mon: Pokemon = team[index]
-				mon.eVs["def"] = defSlider.integerValue
-//				print(mon.eVs["def"]!)
-				//update pokemon
+				mon.eVs["def"] = Int.init(defSlider.closestTickMarkValue(toValue: defSlider.doubleValue))
 				updatePokemon()
 			}
 		} else { return }
@@ -803,19 +659,16 @@ class TeamViewController: NSViewController, ImportDelegate {
 	
 	@IBAction func spaSliderAction(_ sender: Any) {
 		spaSlider.minValue = 0.0
-//		spaSlider.maxValue = 252.0
 		determineMaxValueForEVSliders()
-		spaSlider.numberOfTickMarks = 63
-		spaSlider.allowsTickMarkValuesOnly = false
+		determineNumberOfTickMarks()
+		spaSlider.allowsTickMarkValuesOnly = true
 		spaSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
 			let index = tableView.selectedRow
 			if index > -1 {
 				let mon: Pokemon = team[index]
-				mon.eVs["spa"] = spaSlider.integerValue
-//				print(mon.eVs["spa"]!)
-				//update pokemon
+				mon.eVs["spa"] = Int.init(spaSlider.closestTickMarkValue(toValue: spaSlider.doubleValue))
 				updatePokemon()
 			}
 		} else { return }
@@ -823,19 +676,16 @@ class TeamViewController: NSViewController, ImportDelegate {
 
 	@IBAction func spdSliderAction(_ sender: Any) {
 		spdSlider.minValue = 0.0
-//		spdSlider.maxValue = 252.0
 		determineMaxValueForEVSliders()
-		spdSlider.numberOfTickMarks = 63
-		spdSlider.allowsTickMarkValuesOnly = false
+		determineNumberOfTickMarks()
+		spdSlider.allowsTickMarkValuesOnly = true
 		spdSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
 			let index = tableView.selectedRow
 			if index > -1 {
 				let mon: Pokemon = team[index]
-				mon.eVs["spd"] = spdSlider.integerValue
-//				print(mon.eVs["spd"]!)
-				//update pokemon
+				mon.eVs["spd"] = Int.init(spdSlider.closestTickMarkValue(toValue: spdSlider.doubleValue))
 				updatePokemon()
 			}
 		} else { return }
@@ -843,20 +693,16 @@ class TeamViewController: NSViewController, ImportDelegate {
 
 	@IBAction func speSliderAction(_ sender: Any) {
 		speSlider.minValue = 0.0
-//		speSlider.maxValue = 252.0
 		determineMaxValueForEVSliders()
-		// possibly able to put a method to determine what max value should be using default value
-		speSlider.numberOfTickMarks = 63
-		speSlider.allowsTickMarkValuesOnly = false
+		determineNumberOfTickMarks()
+		speSlider.allowsTickMarkValuesOnly = true
 		speSlider.trackFillColor = NSColor.systemBlue
 		let allowedToChange: Bool = getEVAllowedChange()
 		if allowedToChange {
 			let index = tableView.selectedRow
 			if index > -1 {
 				let mon: Pokemon = team[index]
-				mon.eVs["spe"] = speSlider.integerValue
-//				print(mon.eVs["spe"]!)
-				//update pokemon
+				mon.eVs["spe"] = Int.init(speSlider.closestTickMarkValue(toValue: speSlider.doubleValue))
 				updatePokemon()
 			}
 		} else { return }
@@ -864,20 +710,8 @@ class TeamViewController: NSViewController, ImportDelegate {
 	
 	
 	@IBAction func itemSelectAction(_ sender: Any) {
-		let index: Int = tableView.selectedRow
-		
-		if index > -1 {
-			let mon: Pokemon = team[index]
-			mon.virtualStats = Pokemon.calcVirtualStats(pokemon: mon)
-			virtualHP.stringValue = "\(mon.virtualStats["hp"] ?? 0)"
-			virtualATK.stringValue = "\(mon.virtualStats["atk"] ?? 0)"
-			virtualDEF.stringValue = "\(mon.virtualStats["def"] ?? 0)"
-			virtualSPA.stringValue = "\(mon.virtualStats["spa"] ?? 0)"
-			virtualSPD.stringValue = "\(mon.virtualStats["spd"] ?? 0)"
-			virtualSPE.stringValue = "\(mon.virtualStats["spe"] ?? 0)"
-		}
-		//update pokemon
 		updatePokemon()
+		updateTeam()
 	}
 	
 	@IBAction func move1Selected(_ sender: Any) {
@@ -905,26 +739,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 	
 	
 	@IBAction func natureSelected(_ sender: Any) {
-		let index = tableView.selectedRow
-		if index > -1 {
-			let mon = team[index]
-			mon.actualStats = Pokemon.calcStats(pokemon: mon)
-			actualHP.stringValue = "\(mon.actualStats["hp"] ?? 0)"
-			actualATK.stringValue = "\(mon.actualStats["atk"] ?? 0)"
-			actualDEF.stringValue = "\(mon.actualStats["def"] ?? 0)"
-			actualSPA.stringValue = "\(mon.actualStats["spa"] ?? 0)"
-			actualSPD.stringValue = "\(mon.actualStats["spd"] ?? 0)"
-			actualSPE.stringValue = "\(mon.actualStats["spe"] ?? 0)"
-			
-			mon.virtualStats = Pokemon.calcVirtualStats(pokemon: mon)
-			virtualHP.stringValue = "\(mon.virtualStats["hp"] ?? 0)"
-			virtualATK.stringValue = "\(mon.virtualStats["atk"] ?? 0)"
-			virtualDEF.stringValue = "\(mon.virtualStats["def"] ?? 0)"
-			virtualSPA.stringValue = "\(mon.virtualStats["spa"] ?? 0)"
-			virtualSPD.stringValue = "\(mon.virtualStats["spd"] ?? 0)"
-			virtualSPE.stringValue = "\(mon.virtualStats["spe"] ?? 0)"
-		}
-		//update pokemon
+
 		updatePokemon()
 	}
 	
@@ -977,17 +792,6 @@ class TeamViewController: NSViewController, ImportDelegate {
 
 		}
 	}
-	
-//	override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-//		if segue.destinationController is ImportViewController {
-//			let vc = segue.destinationController as? ImportViewController
-//			vc?.monToImport = Pokemon()
-//		}
-//	}
-//
-//	func onUserAction(data: String) {
-//		print("Data received: \(data)")
-//	}
 	
 //	 --------- objc functions
 //	 for receiving data from import view controller
@@ -1106,42 +910,42 @@ class CalcViewController: NSViewController {
 	func updateSliders() {
 		hpSlider.minValue = 0.0
 		hpSlider.maxValue = 252.0
-		hpSlider.numberOfTickMarks = 63
+		hpSlider.numberOfTickMarks = 64
 		hpSlider.allowsTickMarkValuesOnly = true
 		hpSlider.trackFillColor = NSColor.systemBlue
 		defendingMon.eVs["hp"] = hpSlider.integerValue
 
 		atkSlider.minValue = 0.0
 		atkSlider.maxValue = 252.0
-		atkSlider.numberOfTickMarks = 63
+		atkSlider.numberOfTickMarks = 64
 		atkSlider.allowsTickMarkValuesOnly = true
 		atkSlider.trackFillColor = NSColor.systemBlue
 		defendingMon.eVs["atk"] = atkSlider.integerValue
 
 		defSlider.minValue = 0.0
 		defSlider.maxValue = 252.0
-		defSlider.numberOfTickMarks = 63
+		defSlider.numberOfTickMarks = 64
 		defSlider.allowsTickMarkValuesOnly = true
 		defSlider.trackFillColor = NSColor.systemBlue
 		defendingMon.eVs["def"] = defSlider.integerValue
 
 		spaSlider.minValue = 0.0
 		spaSlider.maxValue = 252.0
-		spaSlider.numberOfTickMarks = 63
+		spaSlider.numberOfTickMarks = 64
 		spaSlider.allowsTickMarkValuesOnly = true
 		spaSlider.trackFillColor = NSColor.systemBlue
 		defendingMon.eVs["spa"] = spaSlider.integerValue
 
 		spdSlider.minValue = 0.0
 		spdSlider.maxValue = 252.0
-		spdSlider.numberOfTickMarks = 63
+		spdSlider.numberOfTickMarks = 64
 		spdSlider.allowsTickMarkValuesOnly = true
 		spdSlider.trackFillColor = NSColor.systemBlue
 		defendingMon.eVs["spd"] = spdSlider.integerValue
 
 		speSlider.minValue = 0.0
 		speSlider.maxValue = 252.0
-		speSlider.numberOfTickMarks = 63
+		speSlider.numberOfTickMarks = 64
 		speSlider.allowsTickMarkValuesOnly = true
 		speSlider.trackFillColor = NSColor.systemBlue
 		defendingMon.eVs["spe"] = speSlider.integerValue

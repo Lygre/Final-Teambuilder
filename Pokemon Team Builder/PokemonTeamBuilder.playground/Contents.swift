@@ -78,3 +78,23 @@ iVs
 eVs
 
 Double(1.0 + 1.0)
+
+let rangeOfEVs: ClosedRange = 0.0...123.0
+
+var EVArray = [Double]()
+var firDub: Double = 0.0
+repeat {
+	EVArray.append(firDub)
+	firDub += 4.0
+} while firDub < 125.0
+
+EVArray
+EVArray.count
+
+var allowedVal: Double = 123.0
+if allowedVal.remainder(dividingBy: 4.0) != 0 {
+	let remainder = allowedVal.remainder(dividingBy: 4.0)
+	allowedVal = allowedVal - remainder
+}
+
+Int.init((allowedVal/4.0)+1.0)

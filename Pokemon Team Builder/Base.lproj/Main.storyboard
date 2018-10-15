@@ -1172,14 +1172,17 @@
                                                     <rect key="frame" x="269" y="139" width="96" height="18"/>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="NgK-4h-LOE">
                                                         <connections>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evHPBind" previousBinding="Nqx-F6-jo3" id="Nfq-k4-vd8">
+                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evHPMaxValueBind" id="Kg6-lF-J2r">
                                                                 <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="0"/>
+                                                                    <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                                    <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                                                    <integer key="NSNotApplicablePlaceholder" value="252"/>
+                                                                    <integer key="NSNullPlaceholder" value="252"/>
                                                                 </dictionary>
                                                             </binding>
-                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evHPMaxValueBind" id="Nqx-F6-jo3">
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evHPBind" previousBinding="Kg6-lF-J2r" id="YEL-1t-fO9">
                                                                 <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="252"/>
+                                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>
@@ -1192,14 +1195,17 @@
                                                     <rect key="frame" x="269" y="89" width="96" height="19"/>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Nx7-GC-TsJ">
                                                         <connections>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evDEFBind" previousBinding="1Sf-LK-9QD" id="dsf-AU-XYi">
+                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evDEFMaxValueBind" id="dyf-mH-ZEy">
                                                                 <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="0"/>
+                                                                    <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                                    <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                                                    <integer key="NSNotApplicablePlaceholder" value="252"/>
+                                                                    <integer key="NSNullPlaceholder" value="252"/>
                                                                 </dictionary>
                                                             </binding>
-                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evDEFMaxValueBind" id="1Sf-LK-9QD">
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evDEFBind" previousBinding="dyf-mH-ZEy" id="kkf-V7-OzB">
                                                                 <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="252"/>
+                                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>
@@ -1212,14 +1218,17 @@
                                                     <rect key="frame" x="269" y="65" width="96" height="19"/>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Q4L-Kx-av2">
                                                         <connections>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPABind" previousBinding="ku0-qz-arV" id="cd5-1N-Vsx">
+                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evSPAMaxValueBind" id="8Ac-Pi-QaQ">
                                                                 <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="0"/>
+                                                                    <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                                    <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                                                    <integer key="NSNotApplicablePlaceholder" value="252"/>
+                                                                    <integer key="NSNullPlaceholder" value="252"/>
                                                                 </dictionary>
                                                             </binding>
-                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evSPAMaxValueBind" id="ku0-qz-arV">
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPABind" previousBinding="8Ac-Pi-QaQ" id="tk9-lj-PC7">
                                                                 <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="252"/>
+                                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>
@@ -1235,14 +1244,17 @@
                                                     </constraints>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="y98-uu-YHY">
                                                         <connections>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPDBind" previousBinding="9lF-lV-qeE" id="8n1-XR-vMy">
+                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evSPDMaxValueBind" id="ct6-0e-uRW">
                                                                 <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="0"/>
+                                                                    <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                                    <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                                                    <integer key="NSNotApplicablePlaceholder" value="252"/>
+                                                                    <integer key="NSNullPlaceholder" value="252"/>
                                                                 </dictionary>
                                                             </binding>
-                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evSPDMaxValueBind" id="9lF-lV-qeE">
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPDBind" previousBinding="ct6-0e-uRW" id="ItO-uM-TpK">
                                                                 <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="252"/>
+                                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>
@@ -1255,14 +1267,17 @@
                                                     <rect key="frame" x="269" y="113" width="96" height="19"/>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="JlS-c2-Yp2">
                                                         <connections>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evATKBind" previousBinding="j7c-HI-N5J" id="uFA-O7-C8K">
+                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evATKMaxValueBind" id="ss7-Mz-rXu">
                                                                 <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="0"/>
+                                                                    <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                                    <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                                                    <integer key="NSNotApplicablePlaceholder" value="252"/>
+                                                                    <integer key="NSNullPlaceholder" value="252"/>
                                                                 </dictionary>
                                                             </binding>
-                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evATKMaxValueBind" id="j7c-HI-N5J">
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evATKBind" previousBinding="ss7-Mz-rXu" id="1QG-io-exA">
                                                                 <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="252"/>
+                                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>
@@ -1310,14 +1325,17 @@
                                                     <rect key="frame" x="269" y="18" width="96" height="18"/>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="9MD-pq-kZS">
                                                         <connections>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPEBind" previousBinding="jqZ-My-bFn" id="0HA-dy-Bv4">
+                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evSPEMaxValueBind" id="Zs8-9V-5La">
                                                                 <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="0"/>
+                                                                    <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                                                    <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                                                    <integer key="NSNotApplicablePlaceholder" value="252"/>
+                                                                    <integer key="NSNullPlaceholder" value="252"/>
                                                                 </dictionary>
                                                             </binding>
-                                                            <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evSPEMaxValueBind" id="jqZ-My-bFn">
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPEBind" previousBinding="Zs8-9V-5La" id="Oge-C8-NLu">
                                                                 <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="252"/>
+                                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>
