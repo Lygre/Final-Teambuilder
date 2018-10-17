@@ -260,3 +260,107 @@ func importMonFromShowdown(showdownExportText: String) -> Pokemon {
 //	print(constructedImportMon)
 	return constructedImportMon
 }
+
+func loadSavedTeam(teamString: String) -> Team {
+	
+	let teamImportString = """
+	\(teamString)
+	"""
+	
+	var constructedTeamArray: [Pokemon] = []
+	var constructedTeam: Team
+	var teamStringArray = [String]()
+	teamStringArray = teamImportString.components(separatedBy: "\n\n")
+	
+
+	for monImportString in teamStringArray {
+		var constructedImportMon: Pokemon
+		//	print(monImportString)
+		var eVs = [String: Int]() ; eVs = ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0]
+		var iVs = [String: Int]() ; iVs = ["hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31]
+		var moves = [Move]()
+		var name, item, ability, nature: String
+		name = ""; item = ""; ability = ""; nature = ""
+		var move1, move2, move3, move4: Move
+		var itemForConstruct: Item = Item()
+		
+		let monImportStringArray: [String] = monImportString.components(separatedBy: "\n")
+		for line in monImportStringArray {
+			let monImport: String = line
+			if line.contains("@") {
+				let nameIndex = monImport.startIndex..<monImport.index(monImport.firstIndex(of: "@")!, offsetBy: -1)
+				//this returns mon's name
+				name = String(monImport[nameIndex])
+				
+				//this gets item
+				let itemIndex = line.index(line.firstIndex(of: "@")!, offsetBy: 2)..<line.index(before: line.endIndex)
+				item = String(line[itemIndex])
+				itemForConstruct = ItemDex.searchItemDex(searchParam: item)
+			}
+			if line.contains("Ability: ") {
+				let abilityStartIndex = line.firstIndex(of: " ")
+				let abilityEndIndex = line.index(line.endIndex, offsetBy: -1)
+				let abilityIndex = line.index(after: abilityStartIndex!)..<abilityEndIndex
+				ability = String(line[abilityIndex])
+			}
+			if line.contains("EVs: ") {
+				let evString = line[line.index(line.firstIndex(of: " ")!, offsetBy: 1)..<line.endIndex]
+				let evStringArray = evString.components(separatedBy: " / ")
+				for string in evStringArray {
+					var evLabel: String = String()
+					var evValue: Int = Int()
+					if string.contains("HP") {
+						evLabel = String(string[string.index(string.endIndex, offsetBy: -2)..<string.endIndex].lowercased())
+						evValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
+					} else if (evStringArray.endIndex - 1) == evStringArray.lastIndex(of: string)  {
+						evLabel = String(string[string.index(string.endIndex, offsetBy: -5)..<string.index(string.endIndex, offsetBy: -2)].lowercased())
+						evValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
+					} else {
+						evLabel = String(string[string.index(string.endIndex, offsetBy: -3)..<string.endIndex].lowercased())
+						evValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
+					}
+					eVs[evLabel] = evValue
+				}
+			}
+			if line.contains(" Nature") {
+				let natureLabel = line[line.startIndex..<line.firstIndex(of: " ")!]
+				nature = String(natureLabel)
+			}
+			if line.contains("IVs: ") {
+				let ivString = line[line.index(line.firstIndex(of: " ")!, offsetBy: 1)..<line.endIndex]
+				let ivStringArray = ivString.components(separatedBy: " / ")
+				for string in ivStringArray {
+					var ivLabel = String(string[string.index(string.endIndex, offsetBy: -3)..<string.endIndex].lowercased())
+					var ivValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])
+					if string.contains("HP") {
+						ivLabel = String(string[string.index(string.endIndex, offsetBy: -2)..<string.endIndex].lowercased())
+						ivValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
+					} else if (ivStringArray.endIndex - 1) == ivStringArray.lastIndex(of: string)  {
+						ivLabel = String(string[string.index(string.endIndex, offsetBy: -5)..<string.index(string.endIndex, offsetBy: -2)].lowercased())
+						ivValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
+					} else {
+						ivLabel = String(string[string.index(string.endIndex, offsetBy: -3)..<string.endIndex].lowercased())
+						ivValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
+					}
+					iVs[ivLabel] = ivValue
+				}
+			}
+			if line.contains("- ") {
+				let moveString = String(line[line.index(line.firstIndex(of: " ")!, offsetBy: 1)..<line.endIndex])
+				let moveLiteral: Move = Move.init(id: moveString)
+				moves.append(moveLiteral)
+			}
+		}
+		if monImportString != "" {
+			move1 = moves[0]
+			move2 = moves[1]
+			move3 = moves[2]
+			move4 = moves[3]
+			
+			constructedImportMon = Pokemon.init(species: name, level: 100, nature: nature, ability: ability, iVs: iVs, eVs: eVs, move1: move1, move2: move2, move3: move3, move4: move4, item: itemForConstruct)
+			constructedTeamArray.append(constructedImportMon)
+		}
+	}
+	constructedTeam = Team(members: constructedTeamArray)
+	return constructedTeam
+}

@@ -24,8 +24,10 @@
 		9F034D56213C53800023FE70 /* Ground.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D44213C537F0023FE70 /* Ground.png */; };
 		9F034D57213C53800023FE70 /* Dark.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D45213C537F0023FE70 /* Dark.png */; };
 		9F034D58213C53800023FE70 /* Electric.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F034D46213C53800023FE70 /* Electric.png */; };
+		9F04FA5E217549DF002ABB67 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F04FA5D217549DF002ABB67 /* UserData.swift */; };
 		9F18DAF9214807140084DB5E /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F18DAF8214807140084DB5E /* Pokemon.swift */; };
 		9F318CCA2142ED4C00419677 /* Water.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F318CC92142ED4B00419677 /* Water.png */; };
+		9F46C3D521756B0E00F1DCBE /* Preferences.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9F46C3D421756B0E00F1DCBE /* Preferences.plist */; };
 		9F4C0A44214DDEDA00DBC809 /* weak4.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4C0A3E214DDED800DBC809 /* weak4.png */; };
 		9F4C0A45214DDEDA00DBC809 /* immune.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4C0A3F214DDED800DBC809 /* immune.png */; };
 		9F4C0A46214DDEDA00DBC809 /* neutral.png in Resources */ = {isa = PBXBuildFile; fileRef = 9F4C0A40214DDED900DBC809 /* neutral.png */; };
@@ -2102,8 +2104,10 @@
 		9F034D44213C537F0023FE70 /* Ground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Ground.png; sourceTree = "<group>"; };
 		9F034D45213C537F0023FE70 /* Dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dark.png; sourceTree = "<group>"; };
 		9F034D46213C53800023FE70 /* Electric.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Electric.png; sourceTree = "<group>"; };
+		9F04FA5D217549DF002ABB67 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		9F18DAF8214807140084DB5E /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		9F318CC92142ED4B00419677 /* Water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Water.png; sourceTree = "<group>"; };
+		9F46C3D421756B0E00F1DCBE /* Preferences.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Preferences.plist; sourceTree = "<group>"; };
 		9F4C0A3E214DDED800DBC809 /* weak4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = weak4.png; sourceTree = "<group>"; };
 		9F4C0A3F214DDED800DBC809 /* immune.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = immune.png; sourceTree = "<group>"; };
 		9F4C0A40214DDED900DBC809 /* neutral.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = neutral.png; sourceTree = "<group>"; };
@@ -5086,6 +5090,7 @@
 				9F034D36213C53730023FE70 /* Rock.png */,
 				9F034D3F213C537A0023FE70 /* Steel.png */,
 				9FC364B821384426003442E1 /* sprites */,
+				9F46C3D421756B0E00F1DCBE /* Preferences.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -6250,6 +6255,7 @@
 				9FF5F2EE210259D400933483 /* Team.swift */,
 				9FF5F2C02102593C00933483 /* AppDelegate.swift */,
 				9FF5F2F821025A4900933483 /* ViewController.swift */,
+				9F04FA5D217549DF002ABB67 /* UserData.swift */,
 				9FF5F2C42102594200933483 /* Assets.xcassets */,
 				9FF5F30821025B0400933483 /* Main.storyboard */,
 				9FECBCC0214EB492001BD609 /* Calculator.swift */,
@@ -7072,6 +7078,7 @@
 				9FC36B9D21384977003442E1 /* 237.png in Resources */,
 				9FC36BA121384977003442E1 /* 289.png in Resources */,
 				9FC36C7821384977003442E1 /* 106.png in Resources */,
+				9F46C3D521756B0E00F1DCBE /* Preferences.plist in Resources */,
 				9FC36B6F21384977003442E1 /* 493-electric.png in Resources */,
 				9FC36B0A21384976003442E1 /* 666-garden.png in Resources */,
 				9FA56F852140334700C81E53 /* prism-scale.png in Resources */,
@@ -8467,6 +8474,7 @@
 				9FF5F2FA21025A4900933483 /* ViewController.swift in Sources */,
 				9FF5F2F2210259D400933483 /* Support Functions.swift in Sources */,
 				9FECBCC1214EB492001BD609 /* Calculator.swift in Sources */,
+				9F04FA5E217549DF002ABB67 /* UserData.swift in Sources */,
 				9FF5F2C12102593C00933483 /* AppDelegate.swift in Sources */,
 				9FF5F2F5210259D400933483 /* Team.swift in Sources */,
 				9FF5F2EF210259D400933483 /* Pokedex.swift in Sources */,

@@ -12,7 +12,7 @@ class ViewController: NSViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
+		
 		// Do any additional setup after loading the view.
 	}
 
@@ -101,7 +101,6 @@ class TeamViewController: NSViewController, ImportDelegate {
 	@IBOutlet var suggestedMonController: NSArrayController!
 	
 	@IBOutlet weak var searchForTeam: NSTextField!
-	@IBOutlet weak var arrayImage: NSImageView!
 	@IBOutlet weak var tableView: NSTableView!
 	
 	@IBOutlet weak var baseHP: NSTextField!
@@ -217,7 +216,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 	@IBOutlet weak var spdIVs: NSTextField!
 	@IBOutlet weak var speIVs: NSTextField!
 	
-	
+	@objc dynamic var userDefaults = UserDefaults.standard
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -319,7 +318,7 @@ class TeamViewController: NSViewController, ImportDelegate {
 			let mon: Pokemon = team[index]
 			//get sprite
 			let imgFile = dexNumToSprite(mon)
-			arrayImage.image = NSImage(imageLiteralResourceName: imgFile!)
+			selectedMonImage = NSImage(imageLiteralResourceName: imgFile!)
 			
 			//get base stat values for selected mon
 			baseHP.stringValue = "\(mon.baseStats["hp"] ?? 0)"
@@ -511,6 +510,56 @@ class TeamViewController: NSViewController, ImportDelegate {
 
 	}
 
+	func exportTeamStandalone() -> String {
+		let numberOfTeamMembers = tableView.numberOfRows
+		var output: String = ""
+		
+		if numberOfTeamMembers > 0 {
+			for mon in team {
+				output.append("\(mon.species) @ \(mon.item.name)\n")
+				output.append("Ability: \(mon.ability)\n")
+				if mon.eVs != ["hp": 0, "atk": 0, "def": 0, "spa": 0, "spd": 0, "spe": 0] {
+					var evString: String = "EVs: "
+					for (stat, value) in mon.eVs {
+						if value != 0 {
+							evString.append("\(value) \(stat) - ")
+						}
+					}
+					evString = evString.replacingOccurrences(of: "-", with: "/")
+					evString.removeLast(3)
+					evString.append("\n")
+					output.append(evString)
+					
+				}
+				var natureString: String = "\(mon.nature)"
+				natureString = natureString.capitalized
+				natureString.append(" Nature\n")
+				output.append(natureString)
+				
+				//come back later and address IV exceptions here
+				output.append("- \(mon.move1.name)\n")
+				output.append("- \(mon.move2.name)\n")
+				output.append("- \(mon.move3.name)\n")
+				output.append("- \(mon.move4.name)\n")
+				output.append("\n")
+			}
+		}
+		return output
+	}
+	
+	func saveTeam(teamName: String) {
+		let teamToSave: String = self.exportTeamStandalone()
+		var savedTeams = userDefaults.dictionary(forKey: "savedTeams") ?? [:]
+		savedTeams[teamName] = teamToSave
+		userDefaults.setValue(savedTeams, forKeyPath: "savedTeams")
+		print(userDefaults.dictionaryRepresentation())
+	}
+	
+	
+	func loadTeam(teamString: String) {
+		team = loadSavedTeam(teamString: teamString).members
+		updateTeam()
+	}
 	//remove from team
 	
 	@IBAction func removeFromTeam(_ sender: Any) {
@@ -589,7 +638,6 @@ class TeamViewController: NSViewController, ImportDelegate {
 		if (remainder != 0) {
 			allowedMaxValue = Int.init(allowedEVMax - remainder)
 		}
-//		print(allowedMaxValue)
 		let returnDouble = Double.init(allowedMaxValue)
 		return returnDouble
 	}
@@ -616,7 +664,6 @@ class TeamViewController: NSViewController, ImportDelegate {
 				let mon: Pokemon = team[index]
 
 				mon.eVs["hp"] = Int.init(hpSlider.closestTickMarkValue(toValue: hpSlider.doubleValue))
-//				print(hpSlider.closestTickMarkValue(toValue: hpSlider.doubleValue))
 				updatePokemon()
 			}
 		} else { return }
@@ -634,7 +681,6 @@ class TeamViewController: NSViewController, ImportDelegate {
 			if index > -1 {
 				let mon: Pokemon = team[index]
 				mon.eVs["atk"] = Int.init(atkSlider.closestTickMarkValue(toValue: atkSlider.doubleValue))
-//				print(atkSlider.closestTickMarkValue(toValue: atkSlider.doubleValue))
 				updatePokemon()
 			}
 		} else { return }
@@ -739,7 +785,6 @@ class TeamViewController: NSViewController, ImportDelegate {
 	
 	
 	@IBAction func natureSelected(_ sender: Any) {
-
 		updatePokemon()
 	}
 	
@@ -748,6 +793,11 @@ class TeamViewController: NSViewController, ImportDelegate {
 		let vc = ImportViewController(nibName: "ImportViewController", bundle: nil)
 		vc.teamViewController = self
 		vc.delegate = self
+	}
+	
+	@IBAction func saveTeamClicked(_ sender: Any) {
+		let vc = SaveTeamViewController(nibName: "SaveTeamViewController", bundle: nil)
+		vc.teamViewController = self
 	}
 	
 	
@@ -792,12 +842,8 @@ class TeamViewController: NSViewController, ImportDelegate {
 
 		}
 	}
+
 	
-//	 --------- objc functions
-//	 for receiving data from import view controller
-	@objc func onNotification(notification: Notification) {
-		print(notification)
-	}
 
 }
 
@@ -1204,8 +1250,6 @@ class ImportViewController: NSViewController {
 		MoveDex.initializeMoveDex()
 		Dex.defineTypeMatchups()
 		
-		//		importTextField?.stringValue = importText
-		
 	}
 	
 	override var representedObject: Any? {
@@ -1217,40 +1261,95 @@ class ImportViewController: NSViewController {
 	@IBAction func importClicked(_ sender: Any) {
 		let vc = self.presentingViewController as! TeamViewController
 		let monToImport: Pokemon = importMonFromShowdown(showdownExportText: importTextField.stringValue)
-//		vc.team.append(monToImport)
-//		vc.teamController.add(monToImport)
-//		vc.team2test = teamMaster
+
 		vc.addToTeam2(pokemon: monToImport)
 
 		dismiss(self)
 	}
 	
-//	override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-//		if segue.destinationController is TeamViewController {
-//			let vc = segue.destinationController as? TeamViewController
-//			let monToImport: Pokemon = importMonFromShowdown(showdownExportText: importTextField.stringValue)
-//			vc?.team = teamMaster.members
-//			vc?.team2test = teamMaster
-//			vc?.addToTeam2(pokemon: monToImport)
-//			dismiss(self)
-//
-//
-//		}
+}
+
+class SaveTeamViewController: NSViewController {
+	
+	var teamViewController: TeamViewController?
+	
+	@IBOutlet weak var saveTeamField: NSTextField!
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
 	}
 	
+	override var representedObject: Any? {
+		didSet {
+			// Update view if already loaded
+		}
+	}
+	
+	@IBAction func saveTeamClicked(_ sender: Any) {
+		let vc = self.presentingViewController as! TeamViewController
+		//call saveTeam here
+		let teamName: String = saveTeamField.stringValue
+		vc.saveTeam(teamName: teamName)
+		
+		dismiss(self)
+	}
+	
+}
+
+
+class LoadTeamViewController: NSViewController {
+	
+	var teamViewController: TeamViewController?
+	
+	var loadableTeamDictionary: [String: String] = [:]
+	
+	@IBOutlet weak var savedTeamsTableView: NSTableView!
+	
 
 	
-	//	@IBAction func importTapped(_ sender: Any) {
-	//
-	//		monToImport = importMonFromShowdown(showdownExportText: importTextField.stringValue)
-	//
-	//		NotificationCenter.default.post(name: TeamViewController.notificationName, object: monToImport)
-	//	}
+	@IBOutlet var savedDictController: NSDictionaryController!
+	@objc dynamic var availableTeams = UserDefaults.standard.dictionary(forKey: "savedTeams")
+	
+	@objc dynamic var selectedKey = ""
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		
+		Dex.initializeDex()
+		Dex.defineTypeMatchups()
+		MoveDex.initializeMoveDex()
+		ItemDex.initializeItemDex()
+		
+		for (key, value) in availableTeams! {
+			loadableTeamDictionary[key] = value as! String
+//			print(key, value)
+		}
+		
+	}
+	
+	override var representedObject: Any? {
+		didSet {
+			// Update view if already loaded
+		}
+	}
+	
+	@IBAction func loadTeamClicked(_ sender: Any) {
+		let vc = self.presentingViewController as! TeamViewController
+		//load team
+		let selectedSavedTeam = savedDictController!.selectedObjects[0] as! NSDictionaryControllerKeyValuePair
+		let teamLoadString: String = selectedSavedTeam.value as! String
+		vc.loadTeam(teamString: teamLoadString)
+		dismiss(self)
+	}
+	@IBAction func savedTeamsTableAction(_ sender: Any) {
+//		let selectionIndex = savedDictController!.selectionIndex
+		let selection = savedDictController!.selectedObjects[0] as! NSDictionaryControllerKeyValuePair
+		print(selection.value)
+	}
 	
 	
-
-
-
+}
 
 
 class TestViewController: NSViewController {
@@ -1288,8 +1387,6 @@ class TestViewController: NSViewController {
 			let mon: Pokemon = pokedex[index]
 			arrayContent.stringValue = "\(mon.species)\nHP: \(mon.baseStats["hp"] ?? 0)\nATK: \(mon.baseStats["atk"] ?? 0)\nDEF: \(mon.baseStats["def"] ?? 0)\nSPA: \(mon.baseStats["spa"] ?? 0)\nSPD: \(mon.baseStats["spd"] ?? 0)\nSPE: \(mon.baseStats["spe"] ?? 0)\n\nAbilities: \(mon.abilities)\nTypes: \(mon.types)"
 			let imgFile = dexNumToIcon(mon)
-			//let img = NSImage.init(name: imgFile!)
-			//arrayImage.image?.setName(imgFile)
 			arrayImage.image = NSImage(imageLiteralResourceName: imgFile!)
 			
 		}

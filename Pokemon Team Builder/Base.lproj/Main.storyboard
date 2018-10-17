@@ -2,9 +2,73 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="XfG-lQ-9wD">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.18"/>
+        <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Preferences View-->
+        <scene sceneID="UoE-SG-JYq">
+            <objects>
+                <viewController title="Preferences View" storyboardIdentifier="Preferences View" showSeguePresentationStyle="single" id="bxj-we-QGq" customClass="PreferencesView" customModule="Pokemon_Team_Builder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="3MI-Ly-KI7">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b6W-UP-6fX">
+                                <rect key="frame" x="116" y="273" width="219" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Pokémon Team Builder Preferences" id="gDA-MS-VLs">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="controlAccentColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="selectedControlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zNE-4G-owh">
+                                <rect key="frame" x="20" y="207" width="118" height="19"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="RXz-N7-wcs">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tux-1W-uBE">
+                                <rect key="frame" x="140" y="199" width="81" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Change" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Aqp-xh-R0I">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ylr-Nl-STP">
+                                <rect key="frame" x="18" y="234" width="122" height="14"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Saved Teams Location" id="stk-g5-HI8">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qzk-jv-2DY">
+                                <rect key="frame" x="320" y="210" width="37" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="Team" id="kGX-9t-vxV">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="label2" destination="qzk-jv-2DY" id="ZFc-NL-gyX"/>
+                    </connections>
+                </viewController>
+                <customObject id="fN0-3p-R8x" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="aji-vj-9Al"/>
+            </objects>
+            <point key="canvasLocation" x="-500" y="21"/>
+        </scene>
         <!--Import View-->
         <scene sceneID="FR5-nr-ceh">
             <objects>
@@ -43,24 +107,28 @@
             </objects>
             <point key="canvasLocation" x="114" y="-438"/>
         </scene>
-        <!--Application-->
+        <!--TeamBuilderAppScene-->
         <scene sceneID="JPo-4y-FX3">
             <objects>
-                <application id="hnw-xV-0zn" sceneMemberID="viewController">
+                <application id="hnw-xV-0zn" userLabel="TeamBuilderAppScene" sceneMemberID="viewController">
                     <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
                         <items>
-                            <menuItem title="Test4" id="1Xt-HY-uBw">
+                            <menuItem title="Pokémon Team Builder" id="1Xt-HY-uBw">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Test4" systemMenu="apple" id="uQy-DD-JDr">
+                                <menu key="submenu" title="Pokémon Team Builder" systemMenu="apple" id="uQy-DD-JDr">
                                     <items>
-                                        <menuItem title="About Test4" id="5kV-Vb-QxS">
+                                        <menuItem title="About Pokémon Team Builder" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                            <connections>
+                                                <segue destination="bxj-we-QGq" kind="show" id="hrT-9U-MVB"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -895,6 +963,191 @@
             </objects>
             <point key="canvasLocation" x="-180" y="1203.5"/>
         </scene>
+        <!--Save Team View Controller-->
+        <scene sceneID="nIh-Fv-Xze">
+            <objects>
+                <viewController id="MaQ-Jn-hLf" customClass="SaveTeamViewController" customModule="Pokemon_Team_Builder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="cDy-G1-Cly">
+                        <rect key="frame" x="0.0" y="0.0" width="229" height="84"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bEB-mQ-jnQ">
+                                <rect key="frame" x="20" y="20" width="132" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="gkS-Ej-PPi">
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="12S-iF-RY0">
+                                <rect key="frame" x="154" y="13" width="61" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Save!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="epS-GC-t2Y">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="cellTitle"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="saveTeamClicked:" target="MaQ-Jn-hLf" id="CkZ-kx-pTh"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EFk-Ot-GOW">
+                                <rect key="frame" x="18" y="50" width="71" height="16"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Team Name" id="jgO-5I-zDX">
+                                    <font key="font" metaFont="cellTitle"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="saveTeamField" destination="bEB-mQ-jnQ" id="zlo-wh-LZA"/>
+                    </connections>
+                </viewController>
+                <customObject id="KGh-qs-PdO" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="744.5" y="-715"/>
+        </scene>
+        <!--Load Team View Controller-->
+        <scene sceneID="76k-Lc-jID">
+            <objects>
+                <viewController id="jFH-sB-lXy" customClass="LoadTeamViewController" customModule="Pokemon_Team_Builder" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="u2f-rC-UQV">
+                        <rect key="frame" x="0.0" y="0.0" width="386" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VR3-5U-W87">
+                                <rect key="frame" x="20" y="83" width="240" height="197"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <clipView key="contentView" ambiguous="YES" id="loV-Cq-4Sp">
+                                    <rect key="frame" x="1" y="0.0" width="238" height="196"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="tC5-px-HBc" viewBased="YES" id="Qye-MK-VR2">
+                                            <rect key="frame" x="0.0" y="0.0" width="238" height="171"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <size key="intercellSpacing" width="3" height="2"/>
+                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                            <tableColumns>
+                                                <tableColumn width="116" minWidth="40" maxWidth="1000" id="H4g-e0-FkS">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="hK8-xK-f7O">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="7CF-3i-v3H">
+                                                            <rect key="frame" x="1" y="1" width="116" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YOi-Jy-iJR">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="116" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="pJe-aL-bR8">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="7CF-3i-v3H" name="value" keyPath="objectValue.key" id="nTS-Fz-tRy"/>
+                                                                    </connections>
+                                                                </textField>
+                                                            </subviews>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                                <tableColumn width="116" minWidth="40" maxWidth="1000" id="rf3-nt-RAJ">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
+                                                        <font key="font" metaFont="smallSystem"/>
+                                                        <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
+                                                    </tableHeaderCell>
+                                                    <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="tho-mn-cvA">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <prototypeCellViews>
+                                                        <tableCellView id="ihx-lz-TEa">
+                                                            <rect key="frame" x="120" y="1" width="116" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KTx-Uw-YNd">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="116" height="17"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="904-9O-4oD">
+                                                                        <font key="font" metaFont="system"/>
+                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                    <connections>
+                                                                        <binding destination="ihx-lz-TEa" name="value" keyPath="objectValue.value" id="y42-3e-Qor"/>
+                                                                    </connections>
+                                                                </textField>
+                                                            </subviews>
+                                                        </tableCellView>
+                                                    </prototypeCellViews>
+                                                </tableColumn>
+                                            </tableColumns>
+                                            <connections>
+                                                <action selector="savedTeamsTableAction:" target="jFH-sB-lXy" id="5F5-JE-lH0"/>
+                                                <binding destination="Gqc-lz-hs4" name="content" keyPath="arrangedObjects" id="3aU-1I-kXW"/>
+                                                <binding destination="Gqc-lz-hs4" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="3aU-1I-kXW" id="f1k-SG-Cve"/>
+                                            </connections>
+                                        </tableView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Hae-r7-jDl">
+                                    <rect key="frame" x="1" y="119" width="223" height="15"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="5Ja-xD-R2x">
+                                    <rect key="frame" x="224" y="17" width="15" height="102"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <tableHeaderView key="headerView" id="tC5-px-HBc">
+                                    <rect key="frame" x="0.0" y="0.0" width="238" height="25"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableHeaderView>
+                            </scrollView>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b5k-8Q-cBq">
+                                <rect key="frame" x="262" y="76" width="110" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Load Team!" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="HCL-kY-VgV">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="loadTeamClicked:" target="jFH-sB-lXy" id="nGw-93-c0E"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="savedDictController" destination="Gqc-lz-hs4" id="wOS-bh-YVc"/>
+                        <outlet property="savedTeamsTableView" destination="Qye-MK-VR2" id="FEH-ja-1bO"/>
+                    </connections>
+                </viewController>
+                <customObject id="9Tk-8T-ted" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="ODp-Al-g37"/>
+                <dictionaryController objectClassName="_NSDictionaryControllerKeyValuePair" preservesSelection="NO" id="Gqc-lz-hs4">
+                    <connections>
+                        <binding destination="jFH-sB-lXy" name="contentDictionary" keyPath="availableTeams" id="zXT-be-DnU"/>
+                    </connections>
+                </dictionaryController>
+            </objects>
+            <point key="canvasLocation" x="1086" y="-823"/>
+        </scene>
         <!--Team Builder View-->
         <scene sceneID="UNX-MU-Xyb">
             <objects>
@@ -1041,7 +1294,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="n0g-Zq-VlK">
-                                <rect key="frame" x="137" y="304" width="116" height="35"/>
+                                <rect key="frame" x="124" y="304" width="116" height="35"/>
                                 <buttonCell key="cell" type="push" title="Export Team" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mdc-HA-cAN">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1172,17 +1425,17 @@
                                                     <rect key="frame" x="269" y="139" width="96" height="18"/>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="NgK-4h-LOE">
                                                         <connections>
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evHPBind" previousBinding="Kg6-lF-J2r" id="YEL-1t-fO9">
+                                                                <dictionary key="options">
+                                                                    <integer key="NSNullPlaceholder" value="0"/>
+                                                                </dictionary>
+                                                            </binding>
                                                             <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evHPMaxValueBind" id="Kg6-lF-J2r">
                                                                 <dictionary key="options">
                                                                     <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                                     <integer key="NSNoSelectionPlaceholder" value="0"/>
                                                                     <integer key="NSNotApplicablePlaceholder" value="252"/>
                                                                     <integer key="NSNullPlaceholder" value="252"/>
-                                                                </dictionary>
-                                                            </binding>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evHPBind" previousBinding="Kg6-lF-J2r" id="YEL-1t-fO9">
-                                                                <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>
@@ -1195,17 +1448,17 @@
                                                     <rect key="frame" x="269" y="89" width="96" height="19"/>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Nx7-GC-TsJ">
                                                         <connections>
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evDEFBind" previousBinding="dyf-mH-ZEy" id="kkf-V7-OzB">
+                                                                <dictionary key="options">
+                                                                    <integer key="NSNullPlaceholder" value="0"/>
+                                                                </dictionary>
+                                                            </binding>
                                                             <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evDEFMaxValueBind" id="dyf-mH-ZEy">
                                                                 <dictionary key="options">
                                                                     <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                                     <integer key="NSNoSelectionPlaceholder" value="0"/>
                                                                     <integer key="NSNotApplicablePlaceholder" value="252"/>
                                                                     <integer key="NSNullPlaceholder" value="252"/>
-                                                                </dictionary>
-                                                            </binding>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evDEFBind" previousBinding="dyf-mH-ZEy" id="kkf-V7-OzB">
-                                                                <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>
@@ -1218,17 +1471,17 @@
                                                     <rect key="frame" x="269" y="65" width="96" height="19"/>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="Q4L-Kx-av2">
                                                         <connections>
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPABind" previousBinding="8Ac-Pi-QaQ" id="tk9-lj-PC7">
+                                                                <dictionary key="options">
+                                                                    <integer key="NSNullPlaceholder" value="0"/>
+                                                                </dictionary>
+                                                            </binding>
                                                             <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evSPAMaxValueBind" id="8Ac-Pi-QaQ">
                                                                 <dictionary key="options">
                                                                     <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                                     <integer key="NSNoSelectionPlaceholder" value="0"/>
                                                                     <integer key="NSNotApplicablePlaceholder" value="252"/>
                                                                     <integer key="NSNullPlaceholder" value="252"/>
-                                                                </dictionary>
-                                                            </binding>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPABind" previousBinding="8Ac-Pi-QaQ" id="tk9-lj-PC7">
-                                                                <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>
@@ -1244,17 +1497,17 @@
                                                     </constraints>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="y98-uu-YHY">
                                                         <connections>
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPDBind" previousBinding="ct6-0e-uRW" id="ItO-uM-TpK">
+                                                                <dictionary key="options">
+                                                                    <integer key="NSNullPlaceholder" value="0"/>
+                                                                </dictionary>
+                                                            </binding>
                                                             <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evSPDMaxValueBind" id="ct6-0e-uRW">
                                                                 <dictionary key="options">
                                                                     <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                                     <integer key="NSNoSelectionPlaceholder" value="0"/>
                                                                     <integer key="NSNotApplicablePlaceholder" value="252"/>
                                                                     <integer key="NSNullPlaceholder" value="252"/>
-                                                                </dictionary>
-                                                            </binding>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPDBind" previousBinding="ct6-0e-uRW" id="ItO-uM-TpK">
-                                                                <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>
@@ -1267,17 +1520,17 @@
                                                     <rect key="frame" x="269" y="113" width="96" height="19"/>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="JlS-c2-Yp2">
                                                         <connections>
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evATKBind" previousBinding="ss7-Mz-rXu" id="1QG-io-exA">
+                                                                <dictionary key="options">
+                                                                    <integer key="NSNullPlaceholder" value="0"/>
+                                                                </dictionary>
+                                                            </binding>
                                                             <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evATKMaxValueBind" id="ss7-Mz-rXu">
                                                                 <dictionary key="options">
                                                                     <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                                     <integer key="NSNoSelectionPlaceholder" value="0"/>
                                                                     <integer key="NSNotApplicablePlaceholder" value="252"/>
                                                                     <integer key="NSNullPlaceholder" value="252"/>
-                                                                </dictionary>
-                                                            </binding>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evATKBind" previousBinding="ss7-Mz-rXu" id="1QG-io-exA">
-                                                                <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>
@@ -1325,17 +1578,17 @@
                                                     <rect key="frame" x="269" y="18" width="96" height="18"/>
                                                     <sliderCell key="cell" state="on" alignment="left" maxValue="100" tickMarkPosition="above" allowsTickMarkValuesOnly="YES" sliderType="linear" id="9MD-pq-kZS">
                                                         <connections>
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPEBind" previousBinding="Zs8-9V-5La" id="Oge-C8-NLu">
+                                                                <dictionary key="options">
+                                                                    <integer key="NSNullPlaceholder" value="0"/>
+                                                                </dictionary>
+                                                            </binding>
                                                             <binding destination="fWV-ZE-09i" name="maxValue" keyPath="evSPEMaxValueBind" id="Zs8-9V-5La">
                                                                 <dictionary key="options">
                                                                     <integer key="NSMultipleValuesPlaceholder" value="0"/>
                                                                     <integer key="NSNoSelectionPlaceholder" value="0"/>
                                                                     <integer key="NSNotApplicablePlaceholder" value="252"/>
                                                                     <integer key="NSNullPlaceholder" value="252"/>
-                                                                </dictionary>
-                                                            </binding>
-                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="evSPEBind" previousBinding="Zs8-9V-5La" id="Oge-C8-NLu">
-                                                                <dictionary key="options">
-                                                                    <integer key="NSNullPlaceholder" value="0"/>
                                                                 </dictionary>
                                                             </binding>
                                                         </connections>
@@ -1349,7 +1602,11 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="91" id="G6R-X4-lAQ"/>
                                                     </constraints>
-                                                    <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" id="kZe-Z2-Vd6"/>
+                                                    <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" id="kZe-Z2-Vd6">
+                                                        <connections>
+                                                            <binding destination="fWV-ZE-09i" name="value" keyPath="self.selectedMonImage" id="xdT-cz-m8h"/>
+                                                        </connections>
+                                                    </imageCell>
                                                 </imageView>
                                                 <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KZl-c2-l4O">
                                                     <rect key="frame" x="371" y="192" width="92" height="25"/>
@@ -2850,17 +3107,17 @@
                                     </tabViewItem>
                                     <tabViewItem label="Team Type Coverage" identifier="" id="RyA-wT-aOe">
                                         <view key="view" id="5eb-X7-gxg">
-                                            <rect key="frame" x="10" y="33" width="991" height="237"/>
+                                            <rect key="frame" x="10" y="33" width="1007" height="237"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sxL-PF-ZR4">
-                                                    <rect key="frame" x="17" y="17" width="1277" height="217"/>
+                                                    <rect key="frame" x="17" y="17" width="1293" height="217"/>
                                                     <clipView key="contentView" id="klv-Xh-zuN">
-                                                        <rect key="frame" x="1" y="0.0" width="1275" height="216"/>
+                                                        <rect key="frame" x="1" y="0.0" width="1291" height="216"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="1zo-dq-saS" viewBased="YES" id="Ee6-zm-h9K">
-                                                                <rect key="frame" x="0.0" y="0.0" width="1275" height="191"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="1291" height="191"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2942,7 +3199,7 @@
                                                                             </tableCellView>
                                                                         </prototypeCellViews>
                                                                     </tableColumn>
-                                                                    <tableColumn width="762" minWidth="40" maxWidth="1000" id="Ywl-dt-kP2">
+                                                                    <tableColumn width="778" minWidth="40" maxWidth="1000" id="Ywl-dt-kP2">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="STAB">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2956,11 +3213,11 @@
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
                                                                             <tableCellView id="ir5-Hc-ZAV">
-                                                                                <rect key="frame" x="511" y="1" width="762" height="17"/>
+                                                                                <rect key="frame" x="511" y="1" width="778" height="17"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="DfR-h7-OMl">
-                                                                                        <rect key="frame" x="0.0" y="0.0" width="762" height="17"/>
+                                                                                        <rect key="frame" x="0.0" y="0.0" width="778" height="17"/>
                                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="jYe-Pk-d9Q">
                                                                                             <font key="font" metaFont="system"/>
                                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -2998,7 +3255,7 @@
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </scroller>
                                                     <tableHeaderView key="headerView" id="1zo-dq-saS">
-                                                        <rect key="frame" x="0.0" y="0.0" width="1275" height="25"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="1291" height="25"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </tableHeaderView>
                                                 </scrollView>
@@ -3242,6 +3499,29 @@
                                     <action selector="removeFromTeam:" target="fWV-ZE-09i" id="Tlj-yu-4YA"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ldh-U3-pzg">
+                                <rect key="frame" x="240" y="321" width="106" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Save Team" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cyD-ec-Au7">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="saveTeamClicked:" target="fWV-ZE-09i" id="bZd-DI-BZW"/>
+                                    <segue destination="MaQ-Jn-hLf" kind="popover" popoverAnchorView="Ldh-U3-pzg" popoverBehavior="t" preferredEdge="maxY" id="mmJ-NV-A3q"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eVz-16-GBo">
+                                <rect key="frame" x="240" y="288" width="106" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Load Team" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zrc-AR-koZ">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <segue destination="jFH-sB-lXy" kind="popover" popoverAnchorView="eVz-16-GBo" popoverBehavior="t" preferredEdge="maxY" id="3al-r2-KJp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="TfI-u4-ZWX" firstAttribute="centerY" secondItem="gB5-Vs-l3C" secondAttribute="centerY" id="8F7-hT-OAA"/>
@@ -3264,7 +3544,7 @@
                             <constraint firstItem="Ud8-IP-uQQ" firstAttribute="top" secondItem="gB5-Vs-l3C" secondAttribute="bottom" constant="15" id="k9S-bf-IxO"/>
                             <constraint firstItem="6TF-Nt-0Ec" firstAttribute="trailing" secondItem="d46-YC-6y3" secondAttribute="trailing" id="mbr-Sb-Btn"/>
                             <constraint firstItem="TfI-u4-ZWX" firstAttribute="bottom" secondItem="gB5-Vs-l3C" secondAttribute="bottom" id="ncY-fa-f1X"/>
-                            <constraint firstItem="n0g-Zq-VlK" firstAttribute="leading" secondItem="xAw-XS-5TC" secondAttribute="leading" constant="143" id="s9c-5f-dOq"/>
+                            <constraint firstItem="n0g-Zq-VlK" firstAttribute="leading" secondItem="xAw-XS-5TC" secondAttribute="leading" constant="130" id="s9c-5f-dOq"/>
                             <constraint firstItem="d46-YC-6y3" firstAttribute="top" secondItem="n0g-Zq-VlK" secondAttribute="bottom" constant="17" id="wUz-Q6-elm"/>
                         </constraints>
                     </view>
@@ -3275,7 +3555,6 @@
                         <outlet property="actualSPA" destination="l5S-Ck-hRG" id="1SV-3d-yv2"/>
                         <outlet property="actualSPD" destination="y69-L9-Ivc" id="Lgd-kQ-win"/>
                         <outlet property="actualSPE" destination="fP6-ei-rCn" id="Hg2-Mb-3Nr"/>
-                        <outlet property="arrayImage" destination="IZb-H7-tcJ" id="7KZ-Ir-SbC"/>
                         <outlet property="atkEVLabel" destination="OEX-K0-HJg" id="AWw-gd-Chr"/>
                         <outlet property="atkIVs" destination="lyC-wk-Bjs" id="02d-CU-3Jp"/>
                         <outlet property="atkLevel" destination="2z0-18-mzR" id="0s7-Wf-ZPj"/>
