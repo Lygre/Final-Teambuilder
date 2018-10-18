@@ -309,11 +309,8 @@ func loadSavedTeam(teamString: String) -> Team {
 				for string in evStringArray {
 					var evLabel: String = String()
 					var evValue: Int = Int()
-					if string.contains("HP") {
+					if string.contains("hp") {
 						evLabel = String(string[string.index(string.endIndex, offsetBy: -2)..<string.endIndex].lowercased())
-						evValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
-					} else if (evStringArray.endIndex - 1) == evStringArray.lastIndex(of: string)  {
-						evLabel = String(string[string.index(string.endIndex, offsetBy: -5)..<string.index(string.endIndex, offsetBy: -2)].lowercased())
 						evValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
 					} else {
 						evLabel = String(string[string.index(string.endIndex, offsetBy: -3)..<string.endIndex].lowercased())
@@ -332,11 +329,8 @@ func loadSavedTeam(teamString: String) -> Team {
 				for string in ivStringArray {
 					var ivLabel = String(string[string.index(string.endIndex, offsetBy: -3)..<string.endIndex].lowercased())
 					var ivValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])
-					if string.contains("HP") {
+					if string.contains("hp") {
 						ivLabel = String(string[string.index(string.endIndex, offsetBy: -2)..<string.endIndex].lowercased())
-						ivValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
-					} else if (ivStringArray.endIndex - 1) == ivStringArray.lastIndex(of: string)  {
-						ivLabel = String(string[string.index(string.endIndex, offsetBy: -5)..<string.index(string.endIndex, offsetBy: -2)].lowercased())
 						ivValue = Int(string[string.startIndex..<string.firstIndex(of: " ")!])!
 					} else {
 						ivLabel = String(string[string.index(string.endIndex, offsetBy: -3)..<string.endIndex].lowercased())

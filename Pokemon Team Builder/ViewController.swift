@@ -536,6 +536,20 @@ class TeamViewController: NSViewController, ImportDelegate {
 				natureString.append(" Nature\n")
 				output.append(natureString)
 				
+				if mon.iVs != ["hp": 31, "atk": 31, "def": 31, "spa": 31, "spd": 31, "spe": 31] {
+					var ivString: String = "IVs: "
+					for (stat, value) in mon.iVs {
+						if value != 31 {
+							ivString.append("\(value) \(stat) - ")
+						}
+					}
+					ivString = ivString.replacingOccurrences(of: "-", with: "/")
+					ivString.removeLast(3)
+					ivString.append("\n")
+					output.append(ivString)
+					
+				}
+				
 				//come back later and address IV exceptions here
 				output.append("- \(mon.move1.name)\n")
 				output.append("- \(mon.move2.name)\n")
@@ -1310,7 +1324,7 @@ class LoadTeamViewController: NSViewController {
 	
 	@IBOutlet var savedDictController: NSDictionaryController!
 	@objc dynamic var availableTeams = UserDefaults.standard.dictionary(forKey: "savedTeams")
-	
+//	@objc dynamic var userDefaults = UserDefaults.standard
 	@objc dynamic var selectedKey = ""
 	
 	override func viewDidLoad() {
@@ -1348,6 +1362,16 @@ class LoadTeamViewController: NSViewController {
 		print(selection.value)
 	}
 	
+	@IBAction func deleteSavedTeam(_ sender: Any) {
+		let selection = savedDictController!.selectedObjects[0] as! NSDictionaryControllerKeyValuePair
+
+		var savedTeams = availableTeams
+		
+		savedTeams![selection.key!] = nil
+		availableTeams![selection.key!] = nil
+		UserDefaults.standard.removeObject(forKey: "savedTeams")
+		UserDefaults.standard.setValue(savedTeams, forKey: "savedTeams")
+	}
 	
 }
 

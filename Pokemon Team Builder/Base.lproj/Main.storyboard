@@ -1131,6 +1131,17 @@
                                     <action selector="loadTeamClicked:" target="jFH-sB-lXy" id="nGw-93-c0E"/>
                                 </connections>
                             </button>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Z3n-4P-RrK">
+                                <rect key="frame" x="262" y="120" width="110" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Delete Team" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hEi-Hw-GmA">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="deleteSavedTeam:" target="jFH-sB-lXy" id="AZV-cb-rW0"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
