@@ -36,8 +36,8 @@ func calculateAllMoves(p1: Pokemon, p2: Pokemon, field: Field) {
 	
 }
 
-func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Field) -> (ClosedRange<Int>, ClosedRange<Double>) {
-	var dmgResult: (ClosedRange<Int>, ClosedRange<Double>)
+func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Field) -> (ClosedRange<Int>, ClosedRange<Decimal>) {
+	var dmgResult: (ClosedRange<Int>, ClosedRange<Decimal>)
 	var _: Int = Int()
 	var finalD = Int()
 	var D: Double = Double()
@@ -48,7 +48,7 @@ func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Fi
 	var randomLower: Double = 0.85
 	var randomUpper: Double = 1.0
 	var intRange: ClosedRange<Int>
-	var doubleRange: ClosedRange<Double>
+	var doubleRange: ClosedRange<Decimal>
 	var percentHP: Double = Double()
 	
 	if move.category == "Physical" {
@@ -130,8 +130,16 @@ func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Fi
 	
 
 	percentHP = modD / Double(defender.virtualStats["hp"]!)
-
-	doubleRange = ClosedRange.init(uncheckedBounds: (lower: (percentHP * randomLower), upper: (percentHP * randomUpper)))
+	let scale = 2
+	var valueLower = Decimal(percentHP * randomLower)
+	var valueUpper = Decimal(percentHP * randomUpper)
+	var lowerRangeRounded = Decimal()
+	var upperRangeRounded = Decimal()
+	NSDecimalRound(&lowerRangeRounded, &valueLower, scale, NSDecimalNumber.RoundingMode.plain)
+	NSDecimalRound(&upperRangeRounded, &valueUpper, scale, NSDecimalNumber.RoundingMode.plain)
+	lowerRangeRounded *= 100
+	upperRangeRounded *= 100
+	doubleRange = ClosedRange.init(uncheckedBounds: (lower: lowerRangeRounded, upper: upperRangeRounded))
 	
 	intRange = ClosedRange.init(uncheckedBounds: (lower: Int.init(modD * randomLower), upper: Int.init(modD * randomUpper)))
 //	finalD = Int.init(modD)

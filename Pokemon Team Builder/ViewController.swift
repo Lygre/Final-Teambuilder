@@ -1140,7 +1140,7 @@ class CalcViewController: NSViewController {
 		for orderedMove in movesOrdered {
 			let damageResultForMove = getDamageResult(attacker: attackingMon, defender: defendingMon, move: orderedMove, field: currentField)
 			moveDamageTableBind[orderedMove.name] = ["intDmg": "\(damageResultForMove.0)",
-													 "doubleDmg": "\(damageResultForMove.1)"]
+													 "doubleDmg": "\(damageResultForMove.1)%"]
 		}
 		
 		let movesOrdered2 = [defendingMon.move1, defendingMon.move2, defendingMon.move3, defendingMon.move4]
@@ -1148,7 +1148,7 @@ class CalcViewController: NSViewController {
 		for orderedMove in movesOrdered2 {
 			let damageResultForMove = getDamageResult(attacker: defendingMon, defender: attackingMon, move: orderedMove, field: currentField)
 			moveDamageTableBind2[orderedMove.name] = ["intDmg": "\(damageResultForMove.0)",
-													  "doubleDmg": "\(damageResultForMove.1)"]
+													  "doubleDmg": "\(damageResultForMove.1)%"]
 		}
 	}
 
