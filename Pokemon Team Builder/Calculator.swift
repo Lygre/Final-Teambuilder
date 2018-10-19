@@ -36,8 +36,8 @@ func calculateAllMoves(p1: Pokemon, p2: Pokemon, field: Field) {
 	
 }
 
-func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Field) -> (Int, Double) {
-	var dmgResult: (Int, Double) = (1, 1.00)
+func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Field) -> (ClosedRange<Int>, ClosedRange<Double>) {
+	var dmgResult: (ClosedRange<Int>, ClosedRange<Double>)
 	var _: Int = Int()
 	var finalD = Int()
 	var D: Double = Double()
@@ -45,7 +45,10 @@ func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Fi
 //	var defense = Int()
 	var modifier = Double()
 	var adRatio: Double = Double()
-	
+	var randomLower: Double = 0.85
+	var randomUpper: Double = 1.0
+	var intRange: ClosedRange<Int>
+	var doubleRange: ClosedRange<Double>
 	var percentHP: Double = Double()
 	
 	if move.category == "Physical" {
@@ -56,7 +59,7 @@ func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Fi
 
 	D = (((((2.0*Double.init(attacker.level)/5.0)+2.0) * Double.init(move.basePower) * adRatio) / 50.0)+2.0)
 
-	var terrain, weather, crit, random, stab, typeMod, other: Double
+	var terrain, weather, crit, stab, typeMod, other: Double
 	//removed 'burn' var because do not have property for status added to class Pokemon yet
 	
 	//calc weather mod
@@ -86,7 +89,8 @@ func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Fi
 	// crit mod to fix later
 	crit = 1.0
 	// random to make later
-	random = 1.0
+//	random = 1.0
+
 	//stab mod
 	stab = 1.0
 	for type in attacker.types {
@@ -120,15 +124,18 @@ func getDamageResult(attacker: Pokemon, defender: Pokemon, move: Move, field: Fi
 	
 	other = 1.0
 	
-	modifier = terrain * weather * crit * random * stab * typeMod * other
+	modifier = terrain * weather * crit * stab * typeMod * other
 	
 	let modD = D * modifier
 	
-	finalD = Int.init(modD)
-	
+
 	percentHP = modD / Double(defender.virtualStats["hp"]!)
+
+	doubleRange = ClosedRange.init(uncheckedBounds: (lower: (percentHP * randomLower), upper: (percentHP * randomUpper)))
 	
-	dmgResult = (finalD, percentHP)
+	intRange = ClosedRange.init(uncheckedBounds: (lower: Int.init(modD * randomLower), upper: Int.init(modD * randomUpper)))
+//	finalD = Int.init(modD)
+	dmgResult = (intRange, doubleRange)
 
 	return dmgResult
 }

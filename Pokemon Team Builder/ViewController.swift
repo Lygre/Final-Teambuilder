@@ -872,9 +872,9 @@ extension TeamViewController {
 
 class CalcViewController: NSViewController {
 	
-	@objc dynamic var moveDamageTableBind: [String: [String: Any]] = [:]
+	@objc dynamic var moveDamageTableBind: [String: [String: String]] = [:]
 	
-	@objc dynamic var moveDamageTableBind2: [String: [String: Any]] = [:]
+	@objc dynamic var moveDamageTableBind2: [String: [String: String]] = [:]
 	
 	@objc dynamic var team: Team = teamMaster
 	
@@ -1139,16 +1139,16 @@ class CalcViewController: NSViewController {
 		moveDamageTableBind = [:]
 		for orderedMove in movesOrdered {
 			let damageResultForMove = getDamageResult(attacker: attackingMon, defender: defendingMon, move: orderedMove, field: currentField)
-			moveDamageTableBind[orderedMove.name] = ["intDmg": damageResultForMove.0,
-													 "doubleDmg": damageResultForMove.1]
+			moveDamageTableBind[orderedMove.name] = ["intDmg": "\(damageResultForMove.0)",
+													 "doubleDmg": "\(damageResultForMove.1)"]
 		}
 		
 		let movesOrdered2 = [defendingMon.move1, defendingMon.move2, defendingMon.move3, defendingMon.move4]
 		moveDamageTableBind2 = [:]
 		for orderedMove in movesOrdered2 {
 			let damageResultForMove = getDamageResult(attacker: defendingMon, defender: attackingMon, move: orderedMove, field: currentField)
-			moveDamageTableBind2[orderedMove.name] = ["intDmg": damageResultForMove.0,
-													  "doubleDmg": damageResultForMove.1]
+			moveDamageTableBind2[orderedMove.name] = ["intDmg": "\(damageResultForMove.0)",
+													  "doubleDmg": "\(damageResultForMove.1)"]
 		}
 	}
 
@@ -1186,7 +1186,7 @@ class CalcViewController: NSViewController {
 	
 	@IBAction func levelSelected(_ sender: Any) {
 		updateSliders()
-		updateCalcs()
+//		updateCalcs()
 	}
 
 	@IBAction func moveSelected(_ sender: Any) {
